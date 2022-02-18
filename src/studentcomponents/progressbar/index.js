@@ -4,23 +4,24 @@ import styles from '../../../styles/progressbarcomponent.module.css'
 
 import { ProgressBar, Step } from "react-step-progress-bar";
 
-function ProgressBarComponent() {
+function ProgressBarComponent({studentDaysRead}) {
+//   const studentDaysRead = 4;
   return (
     <div className={styles.progressbar}>
       <ProgressBar
-        percent={100}
+        percent={Math.ceil((studentDaysRead / 7) * 100)}
         filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
       >
-        <Step transition="scale">
+        <Step transition="rotate">
           {({ accomplished }) => (
             <img
-                style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+              style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
               width="30"
               src="https://cdn-icons-png.flaticon.com/512/599/599193.png"
             />
           )}
         </Step>
-        <Step transition="scale">
+        <Step transition="rotate">
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
@@ -29,7 +30,7 @@ function ProgressBarComponent() {
             />
           )}
         </Step>
-        <Step transition="scale">
+        <Step transition="rotate">
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
@@ -38,7 +39,7 @@ function ProgressBarComponent() {
             />
           )}
         </Step>
-        <Step transition="scale">
+        <Step transition="rotate">
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
@@ -47,7 +48,7 @@ function ProgressBarComponent() {
             />
           )}
         </Step>
-        <Step transition="scale">
+        <Step transition="rotate">
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
@@ -56,7 +57,7 @@ function ProgressBarComponent() {
             />
           )}
         </Step>
-        <Step transition="scale">
+        <Step transition="rotate">
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
@@ -65,7 +66,7 @@ function ProgressBarComponent() {
             />
           )}
         </Step>
-        <Step transition="scale">
+        <Step transition="rotate">
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
@@ -74,7 +75,7 @@ function ProgressBarComponent() {
             />
           )}
         </Step>
-        <Step transition="scale">
+        <Step transition="rotate">
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
