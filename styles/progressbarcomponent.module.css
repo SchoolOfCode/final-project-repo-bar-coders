@@ -1,0 +1,9 @@
+.progressbar {
+    width: 80%;
+    margin: 3rem auto 0;
+    
+}
+
+.progressbar img {
+transform: rotate(45deg);
+}
