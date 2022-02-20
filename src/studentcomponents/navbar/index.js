@@ -19,22 +19,36 @@ function Navbar({isNewMessage}) {
         <h1>Alice</h1>
       </div>
 
-      <Link href="/" passHref>
+      <Link href="/studenthome" passHref>
         <button>Home</button>
       </Link>
-      <button>Dictionary</button>
-      <button>Finished Books</button>
+      <Link href="/dictionary" passHref>
+        <button>Dictionary</button>
+      </Link>
+      <Link href="/finishedbooks" passHref>
+        <button>Finished Books</button>
+      </Link>
 
       {isNewMessage && (
         /* <img src="https://cdn-icons-png.flaticon.com/512/6875/6875112.png"></img> */
-        <Image src={newmessageicon.src} alt="icon" width="60px" height="60px" />
+        <Link href="/messages" passHref>
+          <Image
+            src={newmessageicon.src}
+            alt="icon"
+            width="60px"
+            height="60px"
+          />
+        </Link>
       )}
       {!isNewMessage && (
         /* <img src="https://cdn-icons-png.flaticon.com/512/6875/6875170.png"></img> */
-        <Image src={messagesicon.src} alt="icon" width="60px" height="60px" />
+        <Link href="/messages" passHref>
+          <Image src={messagesicon.src} alt="icon" width="60px" height="60px" />
+        </Link>
       )}
-
-      <button className={styles.logoutbutton}>Log Out</button>
+      <Link href="/" passHref>
+        <button className={styles.logoutbutton}>Log Out</button>
+      </Link>
     </div>
   );
 }
