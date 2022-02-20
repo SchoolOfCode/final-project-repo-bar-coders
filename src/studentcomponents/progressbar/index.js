@@ -1,6 +1,8 @@
 import React from 'react';
 import "react-step-progress-bar/styles.css";
 import styles from '../../../styles/progressbarcomponent.module.css'
+import rocketicon from '../../../images/rocketicon.png'
+import Image from 'next/image';
 
 import { ProgressBar, Step } from "react-step-progress-bar";
 
@@ -10,23 +12,16 @@ function ProgressBarComponent({studentDaysRead}) {
     <div className={styles.progressbar}>
       <ProgressBar
         percent={Math.ceil((studentDaysRead / 7) * 100)}
-        filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
+        filledBackground="linear-gradient(to right, #ACF5DA, #51ECB4)"
       >
         <Step transition="rotate">
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="30"
-              src="https://cdn-icons-png.flaticon.com/512/599/599193.png"
-            />
-          )}
-        </Step>
-        <Step transition="rotate">
-          {({ accomplished }) => (
-            <img
-              style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="40"
-              src="https://cdn-icons-png.flaticon.com/512/599/599193.png"
+              width="50"
+              height="50"
+              src={rocketicon.src}
+              alt="rocket"
             />
           )}
         </Step>
@@ -35,7 +30,9 @@ function ProgressBarComponent({studentDaysRead}) {
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
               width="50"
-              src="https://cdn-icons-png.flaticon.com/512/599/599193.png"
+              height="50"
+              src={rocketicon.src}
+              alt="rocket"
             />
           )}
         </Step>
@@ -43,8 +40,10 @@ function ProgressBarComponent({studentDaysRead}) {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="60"
-              src="https://cdn-icons-png.flaticon.com/512/599/599193.png"
+              width="50"
+              height="50"
+              src={rocketicon.src}
+              alt="rocket"
             />
           )}
         </Step>
@@ -52,8 +51,10 @@ function ProgressBarComponent({studentDaysRead}) {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="70"
-              src="https://cdn-icons-png.flaticon.com/512/599/599193.png"
+              width="50"
+              height="50"
+              src={rocketicon.src}
+              alt="rocket"
             />
           )}
         </Step>
@@ -61,8 +62,10 @@ function ProgressBarComponent({studentDaysRead}) {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="80"
-              src="https://cdn-icons-png.flaticon.com/512/599/599193.png"
+              width="50"
+              height="50"
+              src={rocketicon.src}
+              alt="rocket"
             />
           )}
         </Step>
@@ -70,8 +73,10 @@ function ProgressBarComponent({studentDaysRead}) {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="90"
-              src="https://cdn-icons-png.flaticon.com/512/599/599193.png"
+              width="50"
+              height="50"
+              src={rocketicon.src}
+              alt="rocket"
             />
           )}
         </Step>
@@ -79,8 +84,21 @@ function ProgressBarComponent({studentDaysRead}) {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="100"
-              src="https://cdn-icons-png.flaticon.com/512/599/599193.png"
+              width="50"
+              height="50"
+              src={rocketicon.src}
+              alt="rocket"
+            />
+          )}
+        </Step>
+        <Step transition="rotate">
+          {({ accomplished }) => (
+            <img
+              style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+              width="50"
+              height="50"
+              src={rocketicon.src}
+              alt="rocket"
             />
           )}
         </Step>
