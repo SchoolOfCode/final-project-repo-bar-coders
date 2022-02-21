@@ -1,6 +1,9 @@
-import Navbar from "../src/studentcomponents/navbar"
-import ProgressBar from "../src/studentcomponents/progressbar"
+
+import Navbar from "../src/studentcomponents/navbar";
+import ProgressBar from "../src/studentcomponents/progressbar";
+import InfoWindow from "../src/studentcomponents/infowindow";
 import Carousel from "../src/studentcomponents/bookcarousel";
+
 
 
 export default function StudentHome({
@@ -15,6 +18,10 @@ export default function StudentHome({
       <Navbar isNewMessage={isNewMessage} />
       <ProgressBar studentDaysRead={studentDaysRead} />
 
+      
+      
+<div>
+
       <div>
         <Carousel
           inProgressBooks={inProgressBooks}
@@ -22,6 +29,11 @@ export default function StudentHome({
           updateCurrentBook={updateCurrentBook}
         />
       </div>
+  <div>
+    <InfoWindow/>
+            </div>
+</div>
+
     </div>
   );
 }
