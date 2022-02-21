@@ -1,6 +1,7 @@
 
-import Navbar from "../src/studentcomponents/navbar";
-import ProgressBar from "../src/studentcomponents/progressbar";
+import Navbar from "../src/studentcomponents/navbar"
+import ProgressBar from "../src/studentcomponents/progressbar"
+import Readinglog from "../src/studentcomponents/readinglog";
 import InfoWindow from "../src/studentcomponents/infowindow";
 import Carousel from "../src/studentcomponents/bookcarousel";
 
