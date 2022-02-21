@@ -1,19 +1,24 @@
 .window {
-    height: 624px;
-    width: 1024px;
-    margin: 10rem 65rem;
-    padding: 0.25rem 0.25rem;
-    font-size: 1.3rem;
-    border-radius: 50px;
-    background-color: #C66DFD;
-    
+  margin: 5rem 1rem;
+  padding: 0.25rem 0.25rem;
+  font-size: 1.3rem;
+  border-radius: 50px;
+  background-color: #C66DFD;
+  color: white;
+  font-family: "Reem Kufi";
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  float: right;
+  text-align: center;   
+
 }
 
 .image{
-   margin: -2rem;
+   margin: 1rem;
 }
 .image:hover{
-    animation: shake 0.5s;
+    animation: shake 1.0s;
     animation-iteration-count: infinite;
 }
 @keyframes shake {
@@ -31,40 +36,32 @@
   }
 
 .inner{
+    margin: 2rem 2rem;
+    padding: 0.25rem 0.25rem;
     display: flex;
-    align-items: center;
-    margin: 3rem;
     background-color: white;
-    height: 524px;
-    width: 924px;
-    font-size: 1.3rem;
     border-radius: 50px;
     box-shadow: black;
-    
+    display: flex;
+    flex-direction: column;
 }
 
 .inner h1 {
-    position: relative;
-    margin-bottom: 25rem ;
-    margin-left: 8rem;
     color:black;
+    overflow-wrap: normal;
     font-family: "Reem Kufi";
 }
 
 .inner p1 {
-    font-size: 35px;
-    position: relative;
-    margin-bottom: 5rem ;
-    margin-left: -36rem;
+    
+    margin: 1rem 1rem;
     color:black;
+    overflow-wrap: normal;
     font-family: "Reem Kufi";
 }
-.inner p2 {
-    font-size: 35px;
-    position: relative;
-    margin-bottom: -15rem ;
-    margin-left: -40rem;
+.inner p2 { 
     color:black;
+    overflow-wrap: normal;
     font-family: "Reem Kufi";
 }
 
