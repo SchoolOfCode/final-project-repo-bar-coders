@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap');
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
 html,
 body {
@@ -19,3 +20,4 @@ a {
 * {
   box-sizing: border-box;
 }
+
