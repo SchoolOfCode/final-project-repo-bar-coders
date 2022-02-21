@@ -8,7 +8,6 @@ export default function StudentHome({ isNewMessage, studentDaysRead }) {
     <div>
       <Navbar isNewMessage={isNewMessage}/>
       <ProgressBar studentDaysRead={studentDaysRead} />
-      <Readinglog />
     </div>
   );
 }
