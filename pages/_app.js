@@ -14,21 +14,24 @@ function MyApp({ Component, pageProps }) {
     {
       book_id: 1,
       title: "Example Title",
-      currentPage: 1,
-      bookCover:
+      current_page: 1,
+      total_pages: 150,
+      cover:
         "https://images-na.ssl-images-amazon.com/images/I/51RTdGBiL6L._SX331_BO1,204,203,200_.jpg",
     },
     {
       book_id: 2,
       title: "Harry Potter and the Philosopher's Stone",
       currentPage: 145,
-      bookCover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
+      total_pages: 223,
+      cover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
     },
     {
       book_id: 3,
       title: "Artemis Fowl",
       currentPage: 98,
-      bookCover:
+      total_pages: 280,
+      cover:
         "https://www.artemis-fowl.com/wp-content/uploads/2019/03/2019-artemis-fowl-cover-book-one.jpg",
     },
   ]);
@@ -38,7 +41,8 @@ function MyApp({ Component, pageProps }) {
     book_id: 2,
     title: "Harry Potter and the Philosopher's Stone",
     currentPage: 145,
-    bookCover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
+    total_pages: 223,
+    cover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
   });
 
   //function to update current book depending on what is clicked in the book carousel:

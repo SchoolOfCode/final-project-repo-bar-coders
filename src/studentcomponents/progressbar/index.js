@@ -6,6 +6,9 @@ import Image from 'next/image';
 
 import { ProgressBar, Step } from "react-step-progress-bar";
 
+//See here for the progress bar documentation: https://pierreericgarcia.github.io/react-step-progress-bar/
+
+
 function ProgressBarComponent({studentDaysRead}) {
 //   const studentDaysRead = 4;
   return (

@@ -11,8 +11,8 @@ function Carousel({ inProgressBooks, currentBook, updateCurrentBook }) {
 
     const images = inProgressBooks.map((book) => {
     return {
-      original: book.bookCover,
-      thumbnail: book.bookCover,
+      original: book.cover,
+      thumbnail: book.cover,
       originalHeight: "500",
       originalWidth: "310",
       thumbnailHeight: "100",
