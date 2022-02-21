@@ -4,7 +4,8 @@ import Navbar from '../src/studentcomponents/navbar'
 function dictionary({ isNewMessage }) {
   return (
     <div>
-      <Navbar isNewMessage={isNewMessage} />
+          <Navbar isNewMessage={isNewMessage} />
+         
     </div>
   );
 }
