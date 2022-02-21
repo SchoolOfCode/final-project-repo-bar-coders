@@ -47,8 +47,16 @@ function MyApp({ Component, pageProps }) {
     setCurrentBook(selectedBook)
   }
 
+  //Used in dictionary - new word list
+  const [words, setWords] = useState(["facilitate", "diminish", "gravitate"])
+
+  //adds new words to dictionary word list
+  function updateWordsList(newWord) {
+    setWords([...words, newWord])
+  }
+
   return (
-    <Component {...pageProps} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook}/>
+    <Component {...pageProps} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList}/>
   );
 
 }
