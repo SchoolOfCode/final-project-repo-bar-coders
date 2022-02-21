@@ -13,23 +13,32 @@ function MyApp({ Component, pageProps }) {
   const [inProgressBooks, setInProgressBooks] = useState([
     {
       book_id: 1,
-      title: "Example Title",
-      currentPage: 1,
-      bookCover:
-        "https://images-na.ssl-images-amazon.com/images/I/51RTdGBiL6L._SX331_BO1,204,203,200_.jpg",
+      title: "Winnie the Pooh",
+      current_page: 1,
+      total_pages: 150,
+      cover: "http://www.buildingalibrary.com/wp-content/uploads/2011/10/Pooh_Personalize.jpg",
     },
     {
       book_id: 2,
       title: "Harry Potter and the Philosopher's Stone",
-      currentPage: 145,
-      bookCover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
+      current_page: 145,
+      total_pages: 223,
+      cover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
     },
     {
       book_id: 3,
       title: "Artemis Fowl",
-      currentPage: 98,
-      bookCover:
+      current_page: 98,
+      total_pages: 280,
+      cover:
         "https://www.artemis-fowl.com/wp-content/uploads/2019/03/2019-artemis-fowl-cover-book-one.jpg",
+    },
+    {
+      book_id: 4,
+      title: "Unknown Book",
+      current_page: 1,
+      total_pages: 150,
+      cover: "https://www.wallpaperuse.com/wallp/42-425257_m.jpg",
     },
   ]);
 
@@ -37,8 +46,9 @@ function MyApp({ Component, pageProps }) {
   const [currentBook, setCurrentBook] = useState({
     book_id: 2,
     title: "Harry Potter and the Philosopher's Stone",
-    currentPage: 145,
-    bookCover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
+    current_page: 145,
+    total_pages: 223,
+    cover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
   });
 
   //function to update current book depending on what is clicked in the book carousel:
@@ -55,8 +65,11 @@ function MyApp({ Component, pageProps }) {
     setWords([...words, newWord])
   }
 
+//used in studenthome to match coins earned
+  const [minutesRead, setMinutesRead] = useState(45)
+
   return (
-    <Component {...pageProps} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList}/>
+    <Component {...pageProps} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} minutesRead={minutesRead}/>
   );
 
 }

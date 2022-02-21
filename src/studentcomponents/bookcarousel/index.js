@@ -11,8 +11,8 @@ function Carousel({ inProgressBooks, currentBook, updateCurrentBook }) {
 
     const images = inProgressBooks.map((book) => {
     return {
-      original: book.bookCover,
-      thumbnail: book.bookCover,
+      original: book.cover,
+      thumbnail: book.cover,
       originalHeight: "500",
       originalWidth: "310",
       thumbnailHeight: "100",
@@ -33,7 +33,7 @@ function Carousel({ inProgressBooks, currentBook, updateCurrentBook }) {
         onClick={(e) => {
           updateCurrentBook(e.target.title); //this passes in the book id number to the updateCurrentBook function - can't call it id for some reason
             console.log(currentBook);
-            router.push('/dictionary') //update to log entry page
+            router.push('/readinglog') 
         }}
       />
     </div>
