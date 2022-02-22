@@ -1,0 +1,13 @@
+.container {
+    margin: 2rem 0.5rem;
+  padding: 0.25rem 0.25rem;
+  font-size: 1.3rem;
+  border-radius: 50px;
+  background-color: #C66DFD;
+  color: white;
+  font-family: "Reem Kufi";
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  float: right;
+}

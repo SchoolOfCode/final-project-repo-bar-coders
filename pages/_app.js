@@ -53,6 +53,7 @@ function MyApp({ Component, pageProps }) {
   //adds new words to dictionary word list
   function updateWordsList(newWord) {
     setWords([...words, newWord])
+    // need to send new word to the database
   }
 
   return (
