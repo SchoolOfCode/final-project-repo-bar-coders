@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
       title: "Winnie the Pooh",
       current_page: 1,
       total_pages: 150,
-      cover: "http://www.buildingalibrary.com/wp-content/uploads/2011/10/Pooh_Personalize.jpg",
+      cover: "https://www.buildingalibrary.com/wp-content/uploads/2011/10/Pooh_Personalize.jpg",
     },
     {
       book_id: 2,
