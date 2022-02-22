@@ -24,10 +24,21 @@
   display: flex;
   flex-direction: column;
   width: 95%;
+  text-align: center;
 }
 
 .summary {
     height: 150px;
+    margin: 2rem 0.5rem;
+  padding: 0.25rem 0.25rem;
+  font-size: 1.3rem;
+  border-radius: 50px;
+  background-color: white;
+  font-family: "Reem Kufi";
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  text-align: center;
 }
 
 .buttons {

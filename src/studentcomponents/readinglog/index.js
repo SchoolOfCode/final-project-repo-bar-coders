@@ -11,35 +11,36 @@ function Readinglog({currentBook}) {
 
   return (
     <div className={styles.container}>
-    
-    <form onSubmit={handleSubmit}>
-        
+      <form onSubmit={handleSubmit}>
         <h1>{currentBook.title}</h1>
 
-        <input type="text" placeholder="What page did you finish on?">
-        </input>
+        <input type="text" placeholder="What page did you finish on?"></input>
 
-        <input type="text" placeholder="How many minutes did you read for?">
-        </input>
+        <input
+          type="text"
+          placeholder="How many minutes did you read for?"
+        ></input>
 
-        <input type="text" placeholder="Summarise today's reading in one or two sentences" className={styles.summary}>
-        </input>
+        <textarea
+          rows="4"
+          cols="50"
+          type="text"
+          placeholder="Summarise today's reading in one or two sentences"
+          className={styles.summary}
+        ></textarea>
 
         <div className={styles.buttons}>
-            {/* <Link href="studenthome" passHref> */}
-            <button type="submit">Submit</button>
-            {/* </Link> */}
-            <label>
+          {/* <Link href="studenthome" passHref> */}
+          <button type="submit">Submit</button>
+          {/* </Link> */}
+          <label>
             Finished the book?
             <input type="checkbox"></input>
-            </label>
+          </label>
         </div>
-
-    </form>
-
-
+      </form>
     </div>
-  )
+  );
 }
 
 export default Readinglog

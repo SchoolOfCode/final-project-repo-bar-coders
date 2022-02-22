@@ -21,7 +21,7 @@ export default function Home() {
         <h1>Book Worms</h1>
         <h2>Login</h2>
         <input placeholder="username" />
-        <input placeholder="password" />
+        <input type="password" placeholder="password" />
         <div className={styles.Buttons}>
         <Link href="/studenthome" passHref>
         <button>I&apos;m a student</button>

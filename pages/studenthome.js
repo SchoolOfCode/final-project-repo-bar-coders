@@ -21,13 +21,14 @@ export default function StudentHome({
       </div>
 
       <div className={styles.pageBody}>
-        <div className={styles.leftSide}>
+              <div className={styles.leftSide}>
+                  <h2>Click on a book cover to pick up where you left off</h2>
           <Carousel
             inProgressBooks={inProgressBooks}
             currentBook={currentBook}
             updateCurrentBook={updateCurrentBook}
           />
-          <button className={styles.newBookButton}>Choose a new book</button>
+          <button className={styles.newBookButton}>Want to add a book to your library?</button>
         </div>
 
         <div className={styles.rightSide}>
