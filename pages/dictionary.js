@@ -4,17 +4,8 @@ import Image from 'next/image'
 import styles from '../styles/dictionary.module.css'
 import { useState } from 'react'
 
-function dictionary({ isNewMessage, words, updateWordsList }) {
+function dictionary({ isNewMessage, words, updateWordsList, searchWord, handleChange }) {
 
-  const [searchWord, setSearchWord] = useState(" ")
-
-
-  function handleChange(e) {
-    e.preventDefault()
-    setSearchWord(e.target.value)
-    console.log(searchWord)
-    
-  }
 
   function getWord(e) {
     e.preventDefault()
@@ -39,15 +30,14 @@ function dictionary({ isNewMessage, words, updateWordsList }) {
 
         <div className={styles.container}>
           <form>
-            <h1>Found a word you don't know?</h1>
+            <h1>Found a word you don&apos;t know?</h1>
 
             <input type="text" list="valuelist" value={searchWord} onChange={handleChange}></input>
             <datalist id="valuelist">
-            {words.map((word)=>{return<option>{word}</option>})}
-             
+            {words.map((word, index)=>{return<option key={index}>{word}</option>})}
             </datalist>
       
-              <button onClick={getWord}>Look it up</button>
+            <button onClick={getWord}>Look it up</button>
 
             <p>(Definition appears here)</p>
 

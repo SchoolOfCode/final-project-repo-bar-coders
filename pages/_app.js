@@ -66,11 +66,20 @@ function MyApp({ Component, pageProps }) {
     // need to send new word to the database
   }
 
+  const [searchWord, setSearchWord] = useState("")
+
+  function handleChange(e) {
+    e.preventDefault()
+    setSearchWord(e.target.value)
+    console.log(searchWord)
+    
+  }
+
 //used in studenthome to match coins earned
   const [minutesRead, setMinutesRead] = useState(45)
 
   return (
-    <Component {...pageProps} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} minutesRead={minutesRead}/>
+    <Component {...pageProps} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} searchWord={searchWord} handleChange={handleChange} minutesRead={minutesRead}/>
   );
 
 }
