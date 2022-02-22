@@ -66,8 +66,10 @@ function MyApp({ Component, pageProps }) {
     // need to send new word to the database
   }
 
+  // used in dictionary to set word to look up in api
   const [searchWord, setSearchWord] = useState("")
 
+  // used in dictionary to handle input change in dictionary look up
   function handleChange(e) {
     e.preventDefault()
     setSearchWord(e.target.value)
@@ -75,11 +77,24 @@ function MyApp({ Component, pageProps }) {
     
   }
 
+  //used in dictionary to store meanings for looked up word
+  const [meanings, setMeanings] = useState([]);
+
+  //used in dictionary to update meanings
+  function updateMeanings(meaningsArray) {
+    setMeanings(meaningsArray)
+  }
+
+  //used in dictionary to clear definitions
+  function resetMeanings() {
+    setMeanings([])
+  }
+
 //used in studenthome to match coins earned
   const [minutesRead, setMinutesRead] = useState(45)
 
   return (
-    <Component {...pageProps} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} searchWord={searchWord} handleChange={handleChange} minutesRead={minutesRead}/>
+    <Component {...pageProps} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} searchWord={searchWord} handleChange={handleChange} meanings={meanings} updateMeanings={updateMeanings} resetMeanings={resetMeanings} minutesRead={minutesRead}/>
   );
 
 }
