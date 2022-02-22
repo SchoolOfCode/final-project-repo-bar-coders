@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   width: 600px;
-  float: right;
+
     text-align: center;
   align-content: center;
   align-items: center;
@@ -45,11 +45,31 @@ text-align: center;
 
 }
 
+.definitions {
+  
+  margin: 2rem 0.5rem;
+  padding: 0.25rem 0.25rem;
+  font-size: 1.3rem;
+  border-radius: 50px;
+  background-color: white;
+  color: black;
+  font-family: "Reem Kufi";
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+text-align: center;
+border: 2px inset black;
+}
+
+.definitions h3, .definitions p {
+  margin: 0.5rem;
+}
+
 .pageBody {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 60vh;
+    min-height: 60vh;
 }
 
 .leftImage {
