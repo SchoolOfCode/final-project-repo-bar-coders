@@ -4,6 +4,7 @@ import Readinglog from "../src/studentcomponents/readinglog";
 import InfoWindow from "../src/studentcomponents/infowindow";
 import Carousel from "../src/studentcomponents/bookcarousel";
 import styles from "../styles/studenthome.module.css";
+import Link from "next/link";
 
 export default function StudentHome({
   isNewMessage,
@@ -21,18 +22,22 @@ export default function StudentHome({
       </div>
 
       <div className={styles.pageBody}>
-              <div className={styles.leftSide}>
-                  <h2>Click on a book cover to pick up where you left off</h2>
+        <div className={styles.leftSide}>
+          <h2>Click on a book cover to pick up where you left off</h2>
           <Carousel
             inProgressBooks={inProgressBooks}
             currentBook={currentBook}
             updateCurrentBook={updateCurrentBook}
           />
-          <button className={styles.newBookButton}>Want to add a book to your library?</button>
+          <Link href="/newbook" passHref>
+            <button className={styles.newBookButton}>
+              Want to add a book to your library?
+            </button>
+          </Link>
         </div>
 
         <div className={styles.rightSide}>
-                  <InfoWindow minutesRead={minutesRead}/>
+          <InfoWindow minutesRead={minutesRead} />
         </div>
       </div>
     </div>
