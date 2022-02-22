@@ -24,31 +24,38 @@ function dictionary({ isNewMessage, words, updateWordsList, searchWord, handleCh
   return (
     <div>
       <Navbar isNewMessage={isNewMessage} />
-      <div>
-        <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
-        <div>
+      <div className={styles.pageBody}>
+        <div className={styles.leftImage}>
+          <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
+        </div>
 
         <div className={styles.container}>
           <form>
             <h1>Found a word you don&apos;t know?</h1>
 
-            <input type="text" list="valuelist" value={searchWord} onChange={handleChange}></input>
-            <datalist id="valuelist">
-            {words.map((word, index)=>{return<option key={index}>{word}</option>})}
+            <input
+              type="text"
+              list="valuelist"
+                          value={searchWord}
+                          placeholder="Type new word or choose from this list"
+              onChange={handleChange}
+            ></input>
+            <datalist className={styles.dropdown} id="valuelist">
+              {words.map((word, index) => {
+                return <option key={index}>{word}</option>;
+              })}
             </datalist>
-      
+
             <button onClick={getWord}>Look it up</button>
 
             <p>(Definition appears here)</p>
 
-              <button onClick={handleSubmit}>Add this to my list of words</button>
-    
+            <button onClick={handleSubmit}>Add this to my list of words</button>
           </form>
-          
         </div>
-          
+        <div className={styles.rightImage}>
+          <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
         </div>
-        <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
       </div>
     </div>
   );
