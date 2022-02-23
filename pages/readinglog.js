@@ -7,11 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import BookProgressBar from "../src/studentcomponents/bookprogressbar";
 
-function readinglog({ isNewMessage, studentDaysRead, currentBook }) {
+function readinglog({ isNewMessage, studentDaysRead, currentBook, studentName }) {
   return (
     <div>
       <div>
-        <Navbar isNewMessage={isNewMessage} />
+        <Navbar isNewMessage={isNewMessage} studentName={studentName} />
         <ProgressBar studentDaysRead={studentDaysRead} />
       </div>
       <div className={styles.pageBody}>

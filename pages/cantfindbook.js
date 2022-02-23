@@ -4,10 +4,10 @@ import Image from 'next/image'
 import rocketicon from '../images/rocketicon.png'
 import styles from '../styles/cantfindbook.module.css'
 
-function Cantfindbook() {
+function Cantfindbook({isNewMessage, studentName}) {
   return (
     <div>
-    <Navbar />
+    <Navbar isNewMessage={isNewMessage} studentName={studentName} />
     <div className={styles.pageBody}>
         
         <div className={styles.leftImage}>

@@ -4,10 +4,10 @@ import Image from 'next/image'
 import rocketicon from '../images/rocketicon.png'
 import styles from '../styles/messages.module.css'
 
-function messages({ isNewMessage }) {
+function messages({ isNewMessage, studentName }) {
   return (
     <div>
-    <Navbar />
+    <Navbar isNewMessage={isNewMessage} studentName={studentName}/>
     <div className={styles.pageBody}>
         
         <div className={styles.leftImage}>

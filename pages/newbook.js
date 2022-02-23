@@ -6,7 +6,7 @@ import styles from '../styles/newbook.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-function Newbook({ isNewMessage, studentId }) {
+function Newbook({ isNewMessage, studentId, studentName }) {
 
   const router = useRouter();
 
@@ -70,7 +70,7 @@ function Newbook({ isNewMessage, studentId }) {
 
   return (
     <div>
-      <Navbar isNewMessage={isNewMessage} />
+      <Navbar isNewMessage={isNewMessage} studentName={studentName} />
       <div className={styles.pageBody}>
         <div className={styles.leftImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />

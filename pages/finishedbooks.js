@@ -4,10 +4,10 @@ import Styles from '../styles/finishedbooks.module.css'
 
 
 
-function finishedbooks({ isNewMessage }) {
+function finishedbooks({ isNewMessage, studentName }) {
   return (
     <div>
-        {<Navbar isNewMessage={isNewMessage} />}
+        {<Navbar isNewMessage={isNewMessage} studentName={studentName} />}
           <div className={Styles.container}>
               <div className={Styles.box}><img src='BB.JPG' alt="" width="350rem" height="350rem" />Completed: 02-02-2022</div>
               <div className={Styles.box}><img src='CA.JPG' alt="" width="350rem" height="350rem" />Completed: 15-12-2021</div>
