@@ -4,6 +4,7 @@ import Styles from '../styles/finishedbooks.module.css'
 import hp from '../images/HP.jpg' 
 import Image from 'next/image';
 
+
 function finishedbooks({ isNewMessage }) {
   return (
     <div>

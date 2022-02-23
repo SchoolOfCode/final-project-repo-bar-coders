@@ -3,6 +3,9 @@ import { useState } from "react"
 
 function MyApp({ Component, pageProps }) {
 
+  //studentId - to be set via Auth?
+  const [studentId, setStudentId] = useState("s01");
+
   //Added in case we use it as a stretch goal - notification if a "new" message is received
   const [isNewMessage, setIsNewMessage] = useState(true);
 
@@ -94,7 +97,7 @@ function MyApp({ Component, pageProps }) {
   const [minutesRead, setMinutesRead] = useState(45)
 
   return (
-    <Component {...pageProps} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} searchWord={searchWord} handleChange={handleChange} meanings={meanings} updateMeanings={updateMeanings} resetMeanings={resetMeanings} minutesRead={minutesRead}/>
+    <Component {...pageProps} studentId={studentId} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} searchWord={searchWord} handleChange={handleChange} meanings={meanings} updateMeanings={updateMeanings} resetMeanings={resetMeanings} minutesRead={minutesRead}/>
   );
 
 }
