@@ -1,23 +1,71 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Navbar from '../src/studentcomponents/navbar'
 import Image from 'next/image'
 import rocketicon from '../images/rocketicon.png'
 import styles from '../styles/newbook.module.css'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-function Newbook({ isNewMessage }) {
+function Newbook({ isNewMessage, studentId }) {
+
+  const router = useRouter();
+
+  const [newApiBook, setNewApiBook] = useState()
+  const [title, setTitle] = useState("")
+  const [author, setAuthor] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+
+    bookSearch();
+}, [loading] )
+
   async function bookSearch() {
-    const response = await fetch(
-      `https://openlibrary.org/search.json?title=matilda&author=roald%20dahl` //update to reflect search terms
-    );
-    const data = await response.json();
+  
+    if (title) {
+      setErrorMessage("Please wait...");
+      try {
+        const response = await fetch(
+          `https://openlibrary.org/search.json?title=${title}&author=${author}`
+        );
+        const data = await response.json();
 
-    console.log(data.docs[0]);
-    console.log(data.docs[0].author_name[0]);
-    console.log(data.docs[0].title);
-    console.log(data.docs[0].number_of_pages_median);
-    console.log(data.docs[0].cover_edition_key); //use to fetch cover art
-    console.log(data.docs[0].isbn[0]) //book id to be added to database
+        console.log(data.docs[0]);
+        console.log(data.docs[0].author_name[0]);
+        console.log(data.docs[0].title);
+        console.log(data.docs[0].number_of_pages_median);
+        console.log(data.docs[0].cover_edition_key); //use to fetch cover art
+        console.log(data.docs[0].isbn[0]) //book id to be added to database
+
+        setNewApiBook({
+          title: data.docs[0].title,
+          author: data.docs[0].author_name[0],
+          total_pages: data.docs[0].number_of_pages_median,
+          cover: `https://covers.openlibrary.org/b/olid/${data.docs[0].cover_edition_key}-L.jpg`,
+          id: data.docs[0].isbn[0],
+          student_id: studentId,
+        
+        });
+        setErrorMessage("");
+      }
+      catch {
+        setErrorMessage("No matches found. Did you fill in all the details and spell everything correctly?")
+       
+      }
+    }
+  }
+
+
+  
+  async function addBookToDatabase() {
+    const url = ""; //add API route to post new book into database
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newApiBook) 
+    })
+    router.push('/studenthome')
   }
 
   return (
@@ -30,24 +78,46 @@ function Newbook({ isNewMessage }) {
 
         <div className={styles.container}>
           <h1>Search for a new book</h1>
-          <input type="text" placeholder="Book title"></input>
-          <input type="text" placeholder="Author"></input>
-          <button onClick={bookSearch}>Search</button>
-
           <input
             type="text"
-            list="valuelist"
-            placeholder="Choose your book from this list"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            placeholder="Book title"
           ></input>
-          <datalist id="valuelist">
-            <option>Option</option>
-            <option>Option</option>
-          </datalist>
+          <input
+            type="text"
+            value={author}
+            onChange={(e) => {
+              setAuthor(e.target.value);
+            }}
+            placeholder="Author"
+          ></input>
+          <button
+            onClick={() => {
+              setLoading(!loading);
+            }}
+          >
+            Search
+          </button>
 
-          <button>This is my book</button>
-          <Link href="/cantfindbook" passHref>
-            <button>I can&apos;t find it</button>
-          </Link>
+          {errorMessage && <p>{errorMessage}</p>}
+          {newApiBook && (
+            <div>
+              <p>Is this your book?</p>
+              <h3>{newApiBook.title}</h3>
+              <p>by {newApiBook.author}</p>
+              <div className={styles.buttonDiv}>
+                <button onClick={addBookToDatabase}>
+                  Yes, this is my book
+                </button>
+                <Link href="/cantfindbook" passHref>
+                  <button>No, let me add the details myself</button>
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
         <div className={styles.rightImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
