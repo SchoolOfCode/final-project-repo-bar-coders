@@ -7,7 +7,9 @@ import Image from "next/image";
 import Link from "next/link";
 import BookProgressBar from "../src/studentcomponents/bookprogressbar";
 
-function readinglog({ isNewMessage, studentDaysRead, currentBook, studentName }) {
+function readinglog({ isNewMessage, studentDaysRead, currentBook, studentId, studentName }) {
+   
+    
   return (
     <div>
       <div>
@@ -21,8 +23,8 @@ function readinglog({ isNewMessage, studentDaysRead, currentBook, studentName })
             alt={currentBook.title}
             width="310"
             height="500"
-                  />
-                  <BookProgressBar currentBook={currentBook}/>
+          />
+          <BookProgressBar currentBook={currentBook} />
           <Link href="/studenthome">
             <button className={styles.chooseAgainButton}>
               Choose a different book
@@ -30,7 +32,7 @@ function readinglog({ isNewMessage, studentDaysRead, currentBook, studentName })
           </Link>
         </div>
         <div className={styles.rightSide}>
-          <Readinglog currentBook={currentBook} />
+          <Readinglog currentBook={currentBook} studentId={studentId} />
         </div>
       </div>
     </div>

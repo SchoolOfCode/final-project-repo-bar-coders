@@ -17,7 +17,6 @@ function Newbook({ isNewMessage, studentId, studentName }) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-
     bookSearch();
 }, [loading] )
 
@@ -39,11 +38,11 @@ function Newbook({ isNewMessage, studentId, studentName }) {
         console.log(data.docs[0].isbn[0]) //book id to be added to database
 
         setNewApiBook({
-          bookId: data.docs[0].isbn[0],
+          id: data.docs[0].isbn[0],
           studentId: studentId,
           title: data.docs[0].title,
-          author: data.docs[0].author_name[0],
           cover: `https://covers.openlibrary.org/b/olid/${data.docs[0].cover_edition_key}-L.jpg`,
+          author: data.docs[0].author_name[0],
           totalPages: data.docs[0].number_of_pages_median,
 
         });
@@ -55,11 +54,9 @@ function Newbook({ isNewMessage, studentId, studentName }) {
       }
     }
   }
-
-
   
   async function addBookToDatabase() {
-    const url = ""; //add API route to post new book into database
+    const url = "https://fourweekproject.herokuapp.com/books"; 
     await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

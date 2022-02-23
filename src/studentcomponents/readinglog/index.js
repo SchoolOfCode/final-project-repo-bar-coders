@@ -1,32 +1,77 @@
-import { Link } from 'react'
+import { Link, useState } from 'react'
 import styles from '../../../styles/readinglog.module.css'
 
 
-function Readinglog({currentBook}) {
+function Readinglog({ currentBook, studentId }) {
+  
+  const [page, setPage] = useState();
+  const [minutes, setMinutes] = useState();
+  const [summary, setSummary] = useState();
+  const [isComplete, setIsComplete] = useState(false);
 
-    const handleSubmit =  event => {
-        event.preventDefault()
-        alert('You have submitted the form')
-    }
 
+ async function handleSubmit (event) {
+   event.preventDefault()
+  console.log({
+    bookId: currentBook.id,
+    studentId: studentId,
+    currentPage: page,
+    summary: summary,
+    isComplete: isComplete,
+    minutesRead: minutes,
+  }); 
+    
+        // try {
+        //   const url = "https://fourweekproject.herokuapp.com/summaries";
+        //   await fetch(url, {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({
+        //       bookId: currentBook.id,
+        //       studentId: studentId,
+        //       currentPage: page,
+        //       summary: summary,
+        //       isComplete: isComplete,
+        //       minutesRead: minutes,
+        //     }),
+        //   });
+        //   router.push("/studenthome");
+        // } catch {
+        //   alert("Sorry the server is unavailable, please try later");
+        // }
+  }
+  
+ 
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <h1>{currentBook.title}</h1>
 
-        <input type="text" placeholder="What page did you finish on?"></input>
+        <input
+          type="text"
+          value={page}
+          onChange={(e) => setPage(e.target.value)}
+          placeholder="What page did you finish on?"
+          required
+        ></input>
 
         <input
           type="text"
+          value={minutes}
+          onChange={(e) => setMinutes(e.target.value)}
           placeholder="How many minutes did you read for?"
+          required
         ></input>
 
         <textarea
           rows="4"
           cols="50"
           type="text"
+          value={summary}
+          onChange={(e) => setSummary(e.target.value)}
           placeholder="Summarise today's reading in one or two sentences"
           className={styles.summary}
+          required
         ></textarea>
 
         <div className={styles.buttons}>
@@ -35,7 +80,7 @@ function Readinglog({currentBook}) {
           {/* </Link> */}
           <label>
             Finished the book?
-            <input type="checkbox"></input>
+            <input value={!isComplete} onClick={(e)=>{setIsComplete(e.target.value)}} type="checkbox"></input>
           </label>
         </div>
       </form>

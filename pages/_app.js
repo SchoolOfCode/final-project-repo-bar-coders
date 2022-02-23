@@ -95,10 +95,7 @@ console.log(data)
   }
   catch{console.log('error')}
 } 
-    useEffect(() => {
-      getStudentData()
-     
-    },[]);
+
 
   
 
@@ -125,7 +122,7 @@ console.log(data)
   const [minutesRead, setMinutesRead] = useState(45)
 
   return (
-    <Component {...pageProps} studentName={studentName} studentId={studentId} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} getWords={getWords} minutesRead={minutesRead}/>
+    <Component {...pageProps} studentName={studentName} studentId={studentId} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} getWords={getWords} minutesRead={minutesRead} getStudentData={getStudentData}/>
   );
 
 }
