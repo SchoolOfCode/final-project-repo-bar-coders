@@ -1,16 +1,3 @@
-/* .window{
-    
-        height: 624px;
-        width: 1024px;
-        margin: 10rem 65rem;
-        padding: 0.25rem 0.25rem;
-        font-size: 1.3rem;
-        border-radius: 50px;
-        background-color: #C66DFD;
-        
-    
-} */
-
 .pageBody {
     display: flex;
     align-items: center;
@@ -18,11 +5,18 @@
 }
 
 .leftSide {
+    margin-top: 1rem;
        width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+.leftSide h2 {
+    width: 80%;
+      font-family: "Reem Kufi";
 }
 
 .rightSide {

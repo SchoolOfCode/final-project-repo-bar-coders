@@ -2,9 +2,9 @@ import React from 'react'
 import Navbar from '../src/studentcomponents/navbar'
 import Image from 'next/image'
 import rocketicon from '../images/rocketicon.png'
-import styles from '../styles/messages.module.css'
+import styles from '../styles/cantfindbook.module.css'
 
-function messages({ isNewMessage }) {
+function Cantfindbook() {
   return (
     <div>
     <Navbar />
@@ -15,13 +15,11 @@ function messages({ isNewMessage }) {
         </div>
 
         <div className={styles.container}>
-            <h1>(Alice), (Mrs Freeman) sent you a message!</h1>
-           
-            <p>Message</p>
-            
-            <p>Another message</p>
-
-            <p>Another message</p>
+            <h1>Couldn&apos;t find your book in the list? Enter it below!</h1>
+            <input type="text" placeholder="Book title"></input>
+            <input type="text" placeholder="Author"></input>
+            <input type="text" placeholder="Number of pages"></input>
+            <button>Add book</button>
         </div>
         <div className={styles.rightImage}>
         <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
@@ -31,7 +29,7 @@ function messages({ isNewMessage }) {
     </div>
    
     </div>
-  );
+  )
 }
 
-export default messages
+export default Cantfindbook

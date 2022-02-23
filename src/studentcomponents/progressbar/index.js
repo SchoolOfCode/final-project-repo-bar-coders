@@ -103,6 +103,16 @@ function ProgressBarComponent({studentDaysRead}) {
           )}
         </Step>
       </ProgressBar>
+      <div className={styles.dayCount}>
+        <p>Day 0</p>
+        <p>Day 1</p>
+        <p>Day 2</p>
+        <p>Day 3</p>
+        <p>Day 4</p>
+        <p>Day 5</p>
+        <p>Day 6</p>
+        <p>Day 7</p>
+      </div>
     </div>
   );
 }

@@ -7,3 +7,9 @@
 .progressbar img {
 transform: rotate(45deg);
 }
+
+.dayCount {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Reem Kufi";
+}
