@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function MyApp({ Component, pageProps }) {
 
@@ -63,41 +63,47 @@ function MyApp({ Component, pageProps }) {
   //Used in dictionary - new word list
   const [words, setWords] = useState(["facilitate", "diminish", "gravitate"])
 
+  async function getWords() {
+    try {
+      const response = await fetch(
+        `https://fourweekproject.herokuapp.com/dictionary/${studentId}`
+      );
+      const data = await response.json();
+      let wordArray = data.payload;
+      let array = wordArray.map((entry) => { return entry.word; });
+      setWords(array)
+    }
+    catch { setWords(["Sorry, this feature is currently unavailable."])}
+    }
+
+
+
+  
+
   //adds new words to dictionary word list
-  function updateWordsList(newWord) {
-    setWords([...words, newWord])
-    // need to send new word to the database
+  async function updateWordsList(newWord, meaning) {
+    try {
+      const url = "https://fourweekproject.herokuapp.com/dictionary";
+      await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          studentId: studentId,
+          word: newWord,
+          definition: meaning,
+        }),
+      });
+    }
+    catch { alert("Sorry, this feature is currently unavailable")}
   }
 
-  // used in dictionary to set word to look up in api
-  const [searchWord, setSearchWord] = useState("")
-
-  // used in dictionary to handle input change in dictionary look up
-  function handleChange(e) {
-    e.preventDefault()
-    setSearchWord(e.target.value)
-    console.log(searchWord)
-    
-  }
-
-  //used in dictionary to store meanings for looked up word
-  const [meanings, setMeanings] = useState([]);
-
-  //used in dictionary to update meanings
-  function updateMeanings(meaningsArray) {
-    setMeanings(meaningsArray)
-  }
-
-  //used in dictionary to clear definitions
-  function resetMeanings() {
-    setMeanings([])
-  }
+  
 
 //used in studenthome to match coins earned
   const [minutesRead, setMinutesRead] = useState(45)
 
   return (
-    <Component {...pageProps} studentId={studentId} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} searchWord={searchWord} handleChange={handleChange} meanings={meanings} updateMeanings={updateMeanings} resetMeanings={resetMeanings} minutesRead={minutesRead}/>
+    <Component {...pageProps} studentId={studentId} isNewMessage={isNewMessage} studentDaysRead={studentDaysRead} inProgressBooks={inProgressBooks} currentBook={currentBook} updateCurrentBook={updateCurrentBook} words={words} updateWordsList={updateWordsList} getWords={getWords} minutesRead={minutesRead}/>
   );
 
 }

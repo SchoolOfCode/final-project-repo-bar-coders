@@ -39,13 +39,13 @@ function Newbook({ isNewMessage, studentId }) {
         console.log(data.docs[0].isbn[0]) //book id to be added to database
 
         setNewApiBook({
+          bookId: data.docs[0].isbn[0],
+          studentId: studentId,
           title: data.docs[0].title,
           author: data.docs[0].author_name[0],
-          total_pages: data.docs[0].number_of_pages_median,
           cover: `https://covers.openlibrary.org/b/olid/${data.docs[0].cover_edition_key}-L.jpg`,
-          id: data.docs[0].isbn[0],
-          student_id: studentId,
-        
+          totalPages: data.docs[0].number_of_pages_median,
+
         });
         setErrorMessage("");
       }
