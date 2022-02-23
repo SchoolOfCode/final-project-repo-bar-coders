@@ -2,7 +2,7 @@ import Navbar from "../src/studentcomponents/navbar";
 import rocketicon from "../images/rocketicon.png";
 import Image from "next/image";
 import styles from "../styles/dictionary.module.css";
-import { useState } from "react";
+
 
 function dictionary({
   isNewMessage,
