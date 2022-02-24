@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
     {
       id: 2,
       title: "Harry Potter and the Philosopher's Stone",
-      current_page: 145,
+      current_page: 146,
       total_pages: 223,
       percentagecomplete: 65,
       cover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
