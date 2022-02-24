@@ -20,15 +20,7 @@ function MyApp({ Component, pageProps }) {
 
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works
   const [inProgressBooks, setInProgressBooks] = useState([
-    {
-      id: 1,
-      title: "Winnie the Pooh",
-      current_page: 1,
-      total_pages: 150,
-      percentagecomplete: 0,
-      cover:
-        "https://www.buildingalibrary.com/wp-content/uploads/2011/10/Pooh_Personalize.jpg",
-    },
+    
     {
       id: 2,
       title: "Harry Potter and the Philosopher's Stone",
