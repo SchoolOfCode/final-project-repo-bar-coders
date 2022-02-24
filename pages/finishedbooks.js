@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
-import { useEffect } from 'react/cjs/react.development';
-import BookProgressBar from '../src/studentcomponents/bookprogressbar';
+import { useEffect } from 'react';
+
 import Navbar from '../src/studentcomponents/navbar'
 import Styles from '../styles/finishedbooks.module.css'
+
 
 
 
@@ -32,15 +33,6 @@ function Finishedbooks({ isNewMessage, studentId, studentName }) {
      }
     
 
-//     "payload": [
-// {"book_id": 20,
-// "student_id": "s01",
-// "date_completed": "2022-02-22T00:00:00.000Z",
-    // "cover": "https://covers.openlibrary.org/b/isbn/9781405204057.jpg",
-    //"title": "The Mystery of the Missing Man",
-// "author": "Enid Blyton",
-// "total_pages": 240,
-// "iscomplete": true},
     
 
 return (
