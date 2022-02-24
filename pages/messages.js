@@ -1,37 +1,105 @@
-import React from 'react'
-import Navbar from '../src/studentcomponents/navbar'
-import Image from 'next/image'
-import rocketicon from '../images/rocketicon.png'
-import styles from '../styles/messages.module.css'
+import React from "react";
+import Navbar from "../src/studentcomponents/navbar";
+import Image from "next/image";
+import rocketicon from "../images/rocketicon.png";
+import styles from "../styles/messages.module.css";
+import { useEffect, useState } from "react";
 
-function messages({ isNewMessage, studentName }) {
+function Messages({ isNewMessage, studentName, studentId }) {
+  //https://fourweekproject.herokuapp.com/feedback/s01
+    
+    const [studentMessages, setStudentMessages] = useState([
+      { date: "2022-02-21T00:00:00.000Z", feedback_text: "Well done Alice!" },
+      { date: "2022-02-21T00:00:00.000Z", feedback_text: "Well done Alice!" },
+      {
+        date: "2022-02-21T00:00:00.000Z",
+        feedback_text: "Well done Alice! Well done Alice! Well done Alice!",
+      },
+      { date: "2022-02-21T00:00:00.000Z", feedback_text: "Well done Alice!" },
+    ]);
+    const [classMessages, setClassMessages] = useState([
+      {
+        date: "2022-02-21T00:00:00.000Z",
+        feedback_text:
+          "Well done class, you've all been reading! Well done class, you've all been reading! Well done class, you've all been reading!",
+      },
+      {
+        date: "2022-02-21T00:00:00.000Z",
+        feedback_text: "Well done class, you've all been reading!",
+      },
+      {
+        date: "2022-02-21T00:00:00.000Z",
+        feedback_text: "Well done class, you've all been reading!",
+      },
+      {
+        date: "2022-02-21T00:00:00.000Z",
+        feedback_text: "Well done class, you've all been reading!",
+      },
+    ]);
+
+  async function getMessages() {
+    try {
+      const response = await fetch(
+        `https://fourweekproject.herokuapp.com/feedback/${studentId}`
+      );
+        const data = await response.json();
+        setStudentMessages(data.studentFeedBack);
+        setClassMessages(data.classFeedback);
+    } catch {
+      alert("Server is down, try again later");
+    }
+  }
+
+  useEffect(() => {
+    getMessages();
+  }, []);
+    
+    function formatDate(string) {
+      var options = { year: "numeric", month: "long", day: "numeric" };
+      return new Date(string).toLocaleDateString([], options);
+    }
+
   return (
     <div>
-    <Navbar isNewMessage={isNewMessage} studentName={studentName}/>
-    <div className={styles.pageBody}>
-        
+      <Navbar isNewMessage={isNewMessage} studentName={studentName} />
+      <div className={styles.pageBody}>
         <div className={styles.leftImage}>
-        <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
+          <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
         </div>
 
         <div className={styles.container}>
-            <h1>(Alice), (Mrs Freeman) sent you a message!</h1>
-           
-            <p>Message</p>
-            
-            <p>Another message</p>
-
-            <p>Another message</p>
+          <h1>{studentName}, see the messages from (Mrs Freeman) </h1>
+          <div className={styles.columns}>
+            <div className={styles.leftColumn}>
+              <h2>For you</h2>
+              {studentMessages.map((message, index) => {
+                return (
+                  <div key={index}>
+                    <h5>{formatDate(message.date)}</h5>
+                    <p>{message.feedback_text}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className={styles.rightColumn}>
+              <h2>For your class</h2>
+              {classMessages.map((message, index) => {
+                return (
+                  <div key={index}>
+                    <h5>{formatDate(message.date)}</h5>
+                    <p>{message.feedback_text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
         <div className={styles.rightImage}>
-        <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
+          <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
         </div>
-
-
-    </div>
-   
+      </div>
     </div>
   );
 }
 
-export default messages
+export default Messages;

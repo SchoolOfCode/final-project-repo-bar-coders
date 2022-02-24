@@ -1,8 +1,11 @@
 import { Link, useState } from 'react'
 import styles from '../../../styles/readinglog.module.css'
+import { useRouter } from "next/router";
 
 
 function Readinglog({ currentBook, studentId }) {
+
+  const router = useRouter();
   
   const [page, setPage] = useState();
   const [minutes, setMinutes] = useState();
@@ -17,28 +20,27 @@ function Readinglog({ currentBook, studentId }) {
     studentId: studentId,
     currentPage: page,
     summary: summary,
-    isComplete: isComplete,
+    iscomplete: isComplete,
     minutesRead: minutes,
   }); 
-    
-        // try {
-        //   const url = "https://fourweekproject.herokuapp.com/summaries";
-        //   await fetch(url, {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({
-        //       bookId: currentBook.id,
-        //       studentId: studentId,
-        //       currentPage: page,
-        //       summary: summary,
-        //       isComplete: isComplete,
-        //       minutesRead: minutes,
-        //     }),
-        //   });
-        //   router.push("/studenthome");
-        // } catch {
-        //   alert("Sorry the server is unavailable, please try later");
-        // }
+         try {
+          const url = "https://fourweekproject.herokuapp.com/summaries";
+          await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              bookId: currentBook.id,
+              studentId: studentId,
+              currentPage: page,
+              summary: summary,
+              iscomplete: isComplete,
+              minutesRead: minutes,
+            }),
+          });
+          router.push("/studenthome");
+        } catch {
+          alert("Sorry the server is unavailable, please try later");
+        }
   }
   
  
@@ -80,7 +82,9 @@ function Readinglog({ currentBook, studentId }) {
           {/* </Link> */}
           <label>
             Finished the book?
-            <input value={!isComplete} onClick={(e)=>{setIsComplete(e.target.value)}} type="checkbox"></input>
+            <input value={isComplete}
+              onClick={() => { setIsComplete(!isComplete) }}
+              type="checkbox"></input>
           </label>
         </div>
       </form>

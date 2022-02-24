@@ -56,13 +56,16 @@ function Newbook({ isNewMessage, studentId, studentName }) {
   }
   
   async function addBookToDatabase() {
-    const url = "https://fourweekproject.herokuapp.com/books"; 
-    await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newApiBook) 
-    })
-    router.push('/studenthome')
+    try {
+      const url = "https://fourweekproject.herokuapp.com/books";
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newApiBook)
+      })
+      router.push('/studenthome')
+    }
+    catch { alert("Sorry the server is down, please try later")}
   }
 
   return (

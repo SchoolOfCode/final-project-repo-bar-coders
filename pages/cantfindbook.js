@@ -3,8 +3,11 @@ import Navbar from "../src/studentcomponents/navbar";
 import Image from "next/image";
 import rocketicon from "../images/rocketicon.png";
 import styles from "../styles/cantfindbook.module.css";
+import { useRouter } from "next/router";
 
-function Cantfindbook({ isNewMessage, studentName }) {
+function Cantfindbook({ isNewMessage, studentName, studentId }) {
+
+  const router = useRouter();
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
