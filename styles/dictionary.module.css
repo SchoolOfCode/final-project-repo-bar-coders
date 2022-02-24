@@ -45,6 +45,10 @@ text-align: center;
 
 }
 
+.container .resetButton {
+  margin: 0.5rem auto;
+}
+
 .definitions {
   
   margin: 2rem 0.5rem;
