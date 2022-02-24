@@ -4,7 +4,7 @@ import rocketicon from "../images/rocketicon.png";
 import Image from "next/image";
 import styles from "../styles/dictionary.module.css";
 
-function Dictionary({ isNewMessage, words, updateWordsList, getWords }) {
+function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentName }) {
   
   useEffect(() => {
     getWords();
@@ -54,7 +54,7 @@ function Dictionary({ isNewMessage, words, updateWordsList, getWords }) {
 
   return (
     <div>
-      <Navbar isNewMessage={isNewMessage} />
+      <Navbar isNewMessage={isNewMessage} studentName={studentName} />
       <div className={styles.pageBody}>
         <div className={styles.leftImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />

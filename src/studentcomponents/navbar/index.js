@@ -6,7 +6,7 @@ import bookwormicon from '../../../images/bookwormicon.png'
 import newmessageicon from '../../../images/newmessageicon.png'
 import messagesicon from '../../../images/messagesicon.png'
 
-function Navbar({isNewMessage}) {
+function Navbar({isNewMessage, studentName}) {
 
     
 
@@ -16,7 +16,7 @@ function Navbar({isNewMessage}) {
       <div className={styles.student}>
         {/* <img src="https://cdn-icons-png.flaticon.com/512/2490/2490295.png"></img> */}
         <Image src={bookwormicon.src} alt="icon" width="60px" height="60px" />
-        <h1>Alice</h1>
+        <h1>{studentName}</h1>
       </div>
 
       <Link href="/studenthome" passHref>

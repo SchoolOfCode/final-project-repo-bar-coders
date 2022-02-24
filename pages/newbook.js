@@ -6,7 +6,7 @@ import styles from '../styles/newbook.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-function Newbook({ isNewMessage, studentId }) {
+function Newbook({ isNewMessage, studentId, studentName }) {
 
   const router = useRouter();
 
@@ -17,7 +17,6 @@ function Newbook({ isNewMessage, studentId }) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-
     bookSearch();
 }, [loading] )
 
@@ -39,11 +38,11 @@ function Newbook({ isNewMessage, studentId }) {
         console.log(data.docs[0].isbn[0]) //book id to be added to database
 
         setNewApiBook({
-          bookId: data.docs[0].isbn[0],
+          id: data.docs[0].isbn[0],
           studentId: studentId,
           title: data.docs[0].title,
-          author: data.docs[0].author_name[0],
           cover: `https://covers.openlibrary.org/b/olid/${data.docs[0].cover_edition_key}-L.jpg`,
+          author: data.docs[0].author_name[0],
           totalPages: data.docs[0].number_of_pages_median,
 
         });
@@ -55,22 +54,23 @@ function Newbook({ isNewMessage, studentId }) {
       }
     }
   }
-
-
   
   async function addBookToDatabase() {
-    const url = ""; //add API route to post new book into database
-    await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newApiBook) 
-    })
-    router.push('/studenthome')
+    try {
+      const url = "https://fourweekproject.herokuapp.com/books";
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newApiBook)
+      })
+      router.push('/studenthome')
+    }
+    catch { alert("Sorry the server is down, please try later")}
   }
 
   return (
     <div>
-      <Navbar isNewMessage={isNewMessage} />
+      <Navbar isNewMessage={isNewMessage} studentName={studentName} />
       <div className={styles.pageBody}>
         <div className={styles.leftImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
