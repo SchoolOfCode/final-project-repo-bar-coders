@@ -48,7 +48,7 @@ return (
                       width="350rem"
                       height="350rem"
                     />
-                    <p> Completed: {formatDate(book.date_completed)} </p>
+                    <p> Completed:  {formatDate(book.date_completed)} </p>
                   </div>
                 );
                 

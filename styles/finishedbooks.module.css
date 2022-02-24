@@ -11,7 +11,8 @@
 }
 
 .box{
-    width: 25%;
+    max-width: 14%;
+    max-height: 40vh;
     margin:0 40px;
     box-shadow: 0 0 30px 3px #C66DFD;
     border-radius: 50px;

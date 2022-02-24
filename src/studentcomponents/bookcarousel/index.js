@@ -13,10 +13,10 @@ function Carousel({ inProgressBooks, currentBook, updateCurrentBook }) {
     return {
       original: book.cover,
       thumbnail: book.cover,
-      originalHeight: "500",
-      originalWidth: "310",
-      thumbnailHeight: "100",
-      thumbnailWidth: "62",
+      originalHeight: "350",
+    //   originalWidth: "150",
+      thumbnailHeight: "90",
+    //   thumbnailWidth: "30",
       originalTitle: book.id, //need this to be id rather than title because it gets passed to updateCurrentBook function
       description: book.title,
       thumbnailLabel: book.title,
