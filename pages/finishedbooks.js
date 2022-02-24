@@ -1,31 +1,29 @@
-import React, {useState} from 'react'
-import { useEffect } from 'react';
-
+import React, {useState, useEffect} from 'react'
 import Navbar from '../src/studentcomponents/navbar'
 import Styles from '../styles/finishedbooks.module.css'
 
 
 
 
-function Finishedbooks({ isNewMessage, studentId, studentName }) {
+function Finishedbooks({ isNewMessage, studentId, studentName, completedBooks }) {
 
-    const [completedBooks, setCompletedBooks] = useState([])
+    // const [completedBooks, setCompletedBooks] = useState([])
 
-    async function getCompletedBooks() {
-        try {
-            const response = await fetch(
-                `https://fourweekproject.herokuapp.com/completedbooks/${studentId}`
-            );
-            const data = await response.json();
-            console.log(data)
-            setCompletedBooks(data.payload);
-        }
-        catch { alert("Server unavailable")}
-    }
+    // async function getCompletedBooks() {
+    //     try {
+    //         const response = await fetch(
+    //             `https://fourweekproject.herokuapp.com/completedbooks/${studentId}`
+    //         );
+    //         const data = await response.json();
+    //         console.log(data)
+    //         setCompletedBooks(data.payload);
+    //     }
+    //     catch { alert("Server unavailable")}
+    // }
 
-    useEffect(() => {
-       getCompletedBooks(); 
-    }, [])
+    // useEffect(() => {
+    //    getCompletedBooks(); 
+    // }, [])
     
      function formatDate(string) {
        var options = { year: "numeric", month: "long", day: "numeric" };
@@ -49,44 +47,33 @@ return (
                 
       })}
 
-            {/* <div className={Styles.box}>
-        <img src="BB.JPG" alt="" width="350rem" height="350rem" />
-        Completed: 02-02-2022
-      </div>
-      <div className={Styles.box}>
-        <img src="CA.JPG" alt="" width="350rem" height="350rem" />
-        Completed: 15-12-2021
-      </div>
-      <div className={Styles.box}>
-        <img src="CW.JPG" alt="" width="350rem" height="350rem" />
-        Completed: 10-12-2021
-      </div>
-      <div className={Styles.box}>
-        <img src="GB.JPG" alt="" width="350rem" height="350rem" />
-        Completed: 01-01-2022
-      </div>
-    </div>
-    <div className={Styles.container}>
-      <div className={Styles.box}>
-        <img src="GE.JPG" alt="" width="350rem" height="350rem" />
-        Completed: 26-05-2021
-      </div>
-      <div className={Styles.box}>
-        <img src="HP.JPG" alt="" width="350rem" height="350rem" />
-        Completed: 13-08-2020
-      </div>
-      <div className={Styles.box}>
-        <img src="NA.JPG" alt="" width="350rem" height="350rem" />
-        Completed: 12-06-2021
-      </div>
-      <div className={Styles.box}>
-        <img src="SS.JPG" alt="" width="350rem" height="350rem" />
-        Completed: 17-07-2021
-      </div>*/}
+           
     </div>
   </div> 
 );
 }
+
+
+
+export async function getStaticProps() {
+  
+    const response = await fetch(
+      `https://fourweekproject.herokuapp.com/completedbooks/s01` //need to work out how to get studentId here?
+    );
+    const data = await response.json();
+
+    const completedBooks = data.payload;
+    console.log(completedBooks)
+       
+    return {
+         props: {
+           completedBooks,
+         },
+       };
+
+ 
+}
+
 export default Finishedbooks
 
 
