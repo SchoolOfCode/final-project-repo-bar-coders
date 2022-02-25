@@ -1,23 +1,30 @@
 import Navbar from "../src/studentcomponents/navbar";
 import ProgressBar from "../src/studentcomponents/progressbar";
-import Readinglog from "../src/studentcomponents/readinglog";
 import InfoWindow from "../src/studentcomponents/infowindow";
 import Carousel from "../src/studentcomponents/bookcarousel";
 import styles from "../styles/studenthome.module.css";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function StudentHome({
+  studentName,
   isNewMessage,
   studentDaysRead,
   inProgressBooks,
   currentBook,
-    updateCurrentBook,
-  minutesRead
+  updateCurrentBook,
+    minutesRead,
+  getStudentData
 }) {
-  return (
+  
+    useEffect(() => {
+      getStudentData();
+    }, []);
+
+return (
     <div>
       <div>
-        <Navbar isNewMessage={isNewMessage} />
+        <Navbar isNewMessage={isNewMessage} studentName={studentName} />
         <ProgressBar studentDaysRead={studentDaysRead} />
       </div>
 

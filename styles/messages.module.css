@@ -14,11 +14,30 @@
 
 }
 
+.container h1 {
+  padding: 0 2rem;
+}
+
 .pageBody {
     display: flex;
     align-items: center;
     justify-content: space-around;
     min-height: 60vh;
+}
+
+
+
+.leftColumn {
+  width: 50%;
+}
+
+.rightColumn {
+  width: 50%;
+}
+
+.container h5 {
+  color: black;
+  margin-bottom: 0;
 }
 
 .leftImage {
@@ -35,8 +54,8 @@ transform: rotate(-20deg);
 }
 
 .pageBody p {
-    margin: 2rem 0.5rem;
-  padding: 0.25rem 0.25rem;
+    margin: 0rem 0.5rem 2rem;
+  padding: 0.5rem 0.5rem;
   font-size: 1.3rem;
   border-radius: 50px;
   background-color: white;

@@ -1,48 +1,64 @@
+import React, { useState, useEffect } from "react";
 import Navbar from "../src/studentcomponents/navbar";
 import rocketicon from "../images/rocketicon.png";
 import Image from "next/image";
 import styles from "../styles/dictionary.module.css";
-import { useState } from "react";
 
-function dictionary({
-  isNewMessage,
-  words,
-  updateWordsList,
-  searchWord,
-  handleChange,
-  meanings,
-  updateMeanings,
-  resetMeanings,
-}) {
+function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentName }) {
+  
+  useEffect(() => {
+    getWords();
+  }, [words]);
+
+  const [searchWord, setSearchWord] = useState("");
+
+  function handleChange(e) {
+    e.preventDefault();
+    setSearchWord(e.target.value);
+    }
+
+  const [meanings, setMeanings] = useState();
+
+  function resetMeanings() {
+      setMeanings();
+      setSearchWord("");
+  }
+
+  const [errorMessage, setErrorMessage] = useState("");
+
   async function getWord(e) {
     e.preventDefault();
+    setErrorMessage("");
     try {
       const response = await fetch(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`
       );
       const data = await response.json();
-      const meanings = data[0].meanings[0].definitions[0].definition;
-      updateMeanings(meanings);
+
+      const meanings = data[0].meanings;
+        setMeanings(meanings);
+        
+
     } catch {
-      //   alert("This isn't a word. Check your spelling and try again.");
-      console.log("error");
-    }
-
-    console.log(meanings);
+      setErrorMessage("This isn't a word. Check your spelling and try again!");
+      }
+   
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log("handlesubmit");
+    function handleSubmit(e) {
+        e.preventDefault();
+       
     if (!words.includes(searchWord)) {
-      updateWordsList(searchWord);
+      updateWordsList(searchWord, meanings);
     }
-    resetMeanings();
+        resetMeanings();
+        setSearchWord("");
   }
+
 
   return (
     <div>
-      <Navbar isNewMessage={isNewMessage} />
+      <Navbar isNewMessage={isNewMessage} studentName={studentName} />
       <div className={styles.pageBody}>
         <div className={styles.leftImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
@@ -66,38 +82,37 @@ function dictionary({
             </datalist>
 
             <button onClick={getWord}>Look it up</button>
-           
-                          <div>
-                          {meanings &&
-                              meanings.map((element, index) => {
-                                  return (
-                                    <div
-                                      className={styles.definitions}
-                                      key={index}
-                                    >
-                                      <h3>
-                                        {searchWord} ({element.partOfSpeech})
-                                      </h3>
-                                      {element.definitions.map(
-                                        (entry, index) => {
-                                          return (
-                                            <p key={index}>
-                                              {entry.definition}
-                                            </p>
-                                          );
-                                        }
-                                      )}
-                                      <button onClick={resetMeanings}>X</button>
-                                    </div>
-                                  );
-                              })
-                                  
-                          
-                              }
-                              
-              
+            {errorMessage && <p>{errorMessage}</p>}
+
+            <div>
+              {meanings && (
+                <div>
+                  <div className={styles.definitions}>
+                    {meanings.map((element, index) => {
+                      return (
+                        <div key={index}>
+                          <h3>
+                            {searchWord} ({element.partOfSpeech})
+                          </h3>
+                          {element.definitions.map((entry, index) => {
+                            return <p key={index}>{entry.definition}</p>;
+                          })}
+                        </div>
+                      );
+                    })}
+                    <button
+                      className={styles.resetButton}
+                      onClick={resetMeanings}
+                    >
+                      X
+                    </button>
+                  </div>
+                  <button onClick={handleSubmit}>
+                    Add this to my list of words
+                  </button>
+                </div>
+              )}
             </div>
-            <button onClick={handleSubmit}>Add this to my list of words</button>
           </form>
         </div>
         <div className={styles.rightImage}>
@@ -108,4 +123,4 @@ function dictionary({
   );
 }
 
-export default dictionary;
+export default Dictionary;
