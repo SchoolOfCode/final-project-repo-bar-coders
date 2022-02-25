@@ -8,7 +8,7 @@ function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentNam
   
   useEffect(() => {
     getWords();
-  }, []);
+  }, [words]);
 
   const [searchWord, setSearchWord] = useState("");
 
@@ -20,7 +20,8 @@ function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentNam
   const [meanings, setMeanings] = useState();
 
   function resetMeanings() {
-    setMeanings();
+      setMeanings();
+      setSearchWord("");
   }
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -34,7 +35,8 @@ function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentNam
       );
       const data = await response.json();
       const meanings = data[0].meanings;
-      setMeanings(meanings);
+        setMeanings(meanings);
+        
      
     } catch {
       setErrorMessage("This isn't a word. Check your spelling and try again!");
@@ -48,7 +50,8 @@ function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentNam
     if (!words.includes(searchWord)) {
       updateWordsList(searchWord, meanings);
     }
-    resetMeanings();
+        resetMeanings();
+        setSearchWord("");
   }
 
 

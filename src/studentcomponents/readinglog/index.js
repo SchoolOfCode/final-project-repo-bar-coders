@@ -33,7 +33,7 @@ function Readinglog({ currentBook, studentId }) {
               studentId: studentId,
               currentPage: page,
               summary: summary,
-              iscomplete: isComplete,
+              isComplete: isComplete,
               minutesRead: minutes,
             }),
           });

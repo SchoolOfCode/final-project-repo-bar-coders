@@ -41,14 +41,18 @@ return (
     <div className={Styles.container}>
             {completedBooks.map((book, index) => {
                 return (
-                  <div key={index} className={Styles.box}>
-                    <img
-                      src={book.cover}
-                      alt=""
-                      width="350rem"
-                      height="350rem"
-                    />
-                    <p> Completed:  {formatDate(book.date_completed)} </p>
+                  <div key={index} className={Styles.bookDiv}>
+                    <h4> {book.title} </h4>
+                    <div className={Styles.box}>
+                      <img
+                        src={book.cover}
+                        alt=""
+                        width="350rem"
+                        height="350rem"
+                      />
+
+                      <p>Completed: {formatDate(book.date_completed)} </p>
+                    </div>
                   </div>
                 );
                 
