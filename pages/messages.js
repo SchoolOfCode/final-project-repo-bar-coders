@@ -9,33 +9,42 @@ function Messages({ isNewMessage, studentName, studentId }) {
   //https://fourweekproject.herokuapp.com/feedback/s01
     
     const [studentMessages, setStudentMessages] = useState([
-      { date: "2022-02-21T00:00:00.000Z", feedback_text: "Well done Alice!" },
+      { date: "2022-02-23T00:00:00.000Z", feedback_text: "Well done Alice!" },
       { date: "2022-02-21T00:00:00.000Z", feedback_text: "Well done Alice!" },
       {
-        date: "2022-02-21T00:00:00.000Z",
+        date: "2022-02-24T00:00:00.000Z",
         feedback_text: "Well done Alice! Well done Alice! Well done Alice!",
       },
-      { date: "2022-02-21T00:00:00.000Z", feedback_text: "Well done Alice!" },
+      { date: "2022-02-19T00:00:00.000Z", feedback_text: "Well done Alice!" },
     ]);
     const [classMessages, setClassMessages] = useState([
       {
-        date: "2022-02-21T00:00:00.000Z",
+        date: "2022-02-20T00:00:00.000Z",
         feedback_text:
           "Well done class, you've all been reading! Well done class, you've all been reading! Well done class, you've all been reading!",
       },
       {
-        date: "2022-02-21T00:00:00.000Z",
+        date: "2022-02-12T00:00:00.000Z",
         feedback_text: "Well done class, you've all been reading!",
       },
       {
-        date: "2022-02-21T00:00:00.000Z",
+        date: "2022-02-16T00:00:00.000Z",
         feedback_text: "Well done class, you've all been reading!",
       },
       {
-        date: "2022-02-21T00:00:00.000Z",
+        date: "2022-02-28T00:00:00.000Z",
         feedback_text: "Well done class, you've all been reading!",
       },
     ]);
+
+    const [allMessages, setAllMessages] = useState()
+
+    function getDateAsNumber(string) {
+        let date = new Date(string)
+        return date.valueOf();
+    }
+
+const [teacherName, setTeacherName] = useState("Mrs Freeman")
 
   async function getMessages() {
     try {
@@ -45,19 +54,30 @@ function Messages({ isNewMessage, studentName, studentId }) {
         const data = await response.json();
         setStudentMessages(data.studentFeedBack);
         setClassMessages(data.classFeedback);
+        setTeacherName(data.studentFeedBack[0].teacher);
+        
     } catch {
       alert("Server is down, try again later");
     }
   }
 
   useEffect(() => {
-    getMessages();
+      getMessages();
+      setAllMessages(
+        [...studentMessages, ...classMessages].sort(
+          (a, b) => getDateAsNumber(b.date) - getDateAsNumber(a.date)
+        )
+      );
+      console.log(teacherName)
   }, []);
     
     function formatDate(string) {
       var options = { year: "numeric", month: "long", day: "numeric" };
       return new Date(string).toLocaleDateString([], options);
     }
+
+
+
 
   return (
     <div>
@@ -68,31 +88,18 @@ function Messages({ isNewMessage, studentName, studentId }) {
         </div>
 
         <div className={styles.container}>
-          <h1>{studentName}, see the messages from (Mrs Freeman) </h1>
-          <div className={styles.columns}>
-            <div className={styles.leftColumn}>
-              <h2>For you</h2>
-              {studentMessages.map((message, index) => {
-                return (
-                  <div key={index}>
-                    <h5>{formatDate(message.date)}</h5>
-                    <p>{message.feedback_text}</p>
-                  </div>
-                );
-              })}
-            </div>
-            <div className={styles.rightColumn}>
-              <h2>For your class</h2>
-              {classMessages.map((message, index) => {
-                return (
-                  <div key={index}>
-                    <h5>{formatDate(message.date)}</h5>
-                    <p>{message.feedback_text}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+                  <h1>{studentName}, see the messages from {teacherName} </h1>
+          
+            {allMessages && allMessages.map((message, index) => {
+              return (
+                <div key={index}>
+                  <h5>{formatDate(message.date)}</h5>
+                  <p>{message.feedback_text}</p>
+                </div>
+              );
+            })}
+ 
+          
         </div>
         <div className={styles.rightImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
