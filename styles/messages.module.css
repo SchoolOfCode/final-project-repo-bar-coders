@@ -8,10 +8,14 @@
   font-family: "Reem Kufi";
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 600px;
   float: right;
   text-align: center;
 
+}
+
+.container h1 {
+  padding: 0 2rem;
 }
 
 .pageBody {
@@ -21,9 +25,7 @@
     min-height: 60vh;
 }
 
-.columns {
-  display: flex;
-}
+
 
 .leftColumn {
   width: 50%;
