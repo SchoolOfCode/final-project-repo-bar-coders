@@ -34,10 +34,11 @@ function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentNam
         `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`
       );
       const data = await response.json();
+
       const meanings = data[0].meanings;
         setMeanings(meanings);
         
-     
+
     } catch {
       setErrorMessage("This isn't a word. Check your spelling and try again!");
       }
