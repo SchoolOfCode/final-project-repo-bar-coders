@@ -32,7 +32,7 @@ import Dictionary from '../pages/dictionary'
 //     global.fetch = unmockedFetch
 // })
 
-// // The test
+// The test
 // describe('withFetch', () => {
 //     test('works', async () => {
 //         const json = await withFetch()
@@ -53,18 +53,28 @@ import Dictionary from '../pages/dictionary'
 
 
 // The function that is being tested
-async function getDefinition(searchWord) {
-    try {
-    const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`)
-    const data = await response.json()
-    const meanings = data[0].meanings[0].definitions[0].definition;
-    console.log(meanings)
-    return meanings
+// async function getDefinition(searchWord) {
+    
+        
+//     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`)
+//     const data = await response.json()
+//     const meanings = data[0].meanings[0].definitions[0].definition;
+//     console.log(meanings)
+//     return meanings
+   
 
-    } catch {
-        return "failed"
-    }
-  }
+   
+//   }
+
+//   test('the data is peanut butter', async () => {
+
+//     const data = await getDefinition("affiliate")
+//     // return getDefinition("affiliate").then(data => {
+//       expect(data).toBe("Someone or something, especially, a television station, that is associated with a larger, related organization, such as a television network; a member of a group of associated things.");
+//     // });
+//   });
+
+ 
 
 
 //   test('the data is peanut butter', () => {
@@ -74,16 +84,29 @@ async function getDefinition(searchWord) {
 //   });
 
   
-describe("When the definition of a word is searched", () => {
-    let define;
-    beforeEach(async () => {
-        define = await getDefinition("affiliate");
-    });
+// describe("When the definition of a word is searched", () => {
+//     let define;
+//     beforeEach(async () => {
+//         define = await getDefinition("affiliate");
+//     });
 
-    it("The correct definition should be returned", () => {
-        expect(define).toEqual("Someone or something, especially, a television station, that is associated with a larger, related organization, such as a television network; a member of a group of associated things.")
-    })
-})
+//     it("The correct definition should be returned", async () => {
+//         expect(define).toBe("Someone or something, especially, a television station, that is associated with a larger, related organization, such as a television network; a member of a group of associated things.")
+//     })
+// })
+
+// describe("When the definition of a word is searched", () => {
+//     test("The correct definition should be returned", async () => {
+//         const define = await getDefinition("affiliate")
+//         console.log(define)
+//         expect(define).toBe("Someone or something, especially, a television station, that is associated with a larger, related organization, such as a television network; a member of a group of associated things.")
+//     })
+// })
+
+
+
+
+
 
 
 // const MOCK_WORD = "affiliate"
@@ -106,6 +129,11 @@ describe("When the definition of a word is searched", () => {
 //     });
 // });
 // });
+
+
+
+
+
 
 
 

@@ -21,7 +21,7 @@ function dictionary({
         `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`
       );
       const data = await response.json();
-      const meanings = data[0].meanings;
+      const meanings = data[0].meanings[0].definitions[0].definition;
       updateMeanings(meanings);
     } catch {
       //   alert("This isn't a word. Check your spelling and try again.");
