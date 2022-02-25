@@ -9,32 +9,32 @@ function Messages({ isNewMessage, studentName, studentId }) {
   //https://fourweekproject.herokuapp.com/feedback/s01
     
     const [studentMessages, setStudentMessages] = useState([
-      { date: "2022-02-23T00:00:00.000Z", feedback_text: "Well done Alice!" },
-      { date: "2022-02-21T00:00:00.000Z", feedback_text: "Well done Alice!" },
-      {
-        date: "2022-02-24T00:00:00.000Z",
-        feedback_text: "Well done Alice! Well done Alice! Well done Alice!",
-      },
-      { date: "2022-02-19T00:00:00.000Z", feedback_text: "Well done Alice!" },
+    //   { date: "2022-02-23T00:00:00.000Z", feedback_text: "Well done Alice!" },
+    //   { date: "2022-02-21T00:00:00.000Z", feedback_text: "Well done Alice!" },
+    //   {
+    //     date: "2022-02-24T00:00:00.000Z",
+    //     feedback_text: "Well done Alice! Well done Alice! Well done Alice!",
+    //   },
+    //   { date: "2022-02-19T00:00:00.000Z", feedback_text: "Well done Alice!" },
     ]);
     const [classMessages, setClassMessages] = useState([
-      {
-        date: "2022-02-20T00:00:00.000Z",
-        feedback_text:
-          "Well done class, you've all been reading! Well done class, you've all been reading! Well done class, you've all been reading!",
-      },
-      {
-        date: "2022-02-12T00:00:00.000Z",
-        feedback_text: "Well done class, you've all been reading!",
-      },
-      {
-        date: "2022-02-16T00:00:00.000Z",
-        feedback_text: "Well done class, you've all been reading!",
-      },
-      {
-        date: "2022-02-28T00:00:00.000Z",
-        feedback_text: "Well done class, you've all been reading!",
-      },
+    //   {
+    //     date: "2022-02-20T00:00:00.000Z",
+    //     feedback_text:
+    //       "Well done class, you've all been reading! Well done class, you've all been reading! Well done class, you've all been reading!",
+    //   },
+    //   {
+    //     date: "2022-02-12T00:00:00.000Z",
+    //     feedback_text: "Well done class, you've all been reading!",
+    //   },
+    //   {
+    //     date: "2022-02-16T00:00:00.000Z",
+    //     feedback_text: "Well done class, you've all been reading!",
+    //   },
+    //   {
+    //     date: "2022-02-28T00:00:00.000Z",
+    //     feedback_text: "Well done class, you've all been reading!",
+    //   },
     ]);
 
     const [allMessages, setAllMessages] = useState()
@@ -61,15 +61,23 @@ const [teacherName, setTeacherName] = useState("Mrs Freeman")
     }
   }
 
-  useEffect(() => {
+  useEffect( () => {
+    
       getMessages();
+      
+    
+  }, []);
+    
+    useEffect(() => {
+      
       setAllMessages(
         [...studentMessages, ...classMessages].sort(
           (a, b) => getDateAsNumber(b.date) - getDateAsNumber(a.date)
         )
       );
-      console.log(teacherName)
-  }, []);
+
+    }, [studentMessages, classMessages]);
+    
     
     function formatDate(string) {
       var options = { year: "numeric", month: "long", day: "numeric" };
