@@ -26,8 +26,9 @@ export default function Home() {
         <Link href="/studenthome" passHref>
         <button>I&apos;m a student</button>
         </Link>
-         
-          <button>I&apos;m a teacher</button>
+        <Link href="/teacherhome" passHref> 
+        <button>I&apos;m a teacher</button>
+         </Link> 
         </div>
       </div>
     </div>

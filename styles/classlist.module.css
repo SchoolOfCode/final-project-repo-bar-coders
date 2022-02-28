@@ -1,16 +1,18 @@
 .classlist{
-    background-color: darkorange;
-    border-radius: 50px;
+    background-color: whitesmoke;
+    border-radius: 5px;
     height: 93vh;
     width: 330px;
     padding-bottom: 2rem;
     margin-top: 2rem;
     margin-left: 2rem;
+    font-family: "Trebuchet MS";
 }
 
 .classlist h1{
     color: black;
     text-align: center;
+    font-family: "Trebuchet MS";
 
 }
 
@@ -19,6 +21,7 @@
     text-align: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: cornflowerblue;  
-    border-radius: 25px;
+    background-color: darkgrey;  
+    border-radius: 5px;
+    font-family: "Trebuchet MS";
 }
