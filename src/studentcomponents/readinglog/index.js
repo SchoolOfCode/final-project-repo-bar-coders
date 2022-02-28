@@ -46,7 +46,9 @@ function Readinglog({ currentBook, studentId }) {
  
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+      >
         <h1>{currentBook.title}</h1>
 
         <input
@@ -77,9 +79,13 @@ function Readinglog({ currentBook, studentId }) {
         ></textarea>
 
         <div className={styles.buttons}>
-          {/* <Link href="studenthome" passHref> */}
-          <button type="submit">Submit</button>
-          {/* </Link> */}
+          <Link href="studenthome" passHref>
+          <button
+            data-testid="submit-button"
+            type="submit"
+            
+          >Submit</button>
+          </Link>
           <label>
             Finished the book?
             <input value={isComplete}

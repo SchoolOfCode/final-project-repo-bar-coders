@@ -5,8 +5,13 @@ import Image from "next/image";
 import styles from "../styles/dictionary.module.css";
 import useFetch from "../src/CustomHooks/usefetch";
 
-export default function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentName }) {
-  
+export default function Dictionary({
+  isNewMessage,
+  words,
+  updateWordsList,
+  getWords,
+  studentName,
+}) {
   useEffect(() => {
     getWords();
   }, [words]);
@@ -16,68 +21,55 @@ export default function Dictionary({ isNewMessage, words, updateWordsList, getWo
   function handleChange(e) {
     e.preventDefault();
     setSearchWord(e.target.value);
-    }
+  }
 
   const [meanings, setMeanings] = useState();
 
   function resetMeanings() {
-      setMeanings();
-      setSearchWord("");
+    setMeanings();
+    setSearchWord("");
   }
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [url, setUrl] = useState("");
+  const { data, error } = useFetch(url);
 
-  const [url, setUrl] = useState("")
+    if (error) {
+        setErrorMessage(error);
   
-  const {data, error} = useFetch(url)
-
-  if (error) {
-    setErrorMessage("This isn't a word. Check your spelling and try again!");
- 
- if (!data) {
-  setErrorMessage("Please wait...");
- }
-}
-
-
-
+        // if (!data) {
+        //     setErrorMessage("Please wait...");
+        // }
+    }
 
   async function getWord(e) {
     e.preventDefault();
-    setErrorMessage("");
-    setUrl(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`)
-    // try {
-    //   const response = await fetch(
-    //     `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`
-    //   );
-    //   const data = await response.json();
-
-    
-
-        
-
-    // } catch {
-    //   setErrorMessage("This isn't a word. Check your spelling and try again!");
-    //   }
-   
+      setErrorMessage("");
+      if (searchWord) {
+          setUrl(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`);
+      } else (setErrorMessage("Please enter a word"))
   }
 
   useEffect(() => {
-    // const meanings = data[0].meanings;
-    setMeanings(data[0].meanings);
-    console.log(data)
-  },[data])
+    console.log(data);
+    try {
+      setMeanings(data[0].meanings);
+    } catch {
+        if (!data) { setErrorMessage("") } else {
+            setErrorMessage("This isn't a word. Check your spelling and try again!");
+        }
+    }
+  }, [data]);
 
-    function handleSubmit(e) {
-        e.preventDefault();
-       
+  function handleSubmit(e) {
+    e.preventDefault();
+
     if (!words.includes(searchWord)) {
       updateWordsList(searchWord, meanings);
     }
-        resetMeanings();
-        setSearchWord("");
+    resetMeanings();
+    setSearchWord("");
   }
-
 
   return (
     <div>
@@ -145,4 +137,3 @@ export default function Dictionary({ isNewMessage, words, updateWordsList, getWo
     </div>
   );
 }
-
