@@ -3,9 +3,15 @@ import Navbar from "../src/studentcomponents/navbar";
 import rocketicon from "../images/rocketicon.png";
 import Image from "next/image";
 import styles from "../styles/dictionary.module.css";
+import useFetch from "../src/CustomHooks/usefetch";
 
-function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentName }) {
-  
+export default function Dictionary({
+  isNewMessage,
+  words,
+  updateWordsList,
+  getWords,
+  studentName,
+}) {
   useEffect(() => {
     getWords();
   }, [words]);
@@ -15,46 +21,55 @@ function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentNam
   function handleChange(e) {
     e.preventDefault();
     setSearchWord(e.target.value);
-    }
+  }
 
   const [meanings, setMeanings] = useState();
 
   function resetMeanings() {
-      setMeanings();
-      setSearchWord("");
+    setMeanings();
+    setSearchWord("");
   }
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [url, setUrl] = useState("");
+  const { data, error } = useFetch(url);
+
+    if (error) {
+        setErrorMessage(error);
+  
+        // if (!data) {
+        //     setErrorMessage("Please wait...");
+        // }
+    }
 
   async function getWord(e) {
     e.preventDefault();
-    setErrorMessage("");
-    try {
-      const response = await fetch(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`
-      );
-      const data = await response.json();
-
-      const meanings = data[0].meanings;
-        setMeanings(meanings);
-        
-
-    } catch {
-      setErrorMessage("This isn't a word. Check your spelling and try again!");
-      }
-   
+      setErrorMessage("");
+      if (searchWord) {
+          setUrl(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`);
+      } else (setErrorMessage("Please enter a word"))
   }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-       
+  useEffect(() => {
+    console.log(data);
+    try {
+      setMeanings(data[0].meanings);
+    } catch {
+        if (!data) { setErrorMessage("") } else {
+            setErrorMessage("This isn't a word. Check your spelling and try again!");
+        }
+    }
+  }, [data]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
     if (!words.includes(searchWord)) {
       updateWordsList(searchWord, meanings);
     }
-        resetMeanings();
-        setSearchWord("");
+    resetMeanings();
+    setSearchWord("");
   }
-
 
   return (
     <div>
@@ -122,5 +137,3 @@ function Dictionary({ isNewMessage, words, updateWordsList, getWords, studentNam
     </div>
   );
 }
-
-export default Dictionary;
