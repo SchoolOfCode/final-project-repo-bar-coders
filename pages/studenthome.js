@@ -13,15 +13,14 @@ export default function StudentHome({
   inProgressBooks,
   currentBook,
   updateCurrentBook,
-    minutesRead,
-  getStudentData
+  minutesRead,
+  getStudentData,
 }) {
-  
-    useEffect(() => {
-      getStudentData();
-    }, []);
+  useEffect(() => {
+    getStudentData();
+  }, []);
 
-return (
+  return (
     <div>
       <div>
         <Navbar isNewMessage={isNewMessage} studentName={studentName} />
