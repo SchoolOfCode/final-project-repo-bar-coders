@@ -13,7 +13,7 @@ export default function StudentHome({
   inProgressBooks,
   currentBook,
   updateCurrentBook,
-    minutesRead,
+  minutesRead,
   getStudentData
 }) {
   

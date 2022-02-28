@@ -1,0 +1,24 @@
+.classlist{
+    background-color: darkorange;
+    border-radius: 50px;
+    height: 93vh;
+    width: 330px;
+    padding-bottom: 2rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+.classlist h1{
+    color: black;
+    text-align: center;
+
+}
+
+.classlist h2{
+    color: black;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: cornflowerblue;  
+    border-radius: 25px;
+}

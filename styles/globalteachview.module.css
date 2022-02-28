@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    
+    background-color: aqua;
+    width: 100vhw;
+    height: 100vh;
+}
+
