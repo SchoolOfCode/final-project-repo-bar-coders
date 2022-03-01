@@ -1,5 +1,7 @@
 import "../styles/globals.css";
 import { useEffect, useState } from "react";
+import { ChakraProvider } from '@chakra-ui/react'
+
 
 function MyApp({ Component, pageProps }) {
   //studentId - to be set via Auth?
@@ -141,6 +143,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
+    <ChakraProvider>
     <Component
       {...pageProps}
       studentName={studentName}
@@ -156,6 +159,7 @@ function MyApp({ Component, pageProps }) {
       minutesRead={minutesRead}
       getStudentData={getStudentData}
     />
+    </ChakraProvider>
   );
 }
 

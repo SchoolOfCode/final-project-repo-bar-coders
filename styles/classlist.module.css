@@ -19,6 +19,7 @@
 .classlist h2{
     color: black;
     text-align: center;
+    margin: 0.2rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     background-color: darkgrey;  

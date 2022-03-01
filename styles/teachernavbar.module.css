@@ -10,8 +10,9 @@
 
 .navbar button {
     width: 15%;
-    margin: 2rem .5rem;
-    padding: 0.25rem 0.25rem;
+    margin: 0.5rem;
+    margin-top: -3rem;
+    padding: -0.25rem 0.25rem;
     font-size: 1.3rem;
     border-radius: 5px;
     background-color: grey;
@@ -21,12 +22,13 @@
 
 .name{
     background-color: rgba(49,61,139);
-    box-shadow: 0 0 1px 2px silver;
+    box-shadow: 0 0 2px 2px silver;
     width: 80%;
-    height: 50%;
+    height: 30%;
     margin-right: 2rem;
-    padding: 0.25rem 1.5rem;
-    font-size: 3.5rem;
+    margin-top: -5.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 2.5rem;
     border-radius: 5px;
     text-align: center;
     color: darkgray;
