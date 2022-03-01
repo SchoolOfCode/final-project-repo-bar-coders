@@ -14,7 +14,7 @@ export default function StudentHome({
   currentBook,
   updateCurrentBook,
   minutesRead,
-  getStudentData,
+  getStudentData
 }) {
   useEffect(() => {
     getStudentData();
