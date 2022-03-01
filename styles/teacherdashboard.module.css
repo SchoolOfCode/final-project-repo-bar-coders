@@ -1,4 +1,19 @@
-.mainbox{
+.teacherdashboard {
+    background-color: white;
+    height: 81.5%;
+    color: black;
+}
+
+.dashboard div {
+    background-color: red;
+    width: 25%;
+    height: 25%;
+}
+
+
+
+
+/* .mainbox{
     width: 80rem;
     height: 50rem;
     border-radius: 5px;
@@ -9,4 +24,4 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
     
-}
+} */

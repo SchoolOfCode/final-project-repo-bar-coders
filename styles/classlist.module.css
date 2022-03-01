@@ -1,4 +1,18 @@
-.classlist{
+.classlist {
+    background-color: whitesmoke;
+    height: 90%;
+    text-align: center;
+    color: black;
+}
+
+
+
+
+
+
+
+
+/* .classlist{
     background-color: whitesmoke;
     border-radius: 5px;
     height: 93vh;
@@ -25,4 +39,4 @@
     background-color: darkgrey;  
     border-radius: 5px;
     font-family: "Trebuchet MS";
-}
+} */
