@@ -8,9 +8,10 @@ export default function Teacherhome() {
   return (
         <div className={Styles.container}> 
             <Classroomlist></Classroomlist>
-            <Dashboard></Dashboard>
+            <div className={Styles.rightside}>
             <Navbar></Navbar>
-
+            <Dashboard></Dashboard>
+            </div>
         </div>
   )
 }
