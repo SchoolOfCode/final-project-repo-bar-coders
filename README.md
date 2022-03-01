@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Book Worms 
 
-## Getting Started
+This app was created by The Bar Coders as our final 4-week project at the end of our School of Code Bootcamp.
 
-First, run the development server:
+## Project Description
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Our problem statement
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+There isn’t a modern way for teachers to engage with their students about their extra-curricular reading. 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+As a teacher, I want a way to encourage my students to read outside of school.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+As a pupil, I want a fun and engaging way to record how much I’m reading.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Our solution
+ 
+We created an app to solve this problem. It has two sides to it:
+- the student side, which is aimed at 7-11 year old children to help them record their extra-curricular reading in a fun way; and 
+- the teacher side, which aims to help teachers easily access their class's reading data both at a class level and at the individual child level.
 
-## Learn More
+## Technology used
 
-To learn more about Next.js, take a look at the following resources:
+The front-end (in this repo) is written in Next.js and deployed to Netlify, with an Express.js server at the back-end deployed to Heroku (this is in a separate repo).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authors
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Dilyn Corbett @NovaGlow
+Asma Dage @asmaisalive
+Mohamed Mohamud @codewithmohamed
+Anita Percival @anitapercival
+Alex Platt @aljaplatt
+Jenny Taylor @GeckoJen

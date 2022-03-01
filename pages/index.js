@@ -10,8 +10,8 @@ export default function Home() {
     <div className={styles.loginPage}>
       <div className={styles.image}>
         <Image
-          // src="https://images.unsplash.com/photo-1635648116223-bce260c0dc1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-          src={image.src}
+          src="https://images.unsplash.com/photo-1635648116223-bce260c0dc1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+          //src={image.src}
           alt="space"
           width={600}
           height={750}
@@ -26,8 +26,9 @@ export default function Home() {
         <Link href="/studenthome" passHref>
         <button>I&apos;m a student</button>
         </Link>
-         
-          <button>I&apos;m a teacher</button>
+        <Link href="/teacherhome" passHref> 
+        <button>I&apos;m a teacher</button>
+         </Link> 
         </div>
       </div>
     </div>

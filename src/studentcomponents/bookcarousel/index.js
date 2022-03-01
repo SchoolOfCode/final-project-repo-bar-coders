@@ -6,17 +6,16 @@ import { useRouter } from "next/router";
 //See here for carousel docs: https://openbase.com/js/react-image-gallery
 
 function Carousel({ inProgressBooks, currentBook, updateCurrentBook }) {
-  
   const router = useRouter();
 
-    const images = inProgressBooks.map((book) => {
+  const images = inProgressBooks.map((book) => {
     return {
       original: book.cover,
       thumbnail: book.cover,
       originalHeight: "350",
-    //   originalWidth: "150",
+      //   originalWidth: "150",
       thumbnailHeight: "90",
-    //   thumbnailWidth: "30",
+      //   thumbnailWidth: "30",
       originalTitle: book.id, //need this to be id rather than title because it gets passed to updateCurrentBook function
       description: book.title,
       thumbnailLabel: book.title,
@@ -32,8 +31,8 @@ function Carousel({ inProgressBooks, currentBook, updateCurrentBook }) {
         showPlayButton={false}
         onClick={(e) => {
           updateCurrentBook(e.target.title); //this passes in the book id number to the updateCurrentBook function - can't call it id for some reason
-            console.log(currentBook);
-            router.push('/readinglog') 
+          console.log(currentBook);
+          router.push("/readinglog");
         }}
       />
     </div>

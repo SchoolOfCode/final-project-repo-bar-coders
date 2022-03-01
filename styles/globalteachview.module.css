@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    font-family: "Trebuchet MS";
+    background-color: rgba(49,61,139) ;
+    width: 100vhw;
+    height: 100vh;
+}
+
