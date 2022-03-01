@@ -1,8 +1,16 @@
 .container{
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     font-family: "Trebuchet MS";
     background-color: rgba(49,61,139) ;
     width: 100vhw;
     height: 100vh;
+}
+
+.rightside{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
