@@ -143,8 +143,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <ChakraProvider>
-    <Component
+      <Component
       {...pageProps}
       studentName={studentName}
       studentId={studentId}
@@ -158,9 +157,12 @@ function MyApp({ Component, pageProps }) {
       getWords={getWords}
       minutesRead={minutesRead}
       getStudentData={getStudentData}
-    />
-    </ChakraProvider>
-  );
+      />
+   
+
+    
+    
+    );
 }
 
 export default MyApp;

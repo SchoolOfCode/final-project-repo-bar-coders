@@ -2,13 +2,8 @@
     display: flex;
     justify-content: space-between;
     font-family: 'Trebuchet MS';
+    color: red;
     
-
-}
-
-.name{
-    font-family: 'Trebuchet MS';
-    color: aliceblue;
 
 }
 
