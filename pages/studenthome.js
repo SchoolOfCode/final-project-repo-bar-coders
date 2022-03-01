@@ -16,12 +16,11 @@ export default function StudentHome({
   minutesRead,
   getStudentData
 }) {
-  
-    useEffect(() => {
-      getStudentData();
-    }, []);
+  useEffect(() => {
+    getStudentData();
+  }, []);
 
-return (
+  return (
     <div>
       <div>
         <Navbar isNewMessage={isNewMessage} studentName={studentName} />
