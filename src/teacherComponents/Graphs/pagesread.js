@@ -1,14 +1,22 @@
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
-function Timesread() {
+function Pagesread() {
   const data = {
-    labels: ["Alice", "John", "Samira", "Rayan"],
+    labels: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
     datasets: [
       {
-        label: "Number of times read this week",
-        data: [7, 2, 5, 7],
+        label: "Number of pages read this week",
+        data: [90, 30, 47, 50, 25, 80, 100],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -32,7 +40,7 @@ function Timesread() {
 
   return (
     <div>
-      <Bar
+      <Line
         data={data}
         width={400}
         height={200}
@@ -44,4 +52,4 @@ function Timesread() {
   );
 }
 
-export default Timesread;
+export default Pagesread;
