@@ -21,7 +21,7 @@ function Teacherdashboard() {
 
           <div className={Styles.bottomcontainers}>
             <Booksfinished></Booksfinished>
-            <p>more info</p>
+            <button>more info</button>
           </div>
         </div>
       </div>
