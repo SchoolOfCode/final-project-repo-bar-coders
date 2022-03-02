@@ -3,6 +3,23 @@
     height: 90%;
     text-align: center;
     color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.names {
+    display: flex;
+    flex-direction: column;
+}
+
+.names button {
+    border: none;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.examplehighlight {
+    background-color: #73a5c6;
 }
 
 /* .classlist{
