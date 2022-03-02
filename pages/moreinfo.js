@@ -4,8 +4,12 @@ import Styles from '../styles/moreinfo.module.css'
 import Classlist from '../src/teacherComponents/classlist/classlist'
 import Teacherdashboard from '../src/teacherComponents/Teacherdashboard/teacherdashboard'
 import Teachernavbar from '../src/teacherComponents/Teachernavbar/teachernavbar'
+import {Bar} from 'react-chartjs-2';
 
 function Moreinfo() {
+
+
+
   return (
     <div className={Styles.container}>
         <div className={Styles.leftside}>
@@ -15,6 +19,9 @@ function Moreinfo() {
         <div className={Styles.rightside}>
         <Teachernavbar></Teachernavbar>
         <Teacherdashboard></Teacherdashboard>
+        </div>
+        <div>
+        
         </div>
     </div>
   )

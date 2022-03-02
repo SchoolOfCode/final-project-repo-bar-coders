@@ -1,14 +1,41 @@
 .teacherdashboard {
-    background-color: white;
+    background-color: #d3d3d3;
     height: 81.5%;
     color: black;
+    display: flex;
+    flex-direction: column;
+    padding: 3%
+   
 }
 
-.dashboard div {
-    background-color: red;
-    width: 25%;
-    height: 25%;
+.timesreadcontainer {
+    background-color: white;
+
 }
+
+.bottomsection {
+    padding-top: 5%;
+}
+
+.squarecontainers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.topcontainers {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomcontainers {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
 
 
 
