@@ -7,13 +7,13 @@ function Teacherinfo() {
       <div className={Styles.bottomsection}>
         <div className={Styles.squarecontainers}>
           <div className={Styles.topcontainers}>
-            <p>Small Card 1</p>
-            <p>Small Card 2</p>
+            <p1 className={Styles.topleft}>Student Stats</p1>
+            <p2 className={Styles.topright}>Send a Message to the Class</p2>
           </div>
 
           <div className={Styles.bottomcontainers}>
-            <p>Big Card 1</p>
-            <p>Big Card 2</p>
+            <p3 className={Styles.btmleft}>Student Stats</p3>
+            <p4 className={Styles.btmright}>Message Log</p4>
           </div>
         </div>
       </div>
