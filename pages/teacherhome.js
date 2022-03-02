@@ -1,17 +1,30 @@
+import { StylesProvider } from '@chakra-ui/react'
 import React from 'react'
-import Classroomlist from '../src/teacherComponents/classroomlist/classroomlist'
-import Dashboard from '../src/teacherComponents/dashboard/dashboard'
-import Styles from '../styles/globalteachview.module.css'
-import Navbar from '../src/teacherComponents/navbar/navbar'
+import Styles from '../styles/teacherhome.module.css'
+import Classlist from '../src/teacherComponents/classlist/classlist'
+import Teacherdashboard from '../src/teacherComponents/Teacherdashboard/teacherdashboard'
+import Teachernavbar from '../src/teacherComponents/Teachernavbar/teachernavbar'
+import {Bar} from 'react-chartjs-2';
 
-export default function Teacherhome() {
+function Teacherhome() {
+
+
+
   return (
-        <div className={Styles.container}> 
-            <Classroomlist></Classroomlist>
-            <div className={Styles.rightside}>
-            <Navbar></Navbar>
-            <Dashboard></Dashboard>
-            </div>
+    <div className={Styles.container}>
+        <div className={Styles.leftside}>
+        <Classlist></Classlist>
         </div>
+
+        <div className={Styles.rightside}>
+        <Teachernavbar></Teachernavbar>
+        <Teacherdashboard></Teacherdashboard>
+        </div>
+        <div>
+        
+        </div>
+    </div>
   )
 }
+
+export default Teacherhome
