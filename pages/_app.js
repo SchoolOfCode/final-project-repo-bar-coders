@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }) {
 
   ])
 
-  //Used in teacherhome to populate classlist - array of students who have read more than four times
+  //Used in teacherhome to populate classlist - array of students who have read four times or more
   const [moreThanFour, setMoreThanFour] = useState([
     {
       "weekly": 10,
@@ -63,6 +63,52 @@ function MyApp({ Component, pageProps }) {
   "student_id": "s01"
 },
   ])
+
+  
+
+  //Used in teacherhome to populate the time read bar chart - array of times read by everyone, not split
+  const [timesRead, setTimesRead] = useState([
+    {
+      "weekly": 10,
+      "count": "5",
+      "name": "Alice",
+      "student_id": "s01"
+  },
+  {
+      "weekly": 10,
+      "count": "1",
+      "name": "Juan",
+      "student_id": "s03"
+  },
+  {
+    "weekly": 10,
+    "count": "5",
+    "name": "Alice",
+    "student_id": "s01"
+},
+{
+    "weekly": 10,
+    "count": "1",
+    "name": "Juan",
+    "student_id": "s03"
+},
+{
+  "weekly": 10,
+  "count": "5",
+  "name": "Alice",
+  "student_id": "s01"
+},
+{
+  "weekly": 10,
+  "count": "1",
+  "name": "Juan",
+  "student_id": "s03"
+},
+  ])
+
+  // Bar chart data state for times read chart
+  // const [barChartData, setBarChartData] = useState({})
+
 
 
 
@@ -142,15 +188,13 @@ function MyApp({ Component, pageProps }) {
       );
       const data = await response.json();
       console.log(data);
-      console.log(data.progressData[0].name);
-      console.log(data.progressData[0].count);
-      console.log(data.progressData[0].minutes_total);
-      console.log(data.bookData);
-
-      setStudentName(data.progressData[0].name);
-      setStudentDaysRead(data.progressData[0].count);
-      setInProgressBooks(data.bookData);
-      setMinutesRead(data.progressData[0].minutes_total);
+      if (data.progressData.length > 0) {
+        setStudentDaysRead(data.progressData[0].count);
+        setMinutesRead(data.progressData[0].minutes_total);
+      }
+      if (data.bookData.length > 0) {
+        setInProgressBooks(data.bookData);
+      }
     } catch {
       console.log("error within getStudentData");
     }
@@ -162,7 +206,8 @@ function MyApp({ Component, pageProps }) {
         `https://fourweekproject.herokuapp.com/books/${studentId}`
       );
       const data = await response.json();
-      setStudentName(data.progressData[0].name);
+      console.log(data);
+      setStudentName(data.name[0].name);
     } catch {
       alert("Server error");
     }
@@ -213,6 +258,8 @@ function MyApp({ Component, pageProps }) {
       getStudentData={getStudentData}
       lessThanFour={lessThanFour}
       moreThanFour={moreThanFour}
+      timesRead={timesRead}
+      // barChartData={barChartData}
 
     />
   );

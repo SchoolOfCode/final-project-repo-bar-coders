@@ -5,11 +5,11 @@ import Pagesread from "../Graphs/pagesread";
 import Booksfinished from "../Graphs/booksfinished";
 import Minutesread from "../Graphs/minutesread";
 
-function Teacherdashboard() {
+function Teacherdashboard({timesRead, barChartData}) {
   return (
     <div className={Styles.teacherdashboard}>
       <div className={Styles.timesreadcontainer}>
-        <Timesread></Timesread>
+        <Timesread timesRead={timesRead} barChartData={barChartData}></Timesread>
       </div>
 
       <div className={Styles.bottomsection}>
