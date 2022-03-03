@@ -5,48 +5,27 @@
     color: black;
     display: flex;
     flex-direction: column;
+    border-radius: 2px;
+
 }
 
 .names {
     display: flex;
     flex-direction: column;
+    border-radius: 2px;
+    width: 95%;
+    padding-left: 5%;
+    border-radius: 2px;
 }
 
 .names button {
     border: none;
     font-size: 20px;
     margin-top: 5px;
+    border-radius: 2px;
 }
 
 .examplehighlight {
     background-color: #73a5c6;
 }
 
-/* .classlist{
-    background-color: whitesmoke;
-    border-radius: 5px;
-    height: 93vh;
-    width: 330px;
-    padding-bottom: 2rem;
-    margin-top: 2rem;
-    margin-left: 2rem;
-    font-family: "Trebuchet MS";
-}
-
-.classlist h1{
-    color: black;
-    text-align: center;
-    font-family: "Trebuchet MS";
-
-}
-
-.classlist h2{
-    color: black;
-    text-align: center;
-    margin: 0.2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color: darkgrey;  
-    border-radius: 5px;
-    font-family: "Trebuchet MS";
-} */
