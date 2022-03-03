@@ -142,9 +142,13 @@ function MyApp({ Component, pageProps }) {
     }
   }
 
+  // if(studentView){
+  //   return <Component/>>   setup for Student, home and teacher to part out Chakra 
+  // }                
+
   return (
-    <ChakraProvider>
-    <Component
+    // <ChakraProvider>
+      <Component
       {...pageProps}
       studentName={studentName}
       studentId={studentId}
@@ -158,9 +162,12 @@ function MyApp({ Component, pageProps }) {
       getWords={getWords}
       minutesRead={minutesRead}
       getStudentData={getStudentData}
-    />
-    </ChakraProvider>
-  );
+      />
+  // </ChakraProvider>
+
+    
+    
+    );
 }
 
 export default MyApp;

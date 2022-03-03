@@ -5,36 +5,43 @@ import { useRouter } from "next/router";
 function Readinglog({ currentBook, studentId }) {
   const router = useRouter();
 
-  const [page, setPage] = useState();
+  const [startPage, setStartPage] = useState();
+  const [endPage, setEndPage] = useState();
   const [minutes, setMinutes] = useState();
   const [summary, setSummary] = useState();
   const [isComplete, setIsComplete] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log({
-      bookId: currentBook.id,
-      studentId: studentId,
-      currentPage: page,
-      summary: summary,
-      iscomplete: isComplete,
-      minutesRead: minutes,
-    });
+    
     try {
       const url = "https://fourweekproject.herokuapp.com/summaries";
-      await fetch(url, {
+      
+         await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           bookId: currentBook.id,
           studentId: studentId,
-          currentPage: page,
+          currentPage: endPage,
           summary: summary,
           isComplete: isComplete,
           minutesRead: minutes,
+          pagesRead: endPage - startPage,
         }),
       });
+      console.log({
+        bookId: currentBook.id,
+        studentId: studentId,
+        currentPage: endPage,
+        summary: summary,
+        iscomplete: isComplete,
+        minutesRead: minutes,
+        pagesRead: endPage - startPage,
+        url
+      });
       router.push("/studenthome");
+
     } catch {
       alert("Sorry the server is unavailable, please try later");
     }
@@ -44,14 +51,23 @@ function Readinglog({ currentBook, studentId }) {
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <h1>{currentBook.title}</h1>
+        <div className={styles.pageDiv}>
+          <input
+            type="text"
+            value={startPage}
+            onChange={(e) => setStartPage(e.target.value)}
+            placeholder="What page did you start on?"
+            required
+          ></input>
 
-        <input
-          type="text"
-          value={page}
-          onChange={(e) => setPage(e.target.value)}
-          placeholder="What page did you finish on?"
-          required
-        ></input>
+          <input
+            type="text"
+            value={endPage}
+            onChange={(e) => setEndPage(e.target.value)}
+            placeholder="What page did you finish on?"
+            required
+          ></input>
+        </div>
 
         <input
           type="text"
