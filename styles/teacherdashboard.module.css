@@ -1,0 +1,65 @@
+.teacherdashboard {
+    background-color: #d3d3d3;
+    height: 81.5%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    padding: 3%
+}
+
+.timesreadcontainer {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.bottomsection {
+    padding-top: 5%;
+    border-radius: 5px;
+}
+
+.squarecontainers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.topcontainers {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.bottomcontainers {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.bottomcontainers button{
+background-color: silver;
+padding-right: 20rem;
+text-align: center;
+box-shadow: 0 0 30px 3px lightslategray;
+border-radius: 5px;
+}
+
+
+
+
+
+
+
+/* .mainbox{
+    width: 80rem;
+    height: 50rem;
+    border-radius: 5px;
+    
+}
+.grid{
+    padding-left: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    
+} */
