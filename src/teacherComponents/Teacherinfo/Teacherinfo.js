@@ -12,7 +12,7 @@ function Teacherinfo() {
             </div>
             <div className={Styles.topright}>
               <p2 className={Styles.p2}> Send a Message to the Class </p2>
-              <input className={Styles.input}></input>
+              <input className={Styles.input} type="text" placeholder="Type Message Here ..."></input>
               <button className={Styles.button}> Send </button>
             </div>
           </div>
