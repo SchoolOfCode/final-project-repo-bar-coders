@@ -1,7 +1,5 @@
 import "../styles/globals.css";
 import { useEffect, useState } from "react";
-import { ChakraProvider } from '@chakra-ui/react'
-
 
 function MyApp({ Component, pageProps }) {
   //studentId - to be set via Auth?
@@ -22,7 +20,6 @@ function MyApp({ Component, pageProps }) {
 
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works
   const [inProgressBooks, setInProgressBooks] = useState([
-    
     {
       id: 2,
       title: "Harry Potter and the Philosopher's Stone",
@@ -110,19 +107,20 @@ function MyApp({ Component, pageProps }) {
   }
 
   async function getStudentName() {
-    try { 
+    try {
       const response = await fetch(
         `https://fourweekproject.herokuapp.com/books/${studentId}`
       );
       const data = await response.json();
-       setStudentName(data.progressData[0].name);
+      setStudentName(data.progressData[0].name);
+    } catch {
+      alert("Server error");
     }
-    catch { alert("Server error")}
   }
 
   useEffect(() => {
     getStudentName();
-  },[])
+  }, []);
 
   //adds new words to dictionary word list
   async function updateWordsList(newWord, meaning) {
@@ -147,8 +145,9 @@ function MyApp({ Component, pageProps }) {
   // }                
 
   return (
-    // <ChakraProvider>
-      <Component
+
+    <Component
+
       {...pageProps}
       studentName={studentName}
       studentId={studentId}
@@ -162,12 +161,10 @@ function MyApp({ Component, pageProps }) {
       getWords={getWords}
       minutesRead={minutesRead}
       getStudentData={getStudentData}
-      />
-  // </ChakraProvider>
 
-    
-    
-    );
+    />
+  );
+
 }
 
 export default MyApp;
