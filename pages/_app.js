@@ -18,8 +18,58 @@ function MyApp({ Component, pageProps }) {
   //used in studenthome to match coins earned
   const [minutesRead, setMinutesRead] = useState(45);
 
+  //Used in teacherhome to populate classlist - array of students who have read less than four times
+  const [lessThanFour, setLessThanFour] = useState([
+    {
+      "weekly": 10,
+      "count": "1",
+      "name": "Juan",
+      "student_id": "s03"
+  },
+  {
+    "weekly": 10,
+    "count": "1",
+    "name": "Bob",
+    "student_id": "s03"
+},
+{
+  "weekly": 10,
+  "count": "1",
+  "name": "Daisy",
+  "student_id": "s03"
+},
+
+
+  ])
+
+  //Used in teacherhome to populate classlist - array of students who have read more than four times
+  const [moreThanFour, setMoreThanFour] = useState([
+    {
+      "weekly": 10,
+      "count": "5",
+      "name": "Alice",
+      "student_id": "s01"
+  },
+  {
+    "weekly": 10,
+    "count": "5",
+    "name": "Ryan",
+    "student_id": "s01"
+},
+{
+  "weekly": 10,
+  "count": "5",
+  "name": "Samantha",
+  "student_id": "s01"
+},
+  ])
+
+
+
+
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works
   const [inProgressBooks, setInProgressBooks] = useState([
+    
     {
       id: 2,
       title: "Harry Potter and the Philosopher's Stone",
@@ -161,6 +211,8 @@ function MyApp({ Component, pageProps }) {
       getWords={getWords}
       minutesRead={minutesRead}
       getStudentData={getStudentData}
+      lessThanFour={lessThanFour}
+      moreThanFour={moreThanFour}
 
     />
   );

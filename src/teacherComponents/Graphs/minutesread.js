@@ -4,6 +4,7 @@ import Chart from "chart.js/auto";
 
 function Minutesread() {
   const data = {
+
     labels: [
       "Monday",
       "Tuesday",

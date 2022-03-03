@@ -5,11 +5,13 @@ import Teacherdashboard from "../src/teacherComponents/Teacherdashboard/teacherd
 import Teachernavbar from "../src/teacherComponents/Teachernavbar/teachernavbar";
 // import { Bar } from "react-chartjs-2";
 
-function Teacherhome() {
+function Teacherhome({lessThanFour, moreThanFour}) {
   return (
     <div className={Styles.container}>
       <div className={Styles.leftside}>
-        <Classlist></Classlist>
+        <Classlist lessThanFour={lessThanFour}/>
+          
+
       </div>
 
       <div className={Styles.rightside}>

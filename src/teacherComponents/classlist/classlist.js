@@ -1,29 +1,34 @@
 import React from "react";
 import Styles from "../../../styles/classlist.module.css";
 
-function Classlist() {
+function Classlist({lessThanFour, moreThanFour}) {
+
+ 
+
   return (
     <div className={Styles.classlist}>
       <h1>Class List</h1>
-      <div className={Styles.names}>
-      <button>Whole Class View</button>
-      <button>Alice</button>
-      <button>John</button>
-      <button>Samira</button>
-      <button>Rayan</button>
-      <button>Alice</button>
-      <button className={Styles.examplehighlight}>John</button>
-      <button>Samira</button>
-      <button>Rayan</button>
-      <button>Alice</button>
-      <button>John</button>
-      <button>Samira</button>
-      <button>Rayan</button>
-      <button>Alice</button>
-      <button>John</button>
-      <button>Samira</button>
-      <button>Rayan</button>
+      
+    
+          <div  className={Styles.names}>
+          <button>Whole Class View</button>
+          
+          {lessThanFour && lessThanFour.length ? lessThanFour.map((student, index) => (
+          <button key={index}>{student.name}</button>
+        )
+      ) : null}
+
+      {/* {moreThanFour && moreThanFour.length ? moreThanFour.map((person, index) => (
+          <button key={index}>{person.name}</button>
+        )
+      ) : null} */}
+      
+
+
+
       </div>
+     
+     
     </div>
   );
 }
