@@ -140,8 +140,14 @@ function MyApp({ Component, pageProps }) {
     }
   }
 
+  // if(studentView){
+  //   return <Component/>>   setup for Student, home and teacher to part out Chakra 
+  // }                
+
   return (
+
     <Component
+
       {...pageProps}
       studentName={studentName}
       studentId={studentId}
@@ -155,8 +161,10 @@ function MyApp({ Component, pageProps }) {
       getWords={getWords}
       minutesRead={minutesRead}
       getStudentData={getStudentData}
+
     />
   );
+
 }
 
 export default MyApp;
