@@ -8,23 +8,27 @@ import Minutesread from "../Graphs/minutesread";
 function Teacherdashboard() {
   return (
     <div className={Styles.teacherdashboard}>
-      <div className={Styles.timesreadcontainer}>
-        <Timesread></Timesread>
-      </div>
 
-      <div className={Styles.bottomsection}>
+
+      {/* <div className={Styles.timesreadcontainer}> */}
+        <Timesread></Timesread>
+      {/* </div> */}
+
+      {/* <div className={Styles.bottomsection}>
         <div className={Styles.squarecontainers}>
-          <div className={Styles.topcontainers}>
+          <div className={Styles.topcontainers}> */}
+
+
             <Pagesread></Pagesread>
             <Minutesread></Minutesread>
-          </div>
+          {/* </div> */}
 
-          <div className={Styles.bottomcontainers}>
+          {/* <div className={Styles.bottomcontainers}> */}
             <Booksfinished></Booksfinished>
             <p>more info</p>
-          </div>
-        </div>
-      </div>
+          {/* </div>
+        </div> */}
+      {/* </div> */}
     </div>
   );
 }

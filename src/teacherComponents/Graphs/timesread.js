@@ -27,6 +27,8 @@ function Timesread() {
         ],
         borderWidth: 1,
       },
+
+      
     ],
   };
 
