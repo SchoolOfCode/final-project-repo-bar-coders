@@ -24,17 +24,17 @@ function Teacherdashboard({studentSelected}) {
           <div className={Styles.bottomcontainers}>
             <div className={Styles.finished}><Booksfinished studentSelected={studentSelected}></Booksfinished></div>
             
-            <div className={Styles.info}>
+           
               <Link href="/teacherinfopage" passHref>
-           <button className={Styles.button}>more info</button>
+              <button className={Styles.button}> Click for more info</button>
               </Link>
-              </div>
+            
           
 
           </div>
         </div>
       </div>
-    // </div>
+    
   );
 }
 
