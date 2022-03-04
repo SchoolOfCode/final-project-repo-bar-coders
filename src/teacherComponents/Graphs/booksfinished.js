@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
-function Booksfinished() {
+function Booksfinished({ studentSelected }) {
+  const [booksComplete, setBooksComplete] = useState([]);
+
+  async function getBooksCompletedData() {
+    const response = await fetch(
+      "https://fourweekproject.herokuapp.com/teachers/class"
+    );
+    const data = await response.json();
+    const booksCompleteData = data.booksCompletedByClass;
+    setBooksComplete(booksCompleteData.map((day) => day.completed));
+  }
+
+  async function getStudentBooksCompleteData(id) {
+    const response = await fetch(
+      `https://fourweekproject.herokuapp.com/teachers/student/${id}`
+    );
+    const data = await response.json();
+    const booksData = data.studentCompletedBooks;
+    setBooksComplete(booksData.map((day) => day.completed));
+  }
+
+  useEffect(() => {
+    if (studentSelected.isSelected === false) {
+      getBooksCompletedData();
+    } else {
+      getStudentBooksCompleteData(studentSelected.id);
+    }
+  }, [studentSelected]);
+
   const data = {
     labels: [
       "Monday",
@@ -15,8 +43,8 @@ function Booksfinished() {
     ],
     datasets: [
       {
-        label: "Number of books your students finished this week",
-        data: [5, 7, 3, 4, 1, 4, 8],
+        label: "Number of books finished this week",
+        data: booksComplete,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -36,6 +64,17 @@ function Booksfinished() {
         borderWidth: 1,
       },
     ],
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
   };
 
   return (

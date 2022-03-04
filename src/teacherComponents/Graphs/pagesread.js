@@ -1,8 +1,40 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
-function Pagesread() {
+function Pagesread({studentSelected}) {
+
+  const [pagesRead, setPagesRead] = useState([])
+ 
+
+async function getPagesReadData() {
+  const response = await fetch(
+    "https://fourweekproject.herokuapp.com/teachers/class"
+  );
+  const data = await response.json();
+  const pagesData = data.pagesReadByClass;
+  setPagesRead(pagesData.map((day)=>day.pages));
+  }
+  
+  async function getStudentPagesReadData(id) {
+    const response = await fetch(
+      `https://fourweekproject.herokuapp.com/teachers/student/${id}`
+    );
+    const data = await response.json();
+    const pagesData = data.studentWeeklyPages;
+    setPagesRead(pagesData.map((day) => day.pages));
+  }
+
+  useEffect(() => {
+    if (studentSelected.isSelected === false) {
+      getPagesReadData();
+    } else {
+      getStudentPagesReadData(studentSelected.id);
+    }
+  
+}, [studentSelected]);
+
+
   const data = {
     labels: [
       "Monday",
@@ -16,7 +48,7 @@ function Pagesread() {
     datasets: [
       {
         label: "Number of pages read this week",
-        data: [90, 30, 47, 50, 25, 80, 100],
+        data: pagesRead,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",

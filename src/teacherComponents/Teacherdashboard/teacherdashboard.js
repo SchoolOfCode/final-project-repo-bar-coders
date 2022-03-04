@@ -7,21 +7,22 @@ import Minutesread from "../Graphs/minutesread";
 import Link from "next/link";
 import { styled } from "@chakra-ui/react";
 
-function Teacherdashboard() {
+function Teacherdashboard({studentSelected}) {
   return (
     <div className={Styles.teacherdashboard}>
       <div className={Styles.timesreadcontainer}>
-        <Timesread></Timesread>
+        <Timesread studentSelected={studentSelected}></Timesread>
       </div>
 
       <div className={Styles.bottomsection}>
           <div className={Styles.topcontainers}>
-            <div className={Styles.pages}><Pagesread></Pagesread></div>
-            <div className={Styles.minutes}><Minutesread></Minutesread></div>
+
+            <div className={Styles.pages}><Pagesread studentSelected={studentSelected}></Pagesread></div>
+            <div className={Styles.minutes}><Minutesread studentSelected={studentSelected}></Minutesread></div>
           </div>
 
           <div className={Styles.bottomcontainers}>
-            <div className={Styles.finished}><Booksfinished></Booksfinished></div>
+            <div className={Styles.finished}><Booksfinished studentSelected={studentSelected}></Booksfinished></div>
             
             <div className={Styles.info}>
               <Link href="/teacherinfopage" passHref>
@@ -29,6 +30,7 @@ function Teacherdashboard() {
               </Link>
               </div>
           
+
           </div>
         </div>
       </div>
@@ -37,3 +39,5 @@ function Teacherdashboard() {
 }
 
 export default Teacherdashboard;
+
+
