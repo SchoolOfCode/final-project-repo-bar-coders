@@ -1,45 +1,67 @@
 import React from "react";
 import Styles from "../../../styles/classlist.module.css";
 
-function Classlist({lessThanFour, moreThanFour}) {
-
-  // const studentNames = lessThanFour.map((student) => student.name);
-  // const studentTimes = lessThanFour.map((student)=>student.count)
+function Classlist({ lessThanFour, moreThanFour, changeStudentSelected, studentSelected }) {
+  const studentsLessThan4 = lessThanFour
+    ? lessThanFour.map((student) => { return { studentName: student.name, id: student.student_id, count: student.count } })
+    : [];
+  
+  const studentsMoreThan4 = moreThanFour
+    ? moreThanFour.map((student) => {
+      return {
+        studentName: student.name,
+        id: student.student_id,
+        count: student.count,
+      };
+    })
+    : [];
  
-
   return (
     <div className={Styles.classlist}>
       <h1>Class List</h1>
-      
-    
-          <div  className={Styles.names}>
-          <button>Whole Class View</button>
-          
-          {/* Mapping through dummy data in app.js for students who read less than four times*/}
-          {/* {lessThanFour && lessThanFour.length ? lessThanFour.map((student, index) => (
-          <button key={index}>{student.name}</button>
-        )
-      ) : null} */}
-        {/* {studentNames.map((name, index) => {
-          return (<button key={index}> {name} </button>);
-        })} */}
-        
+      <h4 className={Styles.lessThan4Key}>Read less than 4 times this week</h4>
+      <h4 className={Styles.moreThan4Key}>Read four times or more this week</h4>
 
-{/* 
-          Mapping through dummy data in app.js for students who read four times
-          or more - not populating the class list for some reason */}
-          
-        {/* {moreThanFour && moreThanFour.length ? moreThanFour.map((person, index) => (
-          <button key={index}>{person.name}</button>
-        )
-      ) : null} */}
-      
+      <div className={Styles.names}>
+        <button className={Styles.wholeClassButton}
+          onClick={() => {
+            changeStudentSelected(false, null);
+          }}
+        >
+          Whole Class View
+        </button>
 
-
-
+        {studentsLessThan4.map((student, index) => {
+          return (
+            <button
+              className={Styles.lessthan}
+              key={index}
+              id={student.id}
+              onClick={(e) => {
+                console.log(e.target.id);
+                changeStudentSelected(true, e.target.id);
+              }}
+            >
+              {student.studentName}
+            </button>
+          );
+        })}
+        {studentsMoreThan4.map((student, index) => {
+          return (
+            <button
+              className={Styles.morethan}
+              key={index}
+              id={student.id}
+              onClick={(e) => {
+                console.log(e.target.id);
+                changeStudentSelected(true, e.target.id);
+              }}
+            >
+              {student.studentName}
+            </button>
+          );
+        })}
       </div>
-     
-     
     </div>
   );
 }

@@ -5,30 +5,36 @@ import Pagesread from "../Graphs/pagesread";
 import Booksfinished from "../Graphs/booksfinished";
 import Minutesread from "../Graphs/minutesread";
 import Link from "next/link";
+import { styled } from "@chakra-ui/react";
 
-function Teacherdashboard() {
+function Teacherdashboard({studentSelected}) {
   return (
     <div className={Styles.teacherdashboard}>
       <div className={Styles.timesreadcontainer}>
-        <Timesread ></Timesread>
+        <Timesread studentSelected={studentSelected}></Timesread>
       </div>
 
       <div className={Styles.bottomsection}>
-        <div className={Styles.squarecontainers}>
           <div className={Styles.topcontainers}>
-            <Pagesread></Pagesread>
-            <Minutesread></Minutesread>
+
+            <div className={Styles.pages}><Pagesread studentSelected={studentSelected}></Pagesread></div>
+            <div className={Styles.minutes}><Minutesread studentSelected={studentSelected}></Minutesread></div>
           </div>
 
           <div className={Styles.bottomcontainers}>
-            <Booksfinished></Booksfinished>
+            <div className={Styles.finished}><Booksfinished studentSelected={studentSelected}></Booksfinished></div>
+            
+           
               <Link href="/teacherinfopage" passHref>
-            <button>more info</button>
+              <button className={Styles.button}> Click for more info</button>
               </Link>
+            
+          
+
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 
