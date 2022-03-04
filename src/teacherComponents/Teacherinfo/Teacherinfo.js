@@ -25,9 +25,9 @@ function Teacherinfo() {
             
             <div className={Styles.btmright}>
                <p4 className={Styles.p4}> Message Log </p4>
-               <p5 className={Styles.p5}>1</p5>
-               <p6 className={Styles.p6}>2</p6>
-               <p7 className={Styles.p7}>3</p7>
+               <p5 className={Styles.p5}>Alex you need to try read more</p5>
+               <p6 className={Styles.p6}>Well Done Alice keep up the pace</p6>
+               <p7 className={Styles.p7}>Norman I need to see your mother</p7>
             </div>
           </div>
         </div>
