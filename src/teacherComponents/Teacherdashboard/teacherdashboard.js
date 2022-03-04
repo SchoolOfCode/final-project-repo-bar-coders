@@ -5,6 +5,7 @@ import Pagesread from "../Graphs/pagesread";
 import Booksfinished from "../Graphs/booksfinished";
 import Minutesread from "../Graphs/minutesread";
 import Link from "next/link";
+import { styled } from "@chakra-ui/react";
 
 function Teacherdashboard() {
   return (
@@ -14,21 +15,24 @@ function Teacherdashboard() {
       </div>
 
       <div className={Styles.bottomsection}>
-        <div className={Styles.squarecontainers}>
           <div className={Styles.topcontainers}>
-            <Pagesread></Pagesread>
-            <Minutesread></Minutesread>
+            <div className={Styles.pages}><Pagesread></Pagesread></div>
+            <div className={Styles.minutes}><Minutesread></Minutesread></div>
           </div>
 
           <div className={Styles.bottomcontainers}>
-            <Booksfinished></Booksfinished>
+            <div className={Styles.finished}><Booksfinished></Booksfinished></div>
+            
+            <div className={Styles.info}>
               <Link href="/teacherinfopage" passHref>
-            <button>more info</button>
+           <button className={Styles.button}>more info</button>
               </Link>
+              </div>
+          
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 }
 
