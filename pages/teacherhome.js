@@ -13,7 +13,7 @@ function Teacherhome() {
       </div>
 
       <div className={Styles.rightside}>
-        <Teachernavbar></Teachernavbar>
+          <Teachernavbar></Teachernavbar>
         <Teacherdashboard></Teacherdashboard>
       </div>
       <div></div>

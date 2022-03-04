@@ -4,6 +4,7 @@ import Timesread from "../Graphs/timesread";
 import Pagesread from "../Graphs/pagesread";
 import Booksfinished from "../Graphs/booksfinished";
 import Minutesread from "../Graphs/minutesread";
+import Link from "next/link";
 
 function Teacherdashboard() {
   return (
@@ -21,7 +22,9 @@ function Teacherdashboard() {
 
           <div className={Styles.bottomcontainers}>
             <Booksfinished></Booksfinished>
+              <Link href="/teacherinfopage" passHref>
             <button>more info</button>
+              </Link>
           </div>
         </div>
       </div>
