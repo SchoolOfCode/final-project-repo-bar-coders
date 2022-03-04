@@ -62,48 +62,18 @@ function MyApp({ Component, pageProps }) {
     },
   ]);
 
-  //Used in teacherhome to populate the time read bar chart - array of times read by everyone, not split
-  //   const [timesRead, setTimesRead] = useState([
-  //     {
-  //       "weekly": 10,
-  //       "count": "5",
-  //       "name": "Alice",
-  //       "student_id": "s01"
-  //   },
-  //   {
-  //       "weekly": 10,
-  //       "count": "1",
-  //       "name": "Juan",
-  //       "student_id": "s03"
-  //   },
-  //   {
-  //     "weekly": 10,
-  //     "count": "5",
-  //     "name": "Alice",
-  //     "student_id": "s01"
-  // },
-  // {
-  //     "weekly": 10,
-  //     "count": "1",
-  //     "name": "Juan",
-  //     "student_id": "s03"
-  // },
-  // {
-  //   "weekly": 10,
-  //   "count": "5",
-  //   "name": "Alice",
-  //   "student_id": "s01"
-  // },
-  // {
-  //   "weekly": 10,
-  //   "count": "1",
-  //   "name": "Juan",
-  //   "student_id": "s03"
-  // },
-  //   ])
+ async function getClassList(){
+   const response = await fetch("https://fourweekproject.herokuapp.com/teachers/class");
+   const data = await response.json();
+   setMoreThanFour(data.classList4TimesOrMore);
+   setLessThanFour(data.classListLessThan4Times);
+  //  console.log(moreThanFour, lessThanFour)
+  }
 
-  // Bar chart data state for times read chart
-  // const [barChartData, setBarChartData] = useState({})
+  useEffect(() => {
+    getClassList();
+    console.log("4+:", moreThanFour, "4-:", lessThanFour);
+  }, [])
 
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works
   const [inProgressBooks, setInProgressBooks] = useState([
