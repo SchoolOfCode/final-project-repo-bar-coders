@@ -35,10 +35,10 @@ function Newbook({ isNewMessage, studentId, studentName }) {
         console.log(data.docs[0].title);
         console.log(data.docs[0].number_of_pages_median);
         console.log(data.docs[0].cover_edition_key); //use to fetch cover art
-        console.log(data.docs[0].isbn[0]) //book id to be added to database
+        console.log(Date.now()) //book id to be added to database
 
         setNewApiBook({
-          id: data.docs[0].isbn[0],
+          id: Date.now(),
           studentId: studentId,
           title: data.docs[0].title,
           cover: `https://covers.openlibrary.org/b/olid/${data.docs[0].cover_edition_key}-L.jpg`,
