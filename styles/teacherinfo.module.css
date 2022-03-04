@@ -73,7 +73,8 @@
   width: 90%;
   margin-left: 5%;
   margin-top: 2%;
-  box-shadow: 0 0 3px 2px black ;
+  /* box-shadow: 0 0 3px 2px black ; */
+  text-decoration: underline solid 2px;
   border-radius: 5px;
   font-size: larger;
 }
@@ -130,8 +131,10 @@
   width: 20%;
   margin-left: 40%;
   margin-top: 3%;
-  box-shadow: 0 0 3px 2px black ;
+  /* box-shadow: 0 0 3px 2px black ; */
+  text-decoration: underline solid 2px;
   border-radius: 5px;
+  font-size: large;
 }
 
 .p5{
