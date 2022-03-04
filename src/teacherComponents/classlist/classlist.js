@@ -19,44 +19,49 @@ function Classlist({ lessThanFour, moreThanFour, changeStudentSelected, studentS
   return (
     <div className={Styles.classlist}>
       <h1>Class List</h1>
+      <h4 className={Styles.lessThan4Key}>Read less than 4 times this week</h4>
+      <h4 className={Styles.moreThan4Key}>Read four times or more this week</h4>
 
       <div className={Styles.names}>
-        <button onClick={() => { changeStudentSelected(false, null) }}>Whole Class View</button>
+        <button
+          onClick={() => {
+            changeStudentSelected(false, null);
+          }}
+        >
+          Whole Class View
+        </button>
 
-        {
-          studentsLessThan4.map((student, index) => {
-            return (
-              <button
-                className={Styles.lessthan}
-                key={index}
-                id={student.id}
-                onClick={(e) => {
-                  console.log(e.target.id);
-                  changeStudentSelected(true, e.target.id);
-                }}
-              >
-                {student.studentName}
-              </button>
-            );
-          })}
-        {
-          studentsMoreThan4.map((student, index) => {
-            return (
-              <button
-                className={Styles.morethan}
-                key={index}
-                id={student.id}
-                onClick={(e) => {
-                  console.log(e.target.id);
-                  changeStudentSelected(true, e.target.id);
-                }}
-              >
-                {student.studentName}
-              </button>
-            );
-          })}
-
-          </div>
+        {studentsLessThan4.map((student, index) => {
+          return (
+            <button
+              className={Styles.lessthan}
+              key={index}
+              id={student.id}
+              onClick={(e) => {
+                console.log(e.target.id);
+                changeStudentSelected(true, e.target.id);
+              }}
+            >
+              {student.studentName}
+            </button>
+          );
+        })}
+        {studentsMoreThan4.map((student, index) => {
+          return (
+            <button
+              className={Styles.morethan}
+              key={index}
+              id={student.id}
+              onClick={(e) => {
+                console.log(e.target.id);
+                changeStudentSelected(true, e.target.id);
+              }}
+            >
+              {student.studentName}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
