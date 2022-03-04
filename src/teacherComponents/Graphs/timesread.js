@@ -3,8 +3,8 @@ import { Bar, Bubble } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import {useState} from "react"
 
-function Timesread() {
-  
+function Timesread({studentSelected}) {
+
  const [timesRead, setTimesRead] = useState([
    {
      weekly: 10,
@@ -58,13 +58,53 @@ function Timesread() {
     
   }, []);
 
+  const initialArray = new Array(30).fill("rgba(54, 162, 235, 0.4)")
+  const initialOutlineArray = new Array(30).fill("rgb(54, 162, 235)");
 
-  console.log(timesRead)
-
-  const studentNames = timesRead.map((student) => student.name);
+    const [studentArray, setStudentArray] = useState(
+      initialArray)
   
-  const studentTimes = timesRead.map((student) => student.count);
+  const [studentOutlineArray, setStudentOutlineArray] = useState()
+ 
 
+    useEffect(() => {
+      let index = timesRead.findIndex(
+        (element) => studentSelected.id === element.student_id
+      );
+      if (index !== -1) {
+        setStudentArray([
+          ...initialArray.slice(0, index),
+          "rgba(255, 99, 132, 0.8)",
+          ...initialArray.slice(index + 1),
+        ]);
+        setStudentOutlineArray([
+          ...initialOutlineArray.slice(0, index),
+          "rgb(255, 99, 132)",
+          ...initialOutlineArray.slice(index+1),
+        ]);
+      } else {setStudentArray([
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(255, 159, 64, 0.2)",
+        "rgba(255, 205, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(201, 203, 207, 0.2)",
+      ]);
+      setStudentOutlineArray([
+        "rgb(255, 99, 132)",
+        "rgb(255, 159, 64)",
+        "rgb(255, 205, 86)",
+        "rgb(75, 192, 192)",
+        "rgb(54, 162, 235)",
+        "rgb(153, 102, 255)",
+        "rgb(201, 203, 207)",
+      ]);}
+    }, [studentSelected]);
+  
+  
+  const studentNames = timesRead.map((student) => student.name);
+  const studentTimes = timesRead.map((student) => student.count);
      
   const data = {
     labels: studentNames,
@@ -81,24 +121,8 @@ function Timesread() {
       {
         label: "Times read this week",
         data: studentTimes,
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-          "rgba(255, 205, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(201, 203, 207, 0.2)",
-        ],
-        borderColor: [
-          "rgb(255, 99, 132)",
-          "rgb(255, 159, 64)",
-          "rgb(255, 205, 86)",
-          "rgb(75, 192, 192)",
-          "rgb(54, 162, 235)",
-          "rgb(153, 102, 255)",
-          "rgb(201, 203, 207)",
-        ],
+        backgroundColor: studentArray,
+        borderColor: studentOutlineArray,
         borderWidth: 1,
       },
     ],
