@@ -32,10 +32,32 @@ overflow-y: scroll;
     background-color: #73a5c6;
 }
 
+.names button:hover {
+    background-color: #73a5c6;
+}
+
+.names button:focus {
+    background-color: rgba(49, 61, 139);
+    color: white;
+}
+
 .lessthan { 
 background-color: rgba(255, 0, 0, 0.2);
 }
 
 .morethan {
+background-color: rgba(0, 255, 221, 0.2);
+}
+
+.lessThan4Key {
+    margin: 0 2rem 0;
+    padding: 0;
+    background-color: rgba(255, 0, 0, 0.2);
+    font-weight: normal;
+}
+.moreThan4Key {
+      margin: 0 2rem 1rem ;
+    padding: 0;
+    font-weight: normal;
 background-color: rgba(0, 255, 221, 0.2);
 }
