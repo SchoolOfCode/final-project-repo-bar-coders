@@ -3,6 +3,8 @@ import Styles from "../../../styles/classlist.module.css";
 
 function Classlist({lessThanFour, moreThanFour}) {
 
+  // const studentNames = lessThanFour.map((student) => student.name);
+  // const studentTimes = lessThanFour.map((student)=>student.count)
  
 
   return (
@@ -14,10 +16,14 @@ function Classlist({lessThanFour, moreThanFour}) {
           <button>Whole Class View</button>
           
           {/* Mapping through dummy data in app.js for students who read less than four times*/}
-          {lessThanFour && lessThanFour.length ? lessThanFour.map((student, index) => (
+          {/* {lessThanFour && lessThanFour.length ? lessThanFour.map((student, index) => (
           <button key={index}>{student.name}</button>
         )
-      ) : null}
+      ) : null} */}
+        {/* {studentNames.map((name, index) => {
+          return (<button key={index}> {name} </button>);
+        })} */}
+        
 
 {/* 
           Mapping through dummy data in app.js for students who read four times

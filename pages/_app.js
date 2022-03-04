@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }) {
   //studentId - to be set via Auth?
-  const [studentId, setStudentId] = useState("s01");
+  const [studentId, setStudentId] = useState("1");
 
   //studentname - to be set Via fetch
 
@@ -21,101 +21,92 @@ function MyApp({ Component, pageProps }) {
   //Used in teacherhome to populate classlist - array of students who have read less than four times
   const [lessThanFour, setLessThanFour] = useState([
     {
-      "weekly": 10,
-      "count": "1",
-      "name": "Juan",
-      "student_id": "s03"
-  },
-  {
-    "weekly": 10,
-    "count": "1",
-    "name": "Bob",
-    "student_id": "s03"
-},
-{
-  "weekly": 10,
-  "count": "1",
-  "name": "Daisy",
-  "student_id": "s03"
-},
-
-
-  ])
+      weekly: 10,
+      count: "1",
+      name: "Juan",
+      student_id: "s03",
+    },
+    {
+      weekly: 10,
+      count: "1",
+      name: "Bob",
+      student_id: "s03",
+    },
+    {
+      weekly: 10,
+      count: "1",
+      name: "Daisy",
+      student_id: "s03",
+    },
+  ]);
 
   //Used in teacherhome to populate classlist - array of students who have read four times or more
   const [moreThanFour, setMoreThanFour] = useState([
     {
-      "weekly": 10,
-      "count": "5",
-      "name": "Alice",
-      "student_id": "s01"
-  },
-  {
-    "weekly": 10,
-    "count": "5",
-    "name": "Ryan",
-    "student_id": "s01"
-},
-{
-  "weekly": 10,
-  "count": "5",
-  "name": "Samantha",
-  "student_id": "s01"
-},
-  ])
-
-  
+      weekly: 10,
+      count: "5",
+      name: "Alice",
+      student_id: "s01",
+    },
+    {
+      weekly: 10,
+      count: "5",
+      name: "Ryan",
+      student_id: "s01",
+    },
+    {
+      weekly: 10,
+      count: "5",
+      name: "Samantha",
+      student_id: "s01",
+    },
+  ]);
 
   //Used in teacherhome to populate the time read bar chart - array of times read by everyone, not split
-  const [timesRead, setTimesRead] = useState([
-    {
-      "weekly": 10,
-      "count": "5",
-      "name": "Alice",
-      "student_id": "s01"
-  },
-  {
-      "weekly": 10,
-      "count": "1",
-      "name": "Juan",
-      "student_id": "s03"
-  },
-  {
-    "weekly": 10,
-    "count": "5",
-    "name": "Alice",
-    "student_id": "s01"
-},
-{
-    "weekly": 10,
-    "count": "1",
-    "name": "Juan",
-    "student_id": "s03"
-},
-{
-  "weekly": 10,
-  "count": "5",
-  "name": "Alice",
-  "student_id": "s01"
-},
-{
-  "weekly": 10,
-  "count": "1",
-  "name": "Juan",
-  "student_id": "s03"
-},
-  ])
+  //   const [timesRead, setTimesRead] = useState([
+  //     {
+  //       "weekly": 10,
+  //       "count": "5",
+  //       "name": "Alice",
+  //       "student_id": "s01"
+  //   },
+  //   {
+  //       "weekly": 10,
+  //       "count": "1",
+  //       "name": "Juan",
+  //       "student_id": "s03"
+  //   },
+  //   {
+  //     "weekly": 10,
+  //     "count": "5",
+  //     "name": "Alice",
+  //     "student_id": "s01"
+  // },
+  // {
+  //     "weekly": 10,
+  //     "count": "1",
+  //     "name": "Juan",
+  //     "student_id": "s03"
+  // },
+  // {
+  //   "weekly": 10,
+  //   "count": "5",
+  //   "name": "Alice",
+  //   "student_id": "s01"
+  // },
+  // {
+  //   "weekly": 10,
+  //   "count": "1",
+  //   "name": "Juan",
+  //   "student_id": "s03"
+  // },
+  //   ])
 
   // Bar chart data state for times read chart
   // const [barChartData, setBarChartData] = useState({})
 
-
-
-
-
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works
   const [inProgressBooks, setInProgressBooks] = useState([
-    
     {
       id: 2,
       title: "Harry Potter and the Philosopher's Stone",
@@ -236,13 +227,11 @@ function MyApp({ Component, pageProps }) {
   }
 
   // if(studentView){
-  //   return <Component/>>   setup for Student, home and teacher to part out Chakra 
-  // }                
+  //   return <Component/>>   setup for Student, home and teacher to part out Chakra
+  // }
 
   return (
-
     <Component
-
       {...pageProps}
       studentName={studentName}
       studentId={studentId}
@@ -258,12 +247,10 @@ function MyApp({ Component, pageProps }) {
       getStudentData={getStudentData}
       lessThanFour={lessThanFour}
       moreThanFour={moreThanFour}
-      timesRead={timesRead}
+      // timesRead={timesRead}
       // barChartData={barChartData}
-
     />
   );
-
 }
 
 export default MyApp;
