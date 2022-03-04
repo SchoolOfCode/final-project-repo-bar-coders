@@ -20,6 +20,8 @@ export default function StudentHome({
     getStudentData();
   }, []);
 
+ 
+
   return (
     <div>
       <div>

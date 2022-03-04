@@ -10,7 +10,7 @@ function Teacherdashboard() {
   return (
     <div className={Styles.teacherdashboard}>
       <div className={Styles.timesreadcontainer}>
-        <Timesread></Timesread>
+        <Timesread ></Timesread>
       </div>
 
       <div className={Styles.bottomsection}>
@@ -33,3 +33,5 @@ function Teacherdashboard() {
 }
 
 export default Teacherdashboard;
+
+
