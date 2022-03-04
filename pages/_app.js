@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }) {
   //studentId - to be set via Auth?
-  const [studentId, setStudentId] = useState("s01");
+  const [studentId, setStudentId] = useState("1");
 
   //studentname - to be set Via fetch
 
@@ -17,6 +17,72 @@ function MyApp({ Component, pageProps }) {
 
   //used in studenthome to match coins earned
   const [minutesRead, setMinutesRead] = useState(45);
+
+  //Used in teacherhome to populate classlist - array of students who have read less than four times
+  const [lessThanFour, setLessThanFour] = useState([
+    {
+      weekly: 10,
+      count: "1",
+      name: "Juan",
+      student_id: "s03",
+    },
+    {
+      weekly: 10,
+      count: "1",
+      name: "Bob",
+      student_id: "s03",
+    },
+    {
+      weekly: 10,
+      count: "1",
+      name: "Daisy",
+      student_id: "s03",
+    },
+  ]);
+
+  //Used in teacherhome to populate classlist - array of students who have read four times or more
+  const [moreThanFour, setMoreThanFour] = useState([
+    {
+      weekly: 10,
+      count: "5",
+      name: "Alice",
+      student_id: "s01",
+    },
+    {
+      weekly: 10,
+      count: "5",
+      name: "Ryan",
+      student_id: "s01",
+    },
+    {
+      weekly: 10,
+      count: "5",
+      name: "Samantha",
+      student_id: "s01",
+    },
+  ]);
+
+ async function getClassList(){
+   const response = await fetch("https://fourweekproject.herokuapp.com/teachers/class");
+   const data = await response.json();
+   setMoreThanFour(data.classList4TimesOrMore);
+   setLessThanFour(data.classListLessThan4Times);
+  //  console.log(moreThanFour, lessThanFour)
+  }
+
+  useEffect(() => {
+    getClassList();
+    console.log("4+:", moreThanFour, "4-:", lessThanFour);
+  }, [])
+
+ const [studentSelected, setStudentSelected] = useState({
+   isSelected: false,
+   id: null,
+ });
+
+  function changeStudentSelected(isSelected, id) {
+    setStudentSelected({isSelected: isSelected, id: id})
+  }
 
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works
   const [inProgressBooks, setInProgressBooks] = useState([
@@ -92,15 +158,13 @@ function MyApp({ Component, pageProps }) {
       );
       const data = await response.json();
       console.log(data);
-      console.log(data.progressData[0].name);
-      console.log(data.progressData[0].count);
-      console.log(data.progressData[0].minutes_total);
-      console.log(data.bookData);
-
-      setStudentName(data.progressData[0].name);
-      setStudentDaysRead(data.progressData[0].count);
-      setInProgressBooks(data.bookData);
-      setMinutesRead(data.progressData[0].minutes_total);
+      if (data.progressData.length > 0) {
+        setStudentDaysRead(data.progressData[0].count);
+        setMinutesRead(data.progressData[0].minutes_total);
+      }
+      if (data.bookData.length > 0) {
+        setInProgressBooks(data.bookData);
+      }
     } catch {
       console.log("error within getStudentData");
     }
@@ -112,7 +176,8 @@ function MyApp({ Component, pageProps }) {
         `https://fourweekproject.herokuapp.com/books/${studentId}`
       );
       const data = await response.json();
-      setStudentName(data.progressData[0].name);
+      console.log(data);
+      setStudentName(data.name[0].name);
     } catch {
       alert("Server error");
     }
@@ -141,13 +206,11 @@ function MyApp({ Component, pageProps }) {
   }
 
   // if(studentView){
-  //   return <Component/>>   setup for Student, home and teacher to part out Chakra 
-  // }                
+  //   return <Component/>>   setup for Student, home and teacher to part out Chakra
+  // }
 
   return (
-
     <Component
-
       {...pageProps}
       studentName={studentName}
       studentId={studentId}
@@ -161,10 +224,12 @@ function MyApp({ Component, pageProps }) {
       getWords={getWords}
       minutesRead={minutesRead}
       getStudentData={getStudentData}
-
+      lessThanFour={lessThanFour}
+      moreThanFour={moreThanFour}
+      studentSelected={studentSelected}
+      changeStudentSelected={changeStudentSelected}
     />
   );
-
 }
 
 export default MyApp;

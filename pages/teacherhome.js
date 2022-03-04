@@ -5,20 +5,28 @@ import Teacherdashboard from "../src/teacherComponents/Teacherdashboard/teacherd
 import Teachernavbar from "../src/teacherComponents/Teachernavbar/teachernavbar";
 // import { Bar } from "react-chartjs-2";
 
-function Teacherhome() {
+export default function Teacherhome({lessThanFour, moreThanFour, changeStudentSelected, studentSelected}) {
   return (
     <div className={Styles.container}>
       <div className={Styles.leftside}>
-        <Classlist></Classlist>
+        <Classlist
+          lessThanFour={lessThanFour}
+          moreThanFour={moreThanFour}
+          changeStudentSelected={changeStudentSelected}
+          studentSelected={studentSelected}
+        />
       </div>
 
       <div className={Styles.rightside}>
-          <Teachernavbar></Teachernavbar>
-        <Teacherdashboard></Teacherdashboard>
+        <Teachernavbar></Teachernavbar>
+        <Teacherdashboard
+          changeStudentSelected={changeStudentSelected}
+          studentSelected={studentSelected}
+        ></Teacherdashboard>
       </div>
       <div></div>
     </div>
   );
 }
 
-export default Teacherhome;
+

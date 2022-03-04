@@ -1,8 +1,38 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
+import MyApp from "../../../pages/_app";
 
-function Minutesread() {
+function Minutesread({studentSelected}) {
+  
+  const [minutesRead, setMinutesRead] = useState([]);
+
+  async function getMinutesReadData() {
+    const response = await fetch(
+      "https://fourweekproject.herokuapp.com/teachers/class"
+    );
+    const data = await response.json();
+    const minutesData = data.minutesReadByClass;
+    setMinutesRead(minutesData.map((day) => day.minutes));
+  }
+  async function getStudentMinutesReadData(id) {
+    const response = await fetch(
+      `https://fourweekproject.herokuapp.com/teachers/student/${id}`
+    );
+    const data = await response.json();
+    const minutesData = data.studentWeeklyMinutes;
+    setMinutesRead(minutesData.map((day) => day.minutes));
+  }
+
+  useEffect(() => {
+    if (studentSelected.isSelected === false) {
+      getMinutesReadData();
+    } else {
+      getStudentMinutesReadData(studentSelected.id);
+    }
+  }, [studentSelected]);
+
+
   const data = {
     labels: [
       "Monday",
@@ -16,7 +46,7 @@ function Minutesread() {
     datasets: [
       {
         label: "Number of minutes read this week",
-        data: [90, 30, 47, 50, 25, 80, 100],
+        data: minutesRead,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -37,6 +67,7 @@ function Minutesread() {
       },
     ],
   };
+
 
   return (
     <div>
