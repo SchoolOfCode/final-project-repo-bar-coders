@@ -1,13 +1,13 @@
 .classlist {
     background-color: whitesmoke;
-    height: 90%;
+    height: 90.5%;
     text-align: center;
     color: black;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-overflow-y: scroll;
-
+    overflow-y: scroll;
+    box-shadow: 0 0 2px 2px black;
 }
 
 .names {
@@ -28,7 +28,7 @@ overflow-y: scroll;
     box-shadow: 0 0 2px 1px black ;
 }
 
-.examplehighlight {
+.examplehighlight { 
     background-color: #73a5c6;
 }
 
