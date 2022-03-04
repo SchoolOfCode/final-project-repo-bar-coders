@@ -23,7 +23,7 @@ function Classlist({ lessThanFour, moreThanFour, changeStudentSelected, studentS
       <h4 className={Styles.moreThan4Key}>Read four times or more this week</h4>
 
       <div className={Styles.names}>
-        <button
+        <button className={Styles.wholeClassButton}
           onClick={() => {
             changeStudentSelected(false, null);
           }}
