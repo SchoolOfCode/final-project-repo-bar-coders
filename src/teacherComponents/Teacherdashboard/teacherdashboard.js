@@ -28,11 +28,10 @@ function Teacherdashboard() {
            <button className={Styles.button}>more info</button>
               </Link>
               </div>
-          
           </div>
         </div>
       </div>
-    // </div>
+    
   );
 }
 
