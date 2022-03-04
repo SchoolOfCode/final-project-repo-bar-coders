@@ -1,22 +1,18 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
+import MyApp from "../../../pages/_app";
 
-function Minutesread() {
+function Minutesread({}) {
+  
+
+
   const data = {
-    labels: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
+    labels: ["Alice", "John", "Samira", "Rayan"],
     datasets: [
       {
         label: "Number of minutes read this week",
-        data: [90, 30, 47, 50, 25, 80, 100],
+        data: [30, 100, 10, 30],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -37,6 +33,7 @@ function Minutesread() {
       },
     ],
   };
+
 
   return (
     <div>
