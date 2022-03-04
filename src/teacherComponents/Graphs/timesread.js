@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Bar } from "react-chartjs-2";
+import { Bar, Bubble } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import {useState} from "react"
 
@@ -43,6 +43,20 @@ function Timesread() {
      student_id: "s03",
    },
  ]);
+  
+  async function getBarChartData() {
+    const response = await fetch(
+      "https://fourweekproject.herokuapp.com/teachers/class"
+    );
+    const data = await response.json();
+    setTimesRead(data.barChartData);
+    
+  }
+
+  useEffect(() => {
+    getBarChartData();
+    
+  }, []);
 
 
   console.log(timesRead)
@@ -56,7 +70,16 @@ function Timesread() {
     labels: studentNames,
     datasets: [
       {
-        label: "My First Dataset",
+        type: "line",
+        label: "Read 4 times this week",
+        data: new Array(30).fill(4),
+        backgroundColor: "rgba(49, 61, 139)",
+        borderColor:"rgba(49, 61, 139)",
+        borderWidth: 0.5,
+        pointRadius: 0,
+      },
+      {
+        label: "Times read this week",
         data: studentTimes,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",

@@ -6,7 +6,7 @@ function Teachernavbar() {
   return (
     <div className={Styles.teachernavbar}>
         <div className={Styles.leftside}>
-          <h1> Welcome, Name </h1>
+          <h1> Welcome, Mrs Freeman </h1>
         </div>
         
         <div className={Styles.rightside}>

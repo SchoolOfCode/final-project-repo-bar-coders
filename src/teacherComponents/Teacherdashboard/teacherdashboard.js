@@ -6,25 +6,25 @@ import Booksfinished from "../Graphs/booksfinished";
 import Minutesread from "../Graphs/minutesread";
 import Link from "next/link";
 
-function Teacherdashboard() {
+function Teacherdashboard({studentSelected}) {
   return (
     <div className={Styles.teacherdashboard}>
       <div className={Styles.timesreadcontainer}>
-        <Timesread ></Timesread>
+        <Timesread studentSelected={studentSelected}></Timesread>
       </div>
 
       <div className={Styles.bottomsection}>
         <div className={Styles.squarecontainers}>
           <div className={Styles.topcontainers}>
-            <Pagesread></Pagesread>
-            <Minutesread></Minutesread>
+            <Pagesread studentSelected={studentSelected}></Pagesread>
+            <Minutesread studentSelected={studentSelected}></Minutesread>
           </div>
 
           <div className={Styles.bottomcontainers}>
-            <Booksfinished></Booksfinished>
-              <Link href="/teacherinfopage" passHref>
-            <button>more info</button>
-              </Link>
+            <Booksfinished studentSelected={studentSelected}></Booksfinished>
+            <Link href="/teacherinfopage" passHref>
+              <button>more info</button>
+            </Link>
           </div>
         </div>
       </div>

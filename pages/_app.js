@@ -75,6 +75,15 @@ function MyApp({ Component, pageProps }) {
     console.log("4+:", moreThanFour, "4-:", lessThanFour);
   }, [])
 
+ const [studentSelected, setStudentSelected] = useState({
+   isSelected: false,
+   id: null,
+ });
+
+  function changeStudentSelected(isSelected, id) {
+    setStudentSelected({isSelected: isSelected, id: id})
+  }
+
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works
   const [inProgressBooks, setInProgressBooks] = useState([
     {
@@ -217,8 +226,8 @@ function MyApp({ Component, pageProps }) {
       getStudentData={getStudentData}
       lessThanFour={lessThanFour}
       moreThanFour={moreThanFour}
-      // timesRead={timesRead}
-      // barChartData={barChartData}
+      studentSelected={studentSelected}
+      changeStudentSelected={changeStudentSelected}
     />
   );
 }
