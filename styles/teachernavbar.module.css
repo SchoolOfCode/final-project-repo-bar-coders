@@ -1,29 +1,26 @@
 .teachernavbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     
 }
 
-.home{
-    display:flex;
-    justify-content: center;
-    text-align: center;
-    padding-top: 7%;
-    width: 150%;
-    height: 40%;
-    margin-left: 270%;
-    margin-top: 20%;
-    
-    
+.leftSide h1 {
+    margin: 1rem;
 }
 
-.logout{
-    display:flex;
-    justify-content: center;
-    text-align: center;
-    padding-top: 10%;
-    width: 150%;
-    height: 40%;
-    margin-top: 40%;
-    margin-left: -50%;
+.rightSide {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0;
 }
+
+.home, .moreinfo, .logout{
+    text-align: center;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+   
+}
+
