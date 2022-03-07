@@ -16,7 +16,7 @@ function readinglog({
   studentName,
 }) {
   return (
-    <div>
+    <div className={styles.wholePage}>
       <div>
         <Navbar isNewMessage={isNewMessage} studentName={studentName} />
         <ProgressBar studentDaysRead={studentDaysRead} />
