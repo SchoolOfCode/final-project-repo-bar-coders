@@ -4,8 +4,9 @@ import rocketicon from "../images/rocketicon.png";
 import Image from "next/image";
 import styles from "../styles/dictionary.module.css";
 import useFetch from "../src/CustomHooks/usefetch";
+import { getIdToken } from "../src/lib/firebase/refresh-tokens";
 
-export default function Dictionary({
+function Dictionary({
   isNewMessage,
   words,
   updateWordsList,
@@ -34,20 +35,20 @@ export default function Dictionary({
   const [url, setUrl] = useState("");
   const { data, error } = useFetch(url);
 
-    if (error) {
-        setErrorMessage(error);
-  
-        // if (!data) {
-        //     setErrorMessage("Please wait...");
-        // }
-    }
+  if (error) {
+    setErrorMessage(error);
+
+    // if (!data) {
+    //     setErrorMessage("Please wait...");
+    // }
+  }
 
   async function getWord(e) {
     e.preventDefault();
-      setErrorMessage("");
-      if (searchWord) {
-          setUrl(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`);
-      } else (setErrorMessage("Please enter a word"))
+    setErrorMessage("");
+    if (searchWord) {
+      setUrl(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`);
+    } else setErrorMessage("Please enter a word");
   }
 
   useEffect(() => {
@@ -55,9 +56,13 @@ export default function Dictionary({
     try {
       setMeanings(data[0].meanings);
     } catch {
-        if (!data) { setErrorMessage("") } else {
-            setErrorMessage("This isn't a word. Check your spelling and try again!");
-        }
+      if (!data) {
+        setErrorMessage("");
+      } else {
+        setErrorMessage(
+          "This isn't a word. Check your spelling and try again!"
+        );
+      }
     }
   }, [data]);
 
@@ -137,3 +142,35 @@ export default function Dictionary({
     </div>
   );
 }
+export async function getServerSideProps({ req, res }) {
+  try {
+    // This is the cookie
+    const cookie = req.cookies.token;
+    // This refreshes the id token
+    const token = await getIdToken(cookie);
+    const isStudent = true;
+
+    if (!token.getIdToken.user_id) {
+      return {
+        redirect: {
+          destination: "/",
+        },
+      };
+    }
+
+    return {
+      props: {
+        userObject: [],
+      },
+    };
+  } catch (err) {
+    console.log("THIS ERR WAS:", err);
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
+}
+
+export default Dictionary;

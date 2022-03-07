@@ -1,64 +1,54 @@
-import React, {useState} from 'react'
-import { useEffect } from 'react';
+import React, { useState } from "react";
+import { useEffect } from "react";
 
-import Navbar from '../src/studentcomponents/navbar'
-import Styles from '../styles/finishedbooks.module.css'
+import Navbar from "../src/studentcomponents/navbar";
+import Styles from "../styles/finishedbooks.module.css";
 
-
-
+import { getIdToken } from "../src/lib/firebase/refresh-tokens";
 
 function Finishedbooks({ isNewMessage, studentId, studentName }) {
+  const [completedBooks, setCompletedBooks] = useState([]);
 
-    const [completedBooks, setCompletedBooks] = useState([])
-
-    async function getCompletedBooks() {
-        try {
-            const response = await fetch(
-                `https://fourweekproject.herokuapp.com/completedbooks/${studentId}`
-            );
-            const data = await response.json();
-            console.log(data)
-            setCompletedBooks(data.payload);
-        }
-        catch { alert("Server unavailable")}
+  async function getCompletedBooks() {
+    try {
+      const response = await fetch(
+        `https://fourweekproject.herokuapp.com/completedbooks/${studentId}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setCompletedBooks(data.payload);
+    } catch {
+      alert("Server unavailable");
     }
+  }
 
-    useEffect(() => {
-       getCompletedBooks(); 
-    }, [])
-    
-     function formatDate(string) {
-       var options = { year: "numeric", month: "long", day: "numeric" };
-       return new Date(string).toLocaleDateString([], options);
-     }
-    
+  useEffect(() => {
+    getCompletedBooks();
+  }, []);
 
-    
+  function formatDate(string) {
+    var options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(string).toLocaleDateString([], options);
+  }
 
-return (
-  <div>
-    {<Navbar isNewMessage={isNewMessage} studentName={studentName} />}
-    <div className={Styles.container}>
-            {completedBooks.map((book, index) => {
-                return (
-                  <div key={index} className={Styles.bookDiv}>
-                    <h4> {book.title} </h4>
-                    <div className={Styles.box}>
-                      <img
-                        src={book.cover}
-                        alt=""
-                        width="350rem"
-                        height="350rem"
-                      />
+  return (
+    <div>
+      {<Navbar isNewMessage={isNewMessage} studentName={studentName} />}
+      <div className={Styles.container}>
+        {completedBooks.map((book, index) => {
+          return (
+            <div key={index} className={Styles.bookDiv}>
+              <h4> {book.title} </h4>
+              <div className={Styles.box}>
+                <img src={book.cover} alt="" width="350rem" height="350rem" />
 
-                      <p>Completed: {formatDate(book.date_completed)} </p>
-                    </div>
-                  </div>
-                );
-                
-      })}
+                <p>Completed: {formatDate(book.date_completed)} </p>
+              </div>
+            </div>
+          );
+        })}
 
-            {/* <div className={Styles.box}>
+        {/* <div className={Styles.box}>
         <img src="BB.JPG" alt="" width="350rem" height="350rem" />
         Completed: 02-02-2022
       </div>
@@ -92,12 +82,38 @@ return (
         <img src="SS.JPG" alt="" width="350rem" height="350rem" />
         Completed: 17-07-2021
       </div>*/}
+      </div>
     </div>
-  </div> 
-);
+  );
 }
-export default Finishedbooks
+export async function getServerSideProps({ req, res }) {
+  try {
+    // This is the cookie
+    const cookie = req.cookies.token;
+    // This refreshes the id token
+    const token = await getIdToken(cookie);
+    const isStudent = true;
 
+    if (!token.getIdToken.user_id) {
+      return {
+        redirect: {
+          destination: "/",
+        },
+      };
+    }
 
-
-
+    return {
+      props: {
+        userObject: [],
+      },
+    };
+  } catch (err) {
+    console.log("THIS ERR WAS:", err);
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
+}
+export default Finishedbooks;

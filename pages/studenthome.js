@@ -5,8 +5,9 @@ import Carousel from "../src/studentcomponents/bookcarousel";
 import styles from "../styles/studenthome.module.css";
 import Link from "next/link";
 import { useEffect } from "react";
+import { getIdToken } from "../src/lib/firebase/refresh-tokens";
 
-export default function StudentHome({
+function StudentHome({
   studentName,
   isNewMessage,
   studentDaysRead,
@@ -14,13 +15,11 @@ export default function StudentHome({
   currentBook,
   updateCurrentBook,
   minutesRead,
-  getStudentData
+  getStudentData,
 }) {
   useEffect(() => {
     getStudentData();
   }, []);
-
- 
 
   return (
     <div>
@@ -51,3 +50,35 @@ export default function StudentHome({
     </div>
   );
 }
+export async function getServerSideProps({ req, res }) {
+  try {
+    // This is the cookie
+    const cookie = req.cookies.token;
+    // This refreshes the id token
+    const token = await getIdToken(cookie);
+    const isStudent = true;
+
+    if (!token.getIdToken.user_id) {
+      return {
+        redirect: {
+          destination: "/",
+        },
+      };
+    }
+
+    return {
+      props: {
+        userObject: [],
+      },
+    };
+  } catch (err) {
+    console.log("THIS ERR WAS:", err);
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
+}
+
+export default StudentHome;
