@@ -1,12 +1,14 @@
 import React from "react";
 import Styles from "../../../styles/teacherinfo.module.css";
+import Individualstats from "../Individualstats/individualstats";
 
-function Teacherinfo() {
+function Teacherinfo({studentSelected}) {
   return (
     <div className={Styles.teacherinfo}>
           <div className={Styles.topcontainers}>
             <div className={Styles.topleft}> 
-              <p className={Styles.p1}> Select a student to see their individual stats </p> 
+    
+             <Individualstats studentSelected={studentSelected} className={Styles.p1}></Individualstats>
             </div>
             <div className={Styles.topright}>
               <p className={Styles.p2}> Send a Message to the Class </p>
