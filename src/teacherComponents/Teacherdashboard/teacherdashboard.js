@@ -14,27 +14,29 @@ function Teacherdashboard({studentSelected}) {
         <Timesread studentSelected={studentSelected}></Timesread>
       </div>
 
-      <div className={Styles.bottomsection}>
-          <div className={Styles.topcontainers}>
-
-            <div className={Styles.pages}><Pagesread studentSelected={studentSelected}></Pagesread></div>
-            <div className={Styles.minutes}><Minutesread studentSelected={studentSelected}></Minutesread></div>
-          </div>
-
-          <div className={Styles.bottomcontainers}>
-            <div className={Styles.finished}><Booksfinished studentSelected={studentSelected}></Booksfinished></div>
-            
-           
-              <Link href="/teacherinfopage" passHref>
-              <button className={Styles.button}> Click for more info</button>
-              </Link>
-            
-          
-
-          </div>
+      {/* <div className={Styles.bottomsection}> */}
+      <div className={Styles.topcontainers}>
+        <div className={Styles.pages}>
+          <Pagesread studentSelected={studentSelected}></Pagesread>
+        </div>
+        <div className={Styles.minutes}>
+          <Minutesread studentSelected={studentSelected}></Minutesread>
         </div>
       </div>
-    
+
+      <div className={Styles.bottomcontainers}>
+        <div className={Styles.finished}>
+          <Booksfinished studentSelected={studentSelected}></Booksfinished>
+        </div>
+
+        <div className={Styles.buttonDiv}>
+          <Link href="/teacherinfopage" passHref>
+            <button className={Styles.button}>Click for more info</button>
+          </Link>
+        </div>
+      </div>
+      {/* </div> */}
+    </div>
   );
 }
 

@@ -58,7 +58,7 @@ function Timesread({studentSelected}) {
     
   }, []);
 
-  const initialArray = new Array(30).fill("rgba(54, 162, 235, 0.4)")
+  const initialArray = new Array(30).fill("rgba(54, 162, 235, 0.6)")
   const initialOutlineArray = new Array(30).fill("rgb(54, 162, 235)");
 
     const [studentArray, setStudentArray] = useState(
@@ -74,7 +74,7 @@ function Timesread({studentSelected}) {
       if (index !== -1) {
         setStudentArray([
           ...initialArray.slice(0, index),
-          "rgba(255, 99, 132, 0.8)",
+          "rgba(255, 99, 132, 0.9)",
           ...initialArray.slice(index + 1),
         ]);
         setStudentOutlineArray([
@@ -83,13 +83,13 @@ function Timesread({studentSelected}) {
           ...initialOutlineArray.slice(index+1),
         ]);
       } else {setStudentArray([
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-        "rgba(255, 205, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(201, 203, 207, 0.2)",
+        "rgba(255, 99, 132, 0.6)",
+        "rgba(255, 159, 64, 0.6)",
+        "rgba(255, 205, 86, 0.6)",
+        "rgba(75, 192, 192, 0.6)",
+        "rgba(54, 162, 235, 0.6)",
+        "rgba(153, 102, 255, 0.6)",
+        "rgba(201, 203, 207, 0.6)",
       ]);
       setStudentOutlineArray([
         "rgb(255, 99, 132)",
@@ -111,11 +111,11 @@ function Timesread({studentSelected}) {
     datasets: [
       {
         type: "line",
-        label: "Read 4 times this week",
+        label: "target of 4 times",
         data: new Array(30).fill(4),
         backgroundColor: "rgba(49, 61, 139)",
         borderColor:"rgba(49, 61, 139)",
-        borderWidth: 0.5,
+        borderWidth: 1.5,
         pointRadius: 0,
       },
       {
@@ -123,7 +123,7 @@ function Timesread({studentSelected}) {
         data: studentTimes,
         backgroundColor: studentArray,
         borderColor: studentOutlineArray,
-        borderWidth: 1,
+        borderWidth: 2,
       },
     ],
   };
@@ -135,12 +135,13 @@ function Timesread({studentSelected}) {
   return (
     <div>
       <Bar
-      
         data={data}
         width={400}
-        height={200}
+        height={250}
         options={{
           maintainAspectRatio: false,
+          responsive: true,
+          
         }}
       />
     </div>

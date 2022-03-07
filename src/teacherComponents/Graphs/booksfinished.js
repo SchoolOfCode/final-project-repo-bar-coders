@@ -61,20 +61,10 @@ function Booksfinished({ studentSelected }) {
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
         ],
-        borderWidth: 1,
+        borderWidth: 3,
       },
     ],
-    options: {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
-    },
+  
   };
 
   return (
@@ -85,6 +75,8 @@ function Booksfinished({ studentSelected }) {
         height={200}
         options={{
           maintainAspectRatio: false,
+          responsive: true,
+          
         }}
       />
     </div>
