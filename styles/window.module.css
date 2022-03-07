@@ -108,3 +108,7 @@
   font-size: 3rem;
   color: #7314ad;
 }
+
+@media only screen and (max-width: 600px) {
+.window{display: flex; flex-direction:column ; height: 95%; width: 90%;}
+}
