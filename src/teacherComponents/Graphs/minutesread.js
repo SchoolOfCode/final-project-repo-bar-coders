@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import MyApp from "../../../pages/_app";
+import Styles from '../../../styles/charts.module.css'
 
 function Minutesread({studentSelected}) {
   
@@ -70,7 +71,7 @@ function Minutesread({studentSelected}) {
 
 
   return (
-    <div>
+    <div className={Styles.chart}>
       <Line
         data={data}
         width={400}

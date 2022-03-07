@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
+import Styles from "../../../styles/charts.module.css"
 
 function Booksfinished({ studentSelected }) {
   const [booksComplete, setBooksComplete] = useState([]);
@@ -68,7 +69,7 @@ function Booksfinished({ studentSelected }) {
   };
 
   return (
-    <div>
+    <div className={Styles.chart}>
       <Line
         data={data}
         width={400}
