@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
     background-color: rgba(49, 61, 139);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .leftside {
@@ -13,7 +13,7 @@
 .rightside {
     display: flex;
     flex-direction: column;
-   
-    width: 70%;
+   width: 70%;
+   margin: 0 auto;
 }
 

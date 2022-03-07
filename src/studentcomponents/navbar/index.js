@@ -1,15 +1,21 @@
-import React from 'react'
-import styles from '../../../styles/Navbar.module.css'
-import Link from 'next/link';
-import Image from 'next/image';
-import bookwormicon from '../../../images/bookwormicon.png'
-import newmessageicon from '../../../images/newmessageicon.png'
-import messagesicon from '../../../images/messagesicon.png'
+import React from "react";
+import styles from "../../../styles/Navbar.module.css";
+import Link from "next/link";
+import Image from "next/image";
+import bookwormicon from "../../../images/bookwormicon.png";
+import newmessageicon from "../../../images/newmessageicon.png";
+import messagesicon from "../../../images/messagesicon.png";
+import { signOut } from "firebase/auth";
+import { auth } from "../../lib/firebase/firebase-init";
+import { post } from "../../lib/HTTP_Functions/POST";
 
-function Navbar({isNewMessage, studentName}) {
-
-    
-
+function Navbar({ isNewMessage, studentName }) {
+  async function logOut() {
+    // await auth.signOut()
+    await signOut(auth);
+    await post("/api/signOut");
+    window.location.href = "/";
+  }
 
   return (
     <div className={styles.navbar}>
@@ -47,10 +53,12 @@ function Navbar({isNewMessage, studentName}) {
         </Link>
       )}
       <Link href="/" passHref>
-        <button className={styles.logoutbutton}>Log Out</button>
+        <button className={styles.logoutbutton} onClick={logOut}>
+          Log Out
+        </button>
       </Link>
     </div>
   );
 }
 
-export default Navbar
+export default Navbar;

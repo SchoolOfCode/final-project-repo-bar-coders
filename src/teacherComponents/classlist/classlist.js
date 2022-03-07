@@ -18,7 +18,7 @@ function Classlist({ lessThanFour, moreThanFour, changeStudentSelected, studentS
  
   return (
     <div className={Styles.classlist}>
-      <h1>Class List</h1>
+      <h1>Class list: 5C</h1>
       <h4 className={Styles.lessThan4Key}>Read less than 4 times this week</h4>
       <h4 className={Styles.moreThan4Key}>Read four times or more this week</h4>
 

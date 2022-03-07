@@ -4,14 +4,12 @@ import Styles from "../../../styles/teacherinfo.module.css";
 function Teacherinfo() {
   return (
     <div className={Styles.teacherinfo}>
-      <div className={Styles.bottomsection}>
-        <div className={Styles.squarecontainers}>
           <div className={Styles.topcontainers}>
             <div className={Styles.topleft}> 
-              <p1 className={Styles.p1}> Select a student to see their individual stats </p1> 
+              <p className={Styles.p1}> Select a student to see their individual stats </p> 
             </div>
             <div className={Styles.topright}>
-              <p2 className={Styles.p2}> Send a Message to the Class </p2>
+              <p className={Styles.p2}> Send a Message to the Class </p>
               <input className={Styles.input} type="text" placeholder="Type Message Here ..."></input>
               <button className={Styles.button}> Send </button>
             </div>
@@ -20,18 +18,16 @@ function Teacherinfo() {
           <div className={Styles.bottomcontainers}>
             
             <div className={Styles.btmleft}>
-               <p3 className={Styles.p3}> Select a student to see their daily reading summaries </p3>
+               <p className={Styles.p3}> Select a student to see their daily reading summaries </p>
             </div>
             
             <div className={Styles.btmright}>
-               <p4 className={Styles.p4}> Message Log </p4>
-               <p5 className={Styles.p5}>Alex you need to try read more</p5>
-               <p6 className={Styles.p6}>Well Done Alice keep up the pace</p6>
-               <p7 className={Styles.p7}>Norman I need to see your mother</p7>
+               <p className={Styles.p4}> Message Log </p>
+               <p className={Styles.p5}>Alex you need to try read more</p>
+               <p className={Styles.p6}>Well Done Alice keep up the pace</p>
+               <p className={Styles.p7}>Norman I need to see your mother</p>
             </div>
           </div>
-        </div>
-      </div>
     </div>
   );
 }
