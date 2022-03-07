@@ -43,6 +43,8 @@ function readinglog({
     </div>
   );
 }
+
+// Adding Authentication to this page by checking for valid token
 export async function getServerSideProps({ req, res }) {
   try {
     // This is the cookie

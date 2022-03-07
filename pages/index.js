@@ -13,6 +13,7 @@ function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Auth checking credentials
   async function signIn() {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
@@ -62,6 +63,8 @@ function Home() {
     </div>
   );
 }
+
+// Adding Authentication to this page by checking for valid token
 export async function getServerSideProps({ req, res }) {
   try {
     // This is the cookie
