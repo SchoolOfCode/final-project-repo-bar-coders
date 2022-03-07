@@ -34,26 +34,34 @@
 }
 
 @media only screen and (max-width: 1250px) {
-  .pageBody {
+  .wholePage {
+      width: 100%;
+      margin: 0 auto;
+  }
+  
+    .pageBody {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 95%;
-    width: 90%;
     width: 100%;
     margin: 0 auto;
-    justify-content: center;
+    
   }
   .leftSide {
       display: flex;
       justify-content: center;
+      align-items: center;
     height: 95%;
     width: 90%;
+    margin: 0 auto;
+    
   }
   .rightSide {
       display: flex;
       justify-content: center;
+      align-items: center;
     height: 95%;
     width: 90%;
     margin: 0 auto;

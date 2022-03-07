@@ -87,11 +87,11 @@ function Navbar({ isNewMessage, studentName }) {
           <Link href="/finishedbooks" passHref>
             <p>Finished books</p>
           </Link>
-          <Link href="messages" passHref>
+          <Link href="/messages" passHref>
             <p>Messages</p>
           </Link>
           <Link href="/" passHref>
-            <p>Log out</p>
+            <p onClick={logOut}>Log out</p>
           </Link>
         </div>
       </div>
