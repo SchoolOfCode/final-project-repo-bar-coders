@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
+import Styles from "../../../styles/charts.module.css"
 
 function Pagesread({ studentSelected }) {
   const [pagesRead, setPagesRead] = useState([]);
@@ -69,7 +70,7 @@ function Pagesread({ studentSelected }) {
   };
 
   return (
-    <div>
+    <div className={Styles.chart}>
       <Line
         data={data}
         width={400}

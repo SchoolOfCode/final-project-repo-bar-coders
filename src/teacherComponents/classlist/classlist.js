@@ -25,7 +25,7 @@ function Classlist({ lessThanFour, moreThanFour, changeStudentSelected, studentS
       <div className={Styles.names}>
         <button className={Styles.wholeClassButton}
           onClick={() => {
-            changeStudentSelected(false, null);
+            changeStudentSelected(false, null, null);
           }}
         >
           Whole Class View
@@ -37,9 +37,10 @@ function Classlist({ lessThanFour, moreThanFour, changeStudentSelected, studentS
               className={Styles.lessthan}
               key={index}
               id={student.id}
+              studentName={student.studentName}
               onClick={(e) => {
-                console.log(e.target.id);
-                changeStudentSelected(true, e.target.id);
+                console.log(e.target, e.target.id, student.studentName);
+                changeStudentSelected(true, e.target.id, student.studentName);
               }}
             >
               {student.studentName}
@@ -54,7 +55,7 @@ function Classlist({ lessThanFour, moreThanFour, changeStudentSelected, studentS
               id={student.id}
               onClick={(e) => {
                 console.log(e.target.id);
-                changeStudentSelected(true, e.target.id);
+                changeStudentSelected(true, e.target.id, student.studentName);
               }}
             >
               {student.studentName}

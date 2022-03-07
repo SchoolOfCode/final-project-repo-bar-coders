@@ -6,3 +6,9 @@
 .progress {
     width: 100%;
 }
+
+@media only screen and (max-width: 1250px) {
+.progress {
+    width: 60%;
+}
+}

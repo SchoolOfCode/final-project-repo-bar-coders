@@ -6,10 +6,17 @@
 
 .progressbar img {
 transform: rotate(45deg);
+
 }
 
 .dayCount {
     display: flex;
     justify-content: space-between;
     font-family: "Reem Kufi";
+}
+
+@media only screen and (max-width: 600px) {
+    .progressbar{display: flex; flex-direction:column ; height: 95%; width: 90%;}
+    .progressbar img {transform: rotate(-45deg);};
+    .dayCount{ display: flex; flex-direction: row; height: 95%; width: 90%; justify-content: center;}
 }
