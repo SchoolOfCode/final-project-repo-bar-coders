@@ -45,10 +45,70 @@
 
 }
 
-@media only screen and (max-width: 600px) {
-    .navbar{display: flex; height: 95%; width: 90%;}
-    .navbar button{display: flex; height: 95%; width: 90%;}
-    .logoutbutton {display: flex; height: 95%; width: 90%;}
-    .student {display: flex; height: 95%; width: 90%;}
-    .student h1 {display: flex; height: 95%; width: 90%;}
+.mobileNavbar {
+    display: none;
+}
+
+@media only screen and (max-width: 1250px) {
+
+    .navbar {
+        display: none;
+    }
+
+    .mobileNavbar {
+        display: block;
+    }
+
+    .menubar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .student h1 {
+        font-size: 1.5rem;
+    }
+
+    .dropbtn {
+       
+        padding: 10px;
+        font-size: 1.5rem;
+        border: none;
+        display:inline-block;
+        border-radius: 5px;
+        width: 160px;
+        background-color: #C66DFD;
+    color: white;
+    font-family: "Reem Kufi";
+        
+             }
+
+             .dropdownContent {
+        display: none;
+        position: absolute;
+        right: 0px;
+        background-color: #C66DFD;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px #7314AD;
+        z-index: 1;
+        border-radius: 5px;
+        
+      }
+
+      .dropdownContent p {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-family: "Reem Kufi";
+      }
+      
+      /* Change color of dropdown links on hover */
+      .dropdownContent p:hover {background-color: #7314AD;}
+      .dropdownContent p:active {background-color: #C66DFD;}
+      
+      /* Show the dropdown menu on hover */
+      .mobileNavbar:hover .dropdownContent {display: block;}
+      
+      /* Change the background color of the dropdown button when the dropdown content is shown */
+      .mobileNavbar:hover .dropbtn {background-color: #7314AD;}
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }) {
   //studentId - to be set via Auth?
-  const [studentId, setStudentId] = useState("s05");
+  const [studentId, setStudentId] = useState("1");
 
   //studentname - to be set Via fetch
 
