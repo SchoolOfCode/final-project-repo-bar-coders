@@ -32,3 +32,34 @@
   justify-content: center;
 
 }
+
+@media only screen and (max-width: 1250px) {
+  .pageBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95%;
+    width: 90%;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .leftSide {
+      display: flex;
+      justify-content: center;
+    height: 95%;
+    width: 90%;
+  }
+  .rightSide {
+      display: flex;
+      justify-content: center;
+    height: 95%;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .newBookButton {
+    height: 95%;
+    width: 50%;
+  }
+}

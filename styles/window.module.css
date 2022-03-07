@@ -15,11 +15,10 @@
 
 .coinNumber {
   margin: 1rem;
-  background-image: -webkit-linear-gradient(45deg, rgb(255, 208, 0) , #00ff15);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	-webkit-animation: hue 1.5s infinite linear;
-  
+  background-image: -webkit-linear-gradient(45deg, rgb(255, 208, 0), #00ff15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 1.5s infinite linear;
 }
 @-webkit-keyframes hue {
   from {
@@ -29,7 +28,6 @@
     -webkit-filter: hue-rotate(-360deg);
   }
 }
-
 
 .image {
   margin: 1rem;
@@ -109,6 +107,27 @@
   color: #7314ad;
 }
 
-@media only screen and (max-width: 600px) {
-.window{display: flex; flex-direction:column ; height: 95%; width: 90%;}
+@media only screen and (max-width: 1250px) {
+  .window {
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+    max-width: 90%;
+    float: none;
+    /* margin-right: 0; */
+  }
+
+  .inner h1 {
+    font-size: 1.7rem;
+    margin: 0.5rem;
+  }
+
+  .inner p {
+margin: 0.5rem;
+  }
+
+  .coinNumber {
+    margin: 0.5rem;
+    font-size: 2.5rem;
+  }
 }
