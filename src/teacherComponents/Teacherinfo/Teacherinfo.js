@@ -1,6 +1,7 @@
 import React from "react";
 import Styles from "../../../styles/teacherinfo.module.css";
 import Individualstats from "../Individualstats/individualstats";
+import IndividualSummaries from "../IndividualSummaries/individualsummaries";
 
 function Teacherinfo({studentSelected}) {
   return (
@@ -20,7 +21,8 @@ function Teacherinfo({studentSelected}) {
           <div className={Styles.bottomcontainers}>
             
             <div className={Styles.btmleft}>
-               <p className={Styles.p3}> Select a student to see their daily reading summaries </p>
+              
+               <IndividualSummaries studentSelected={studentSelected} className={Styles.p3}></IndividualSummaries>
             </div>
             
             <div className={Styles.btmright}>
