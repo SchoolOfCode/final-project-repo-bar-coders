@@ -27,6 +27,9 @@
 }
 
 .topleft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: whitesmoke;
   height: 27vh;
   width: 49%;
@@ -69,8 +72,8 @@
   width: 90%;
   margin: 0 auto;
   text-align: center;
-  text-decoration: underline solid 2px;
-  font-size: 1rem;
+  /* text-decoration: underline solid 2px; */
+  font-size: 1.5rem;
 }
 
 .input{
@@ -98,6 +101,9 @@
 
 
 .btmleft{
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
   background-color: whitesmoke;
   height: 57vh;
   width: 49%;
@@ -105,17 +111,19 @@
   border-radius: 5px;
   box-shadow: 0 0 30px 3px lightslategray;
   text-align: center;
+  overflow-y: scroll;
 }
 
 .p3{
   display: flex;
   justify-content: center;
-align-items: center;
+  align-items: center;
   color: black;
   height: 40%;
   width: 90%;
   margin-left: 5%;
   margin-top: 25%;
+  padding: 0.5rem;
   box-shadow: 0 0 3px 2px black ;
   border-radius: 5px;
   font-size: larger;
@@ -125,15 +133,17 @@ align-items: center;
 .btmright{
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   background-color: whitesmoke;
   height: 57vh;
   width: 49%;
   margin-bottom: 0.5rem;
+ 
   border-radius: 5px;
   text-align: center;
   font-size: large;
   box-shadow: 0 0 30px 3px lightslategray;
+  overflow-y: scroll;
 }
 
 .p4{
@@ -143,12 +153,13 @@ align-items: center;
   color: black;
   width: 80%;
 margin: 0.5rem auto;
-  text-decoration: underline solid 2px;
-  font-size: 1rem;
+  /* text-decoration: underline solid 2px; */
+  font-size: 1.5rem;
 }
 
-.p5, .p6, .p7{
+.p5 {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 20%;
@@ -158,6 +169,16 @@ margin: 0.5rem auto;
   color: black;
   box-shadow: 0 0 3px 2px black ;
   border-radius: 5px;
+}
+
+.p5 h4 {
+margin: 0;
+margin-top: 0.5rem;
+}
+
+.p5 p {
+margin: 0;
+margin-bottom: 0.5rem;
 }
 
 
