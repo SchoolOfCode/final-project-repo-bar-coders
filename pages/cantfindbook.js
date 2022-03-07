@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Navbar from "../src/studentcomponents/navbar";
 import Image from "next/image";
 import rocketicon from "../images/rocketicon.png";
 import styles from "../styles/cantfindbook.module.css";
 import { useRouter } from "next/router";
+import { getIdToken } from "../src/lib/firebase/refresh-tokens";
 
 function Cantfindbook({ isNewMessage, studentName, studentId }) {
-
   const router = useRouter();
 
   const [title, setTitle] = useState("");
@@ -29,9 +29,8 @@ function Cantfindbook({ isNewMessage, studentName, studentId }) {
         }),
       });
       router.push("/studenthome");
-    }
-    catch {
-      alert("Sorry the server is unavailable, please try later")
+    } catch {
+      alert("Sorry the server is unavailable, please try later");
     }
   }
 
@@ -77,6 +76,36 @@ function Cantfindbook({ isNewMessage, studentName, studentId }) {
       </div>
     </div>
   );
+}
+export async function getServerSideProps({ req, res }) {
+  try {
+    // This is the cookie
+    const cookie = req.cookies.token;
+    // This refreshes the id token
+    const token = await getIdToken(cookie);
+    const isStudent = true;
+
+    if (!token.getIdToken.user_id) {
+      return {
+        redirect: {
+          destination: "/",
+        },
+      };
+    }
+
+    return {
+      props: {
+        userObject: [],
+      },
+    };
+  } catch (err) {
+    console.log("THIS ERR WAS:", err);
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
 }
 
 export default Cantfindbook;

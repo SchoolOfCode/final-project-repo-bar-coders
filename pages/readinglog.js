@@ -6,6 +6,7 @@ import styles from "../styles/readinglogpage.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import BookProgressBar from "../src/studentcomponents/bookprogressbar";
+import { getIdToken } from "../src/lib/firebase/refresh-tokens";
 
 function readinglog({
   isNewMessage,
@@ -41,6 +42,36 @@ function readinglog({
       </div>
     </div>
   );
+}
+export async function getServerSideProps({ req, res }) {
+  try {
+    // This is the cookie
+    const cookie = req.cookies.token;
+    // This refreshes the id token
+    const token = await getIdToken(cookie);
+    const isStudent = true;
+
+    if (!token.getIdToken.user_id) {
+      return {
+        redirect: {
+          destination: "/",
+        },
+      };
+    }
+
+    return {
+      props: {
+        userObject: [],
+      },
+    };
+  } catch (err) {
+    console.log("THIS ERR WAS:", err);
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
 }
 
 export default readinglog;
