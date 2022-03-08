@@ -4,7 +4,7 @@ import Image from "next/image";
 import rocketicon from "../images/rocketicon.png";
 import styles from "../styles/messages.module.css";
 import { useEffect, useState } from "react";
-import { getIdToken } from "../src/lib/firebase/refresh-tokens";
+import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
 function Messages({ isNewMessage, studentName, studentId }) {
   //https://fourweekproject.herokuapp.com/feedback/s01
@@ -115,10 +115,10 @@ export async function getServerSideProps({ req, res }) {
     // This is the cookie
     const cookie = req.cookies.token;
     // This refreshes the id token
-    const token = await getIdToken(cookie);
+    const token = await getIDToken(cookie);
     const isStudent = true;
 
-    if (!token.getIdToken.user_id) {
+    if (!token.getIDToken.user_id) {
       return {
         redirect: {
           destination: "/",
