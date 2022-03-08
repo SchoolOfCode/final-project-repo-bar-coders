@@ -17,7 +17,7 @@ function readinglog({
 }) {
   return (
     <div className={styles.wholePage}>
-      <div>
+      <div className={styles.headerSection}>
         <Navbar isNewMessage={isNewMessage} studentName={studentName} />
         <ProgressBar studentDaysRead={studentDaysRead} />
       </div>
@@ -57,6 +57,7 @@ export async function getServerSideProps({ req, res }) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
@@ -71,6 +72,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }

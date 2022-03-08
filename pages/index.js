@@ -55,10 +55,12 @@ function Home({ teacherId }) {
           placeholder="password"
         />
         <div className={styles.Buttons}>
-          <button onClick={signIn}>I&apos;m a student</button>
-          <Link href="/teacherhome" passHref>
-            <button>I&apos;m a teacher</button>
+
+          <Link href="/studenthome" passHref>
+            <button onClick={signIn}>Go!</button>
+
           </Link>
+          
         </div>
       </div>
     </div>
@@ -82,12 +84,14 @@ export async function getServerSideProps({ req, res }) {
       };
     }
 
+
     return {
       props: {
         userObject: [],
       },
       redirect: {
         destination: "/studenthome",
+        permanent: false,
       },
     };
   } catch (err) {

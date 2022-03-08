@@ -70,27 +70,30 @@ export async function getServerSideProps({ req, res }) {
             // This refreshes the id token
             const token = await getIDToken(cookie);
 
-            if (!token.getIDToken.user_id) {
-                  return {
-                        redirect: {
-                              destination: "/",
-                        },
-                  };
-            }
 
-            return {
-                  props: {
-                        userObject: [token],
-                  },
-            };
-      } catch (err) {
-            console.log("THIS ERR WAS:", err);
-            return {
-                  redirect: {
-                        destination: "/",
-                  },
-            };
-      }
+    if (!token.getIDToken.user_id) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
+
+    return {
+      props: {
+        userObject: [token],
+      },
+    };
+  } catch (err) {
+    console.log("THIS ERR WAS:", err);
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 }
 
 export default StudentHome;
