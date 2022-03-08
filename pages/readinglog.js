@@ -6,7 +6,7 @@ import styles from "../styles/readinglogpage.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import BookProgressBar from "../src/studentcomponents/bookprogressbar";
-import { getIdToken } from "../src/lib/firebase/refresh-tokens";
+import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
 function readinglog({
   isNewMessage,
@@ -50,10 +50,10 @@ export async function getServerSideProps({ req, res }) {
     // This is the cookie
     const cookie = req.cookies.token;
     // This refreshes the id token
-    const token = await getIdToken(cookie);
+    const token = awaitgetIDToken(cookie);
     const isStudent = true;
 
-    if (!token.getIdToken.user_id) {
+    if (!tokengetIDToken.user_id) {
       return {
         redirect: {
           destination: "/",

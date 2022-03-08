@@ -1,8 +1,18 @@
-import React from 'react'
-import Styles from '../../../styles/teachernavbar.module.css'
+import React from "react";
+import Styles from "../../../styles/teachernavbar.module.css";
 import Link from "next/link";
+import { signOut } from "firebase/auth";
+import { auth } from "../../lib/firebase/firebase-init";
+import { post } from "../../lib/HTTP_Functions/POST";
 
 function Teachernavbar() {
+  async function logOut() {
+    // await auth.signOut()
+    await signOut(auth);
+    await post("/api/signOut");
+    window.location.href = "/";
+  }
+
   return (
     <div className={Styles.teachernavbar}>
       <div className={Styles.leftside}>
@@ -18,16 +28,20 @@ function Teachernavbar() {
         </Link>
 
         <Link href="/" passHref>
-          <button className={Styles.logout}> Log out </button>
+          <button className={Styles.logout} onClick={logOut}>
+            {" "}
+            Log out{" "}
+          </button>
         </Link>
       </div>
     </div>
   );
 }
-export default Teachernavbar
+export default Teachernavbar;
 
-
-{/* <Link href="/newbook" passHref>
+{
+  /* <Link href="/newbook" passHref>
             <button className={styles.newBookButton}>
               Want to add a book to your library?
-            </button> */}
+            </button> */
+}
