@@ -29,6 +29,7 @@ function Teacherinfopage({
           moreThanFour={moreThanFour}
           changeStudentSelected={changeStudentSelected}
           studentSelected={studentSelected}
+          userObject={userObject}
         ></Classlist>
       </div>
 

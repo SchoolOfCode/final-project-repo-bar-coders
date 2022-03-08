@@ -32,7 +32,7 @@ function Teacherinfo({ studentSelected, userObject }) {
 
         console.log({
           feedbackText: message,
-          teacherId: "t01",
+          teacherId: userId,
           url,
         });
       } catch {
@@ -46,7 +46,7 @@ function Teacherinfo({ studentSelected, userObject }) {
         await fetch(url, {
           method: "POST",
           headers: {
-            authorization: `Bearer ${token}`,
+            authorization: `Bearer ${fetchToken}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -78,10 +78,14 @@ function Teacherinfo({ studentSelected, userObject }) {
   async function fetchMessages() {
     if (studentSelected.isSelected === false) {
       try {
-        const url =
-          "https://fourweekproject.herokuapp.com/teachers/class/feedback/t01";
+        const url = `https://fourweekproject.herokuapp.com/teachers/class/feedback/${userId}`;
 
-        const response = await fetch(url);
+        const response = await fetch(url, {
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+        });
         const data = await response.json();
         setSentMessages(data.payload);
       } catch {
@@ -91,7 +95,12 @@ function Teacherinfo({ studentSelected, userObject }) {
       try {
         const url = `https://fourweekproject.herokuapp.com/teachers/student/feedback/${studentSelected.id}`;
 
-        const response = await fetch(url);
+        const response = await fetch(url, {
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+        });
         const data = await response.json();
         setSentMessages(data.payload);
       } catch {
