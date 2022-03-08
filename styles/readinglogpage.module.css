@@ -1,6 +1,6 @@
 .pageBody {
-    width: 100%;
-    margin-top: 3rem;
+    /* width: 100%;
+    margin-top: 3rem; */
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -35,8 +35,16 @@
 
 @media only screen and (max-width: 1250px) {
   .wholePage {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       width: 100%;
-      margin: 0 auto;
+      margin-left: 0 auto;
+  }
+
+  .headerSection {
+    width: 100%;
   }
   
     .pageBody {
@@ -54,7 +62,7 @@
       justify-content: center;
       align-items: center;
     height: 95%;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     
   }
@@ -63,10 +71,10 @@
       justify-content: center;
       align-items: center;
     height: 95%;
-    width: 90%;
+    width:100%;
     margin: 0 auto;
   }
-  .newBookButton {
+  .chooseAgainButton {
     height: 95%;
     width: 50%;
   }
