@@ -5,7 +5,7 @@ import rocketicon from "../images/rocketicon.png";
 import styles from "../styles/newbook.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { getIdToken } from "../src/lib/firebase/refresh-tokens";
+import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
 function Newbook({ isNewMessage, studentId, studentName }) {
   const router = useRouter();
@@ -125,15 +125,17 @@ function Newbook({ isNewMessage, studentId, studentName }) {
     </div>
   );
 }
+
+// Adding Authentication to this page by checking for valid token
 export async function getServerSideProps({ req, res }) {
   try {
     // This is the cookie
     const cookie = req.cookies.token;
     // This refreshes the id token
-    const token = await getIdToken(cookie);
+    const token = await getIDToken(cookie);
     const isStudent = true;
 
-    if (!token.getIdToken.user_id) {
+    if (!token.getIDToken.user_id) {
       return {
         redirect: {
           destination: "/",

@@ -5,7 +5,7 @@ import Carousel from "../src/studentcomponents/bookcarousel";
 import styles from "../styles/studenthome.module.css";
 import Link from "next/link";
 import { useEffect } from "react";
-import { getIdToken } from "../src/lib/firebase/refresh-tokens";
+import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
 function StudentHome({
   studentName,
@@ -16,10 +16,16 @@ function StudentHome({
   updateCurrentBook,
   minutesRead,
   getStudentData,
+  userObject,
 }) {
+  // const userId = userObject[0].getIDToken.user_id;
+  // const fetchToken = userObject[0].getIDToken.id_token;
+
   useEffect(() => {
     getStudentData();
   }, []);
+
+  console.log("LOOOOOOK", userObject);
 
   return (
     <div>
@@ -50,15 +56,15 @@ function StudentHome({
     </div>
   );
 }
+// Adding Authentication to this page by checking for valid token
 export async function getServerSideProps({ req, res }) {
   try {
     // This is the cookie
     const cookie = req.cookies.token;
     // This refreshes the id token
-    const token = await getIdToken(cookie);
-    const isStudent = true;
+    const token = await getIDToken(cookie);
 
-    if (!token.getIdToken.user_id) {
+    if (!token.getIDToken.user_id) {
       return {
         redirect: {
           destination: "/",
@@ -68,7 +74,7 @@ export async function getServerSideProps({ req, res }) {
 
     return {
       props: {
-        userObject: [],
+        userObject: [token],
       },
     };
   } catch (err) {
