@@ -192,12 +192,13 @@ function MyApp({ Component, pageProps }) {
       async function getStudentData(id, token) {
             setFetchToken(token);
             setStudentId(id);
+            console.log(token);
             try {
                   const response = await fetch(
-                        `https://fourweekproject.herokuapp.com/dictionary/${studentId}`,
+                        `https://fourweekproject.herokuapp.com/books/${id}`,
                         {
                               headers: {
-                                    authorization: `Bearer ${fetchToken}`,
+                                    authorization: `Bearer ${token}`,
                                     "Content-Type": "application/json",
                               },
                         }
@@ -216,13 +217,13 @@ function MyApp({ Component, pageProps }) {
             }
       }
 
-      async function getStudentName() {
+      async function getStudentName(id, token) {
             try {
                   const response = await fetch(
-                        `https://fourweekproject.herokuapp.com/books/${studentId}`,
+                        `https://fourweekproject.herokuapp.com/books/${id}`,
                         {
                               headers: {
-                                    authorization: `Bearer ${fetchToken}`,
+                                    authorization: `Bearer ${token}`,
                                     "Content-Type": "application/json",
                               },
                         }
@@ -235,9 +236,9 @@ function MyApp({ Component, pageProps }) {
             }
       }
 
-      useEffect(() => {
-            getStudentName();
-      }, []);
+      // useEffect(() => {
+      //       getStudentName();
+      // }, []);
 
       //adds new words to dictionary word list
       async function updateWordsList(newWord, meaning) {
@@ -286,6 +287,7 @@ function MyApp({ Component, pageProps }) {
                   moreThanFour={moreThanFour}
                   studentSelected={studentSelected}
                   changeStudentSelected={changeStudentSelected}
+                  getStudentName={getStudentName}
             />
       );
 }

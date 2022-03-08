@@ -17,12 +17,14 @@ function StudentHome({
       minutesRead,
       getStudentData,
       userObject,
+      getStudentName,
 }) {
       const userId = userObject[0].getIDToken.user_id;
       const fetchToken = userObject[0].getIDToken.id_token;
 
       useEffect(() => {
             getStudentData(userId, fetchToken);
+            getStudentName(userId, fetchToken);
       }, []);
 
       console.log("LOOOOOOK", userObject);
@@ -70,30 +72,29 @@ export async function getServerSideProps({ req, res }) {
             // This refreshes the id token
             const token = await getIDToken(cookie);
 
+            if (!token.getIDToken.user_id) {
+                  return {
+                        redirect: {
+                              destination: "/",
+                              permanent: false,
+                        },
+                  };
+            }
 
-    if (!token.getIDToken.user_id) {
-      return {
-        redirect: {
-          destination: "/",
-          permanent: false,
-        },
-      };
-    }
-
-    return {
-      props: {
-        userObject: [token],
-      },
-    };
-  } catch (err) {
-    console.log("THIS ERR WAS:", err);
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+            return {
+                  props: {
+                        userObject: [token],
+                  },
+            };
+      } catch (err) {
+            console.log("THIS ERR WAS:", err);
+            return {
+                  redirect: {
+                        destination: "/",
+                        permanent: false,
+                  },
+            };
+      }
 }
 
 export default StudentHome;
