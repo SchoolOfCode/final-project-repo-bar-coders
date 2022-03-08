@@ -53,11 +53,9 @@ function Home() {
         />
         <div className={styles.Buttons}>
           <Link href="/studenthome" passHref>
-            <button onClick={signIn}>I&apos;m a student</button>
+            <button onClick={signIn}>Go!</button>
           </Link>
-          <Link href="/teacherhome" passHref>
-            <button>I&apos;m a teacher</button>
-          </Link>
+          
         </div>
       </div>
     </div>
@@ -81,20 +79,14 @@ export async function getServerSideProps({ req, res }) {
       };
     }
 
-    // if (!isStudent) {
-    //   return {
-    //     redirect: {
-    //       destination: "/teacherhome",
-    //     },
-    //   };
-    // }
-
+   
     return {
       props: {
         userObject: [],
       },
       redirect: {
         destination: "/studenthome",
+        permanent: false,
       },
     };
   } catch (err) {

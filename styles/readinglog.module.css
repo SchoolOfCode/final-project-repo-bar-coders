@@ -81,6 +81,11 @@
   flex-direction: column;
 }
 
+.buttons {
+    flex-direction: column-reverse;
+    
+}
+
 }
 
 
