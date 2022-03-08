@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   const [teacherId, setTeacherId] = useState("frSoZOn5ctRdYnztLiWsnddDqyP2");
 
   //studentId - to be set via Auth?
-  const [studentId, setStudentId] = useState("s05");
+  const [studentId, setStudentId] = useState("1");
 
   //studentname - to be set Via fetch
 
@@ -87,13 +87,16 @@ function MyApp({ Component, pageProps }) {
     console.log("4+:", moreThanFour, "4-:", lessThanFour);
   }, []);
 
-  const [studentSelected, setStudentSelected] = useState({
-    isSelected: false,
-    id: null,
-  });
 
-  function changeStudentSelected(isSelected, id) {
-    setStudentSelected({ isSelected: isSelected, id: id });
+ const [studentSelected, setStudentSelected] = useState({
+   isSelected: false,
+   id: null,
+   studentName: null,
+ });
+
+  function changeStudentSelected(isSelected, id, name) {
+    setStudentSelected({isSelected: isSelected, id: id, studentName: name})
+
   }
 
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works

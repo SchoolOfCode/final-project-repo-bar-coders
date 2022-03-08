@@ -3,7 +3,10 @@ import Styles from "../styles/teacherhome.module.css";
 import Classlist from "../src/teacherComponents/classlist/classlist";
 import Teachernavbar from "../src/teacherComponents/Teachernavbar/teachernavbar";
 import Teacherinfo from "../src/teacherComponents/Teacherinfo/Teacherinfo";
+
 import { getIDToken } from "../src/lib/firebase/refresh-tokens";
+import Individualstats from "../src/teacherComponents/Individualstats/individualstats";
+
 
 function Teacherinfopage({
   lessThanFour,
@@ -24,7 +27,7 @@ function Teacherinfopage({
 
       <div className={Styles.rightside}>
         <Teachernavbar></Teachernavbar>
-        <Teacherinfo></Teacherinfo>
+        <Teacherinfo studentSelected={studentSelected}></Teacherinfo>
       </div>
       <div></div>
     </div>

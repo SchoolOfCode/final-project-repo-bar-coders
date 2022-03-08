@@ -1,36 +1,69 @@
 .pageBody {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .leftSide {
-    margin-top: 1rem;
-       width: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  margin-top: 1rem;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .leftSide h2 {
-    width: 80%;
-      font-family: "Reem Kufi";
+  width: 80%;
+  font-family: "Reem Kufi";
 }
 
 .rightSide {
-    width: 40%;
+  width: 40%;
 }
 
 .newBookButton {
-        margin: 2rem 0.5rem;
+  margin: 2rem 0.5rem;
   padding: 0.25rem 0.5rem;
   font-size: 1.3rem;
   border-radius: 50px;
-  background-color: #7314AD;
+  background-color: #7314ad;
   color: white;
   font-family: "Reem Kufi";
   display: flex;
   justify-content: center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 1250px) {
+  .pageBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95%;
+    width: 90%;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .leftSide {
+      display: flex;
+      justify-content: center;
+    height: 95%;
+    width: 90%;
+  }
+  .rightSide {
+      display: flex;
+      justify-content: center;
+    height: 95%;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .newBookButton {
+    height: 95%;
+    width: 50%;
+  }
 }

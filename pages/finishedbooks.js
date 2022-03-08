@@ -35,18 +35,21 @@ function Finishedbooks({ isNewMessage, studentId, studentName }) {
     <div>
       {<Navbar isNewMessage={isNewMessage} studentName={studentName} />}
       <div className={Styles.container}>
-        {completedBooks.map((book, index) => {
-          return (
-            <div key={index} className={Styles.bookDiv}>
-              <h4> {book.title} </h4>
-              <div className={Styles.box}>
-                <img src={book.cover} alt="" width="350rem" height="350rem" />
+        {completedBooks &&
+          completedBooks.map((book, index) => {
+            return (
+              <div key={index} className={Styles.bookDiv}>
+                <h4> {book.title} </h4>
+                <div className={Styles.box}>
+                  <img src={book.cover} alt=""
+                    // width="350rem" height="350rem"
+                  />
 
-                <p>Completed: {formatDate(book.date_completed)} </p>
+                  <p>Completed: {formatDate(book.date_completed)} </p>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
 
         {/* <div className={Styles.box}>
         <img src="BB.JPG" alt="" width="350rem" height="350rem" />
