@@ -2,6 +2,9 @@ import "../styles/globals.css";
 import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }) {
+  // teacherID
+  const [teacherId, setTeacherId] = useState("frSoZOn5ctRdYnztLiWsnddDqyP2");
+
   //studentId - to be set via Auth?
   const [studentId, setStudentId] = useState("1");
 
@@ -62,18 +65,28 @@ function MyApp({ Component, pageProps }) {
     },
   ]);
 
- async function getClassList(){
-   const response = await fetch("https://fourweekproject.herokuapp.com/teachers/class");
-   const data = await response.json();
-   setMoreThanFour(data.classList4TimesOrMore);
-   setLessThanFour(data.classListLessThan4Times);
-  //  console.log(moreThanFour, lessThanFour)
+  // get user info
+
+  // async function getUser(token, user) {
+  //   console.log("OOOOOOOOOOO", token);
+  //   console.log("OOOOOOOOOOO", user);
+  // }
+
+  async function getClassList() {
+    const response = await fetch(
+      "https://fourweekproject.herokuapp.com/teachers/class"
+    );
+    const data = await response.json();
+    setMoreThanFour(data.classList4TimesOrMore);
+    setLessThanFour(data.classListLessThan4Times);
+    //  console.log(moreThanFour, lessThanFour)
   }
 
   useEffect(() => {
     getClassList();
     console.log("4+:", moreThanFour, "4-:", lessThanFour);
-  }, [])
+  }, []);
+
 
  const [studentSelected, setStudentSelected] = useState({
    isSelected: false,
@@ -83,6 +96,7 @@ function MyApp({ Component, pageProps }) {
 
   function changeStudentSelected(isSelected, id, name) {
     setStudentSelected({isSelected: isSelected, id: id, studentName: name})
+
   }
 
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works
@@ -155,7 +169,13 @@ function MyApp({ Component, pageProps }) {
   async function getStudentData() {
     try {
       const response = await fetch(
-        `https://fourweekproject.herokuapp.com/books/${studentId}`
+        `https://fourweekproject.herokuapp.com/books/${studentId}`,
+        {
+          headers: {
+            // authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       const data = await response.json();
       console.log(data);
@@ -213,6 +233,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <Component
       {...pageProps}
+      setStudentId={setStudentId}
+      teacherId={teacherId}
       studentName={studentName}
       studentId={studentId}
       isNewMessage={isNewMessage}
