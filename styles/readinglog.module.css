@@ -1,5 +1,5 @@
 .container {
-    margin: 2rem 0.5rem;
+ margin: 2rem 0.5rem;
   padding: 0.25rem 0.25rem;
   font-size: 1.3rem;
   border-radius: 50px;
@@ -40,6 +40,7 @@
   background-color: white;
   font-family: "Reem Kufi";
   display: flex;
+  
   flex-direction: column;
   width: 95%;
   text-align: center;
@@ -69,7 +70,15 @@
 
 
 @media only screen and (max-width: 1250px) {
-.container h1 {
+.container {
+  margin: 0;
+  padding: 0;
+  width: 90%;
+
+}
+
+
+  .container h1 {
   font-size: 1.7rem;
 }
 
@@ -84,6 +93,15 @@
 .buttons {
     flex-direction: column-reverse;
     
+}
+
+
+.buttons input {
+  padding: 0.5rem;
+  margin:0.2rem auto;
+    /* width: 30px; */
+    height: 35px;
+     transform: scale(1);
 }
 
 }

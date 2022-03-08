@@ -34,14 +34,18 @@
 }
 
 @media only screen and (max-width: 1250px) {
-  /* .wholePage {
+  .wholePage {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       width: 100%;
       margin-left: 0 auto;
-  } */
+  }
+
+  .headerSection {
+    width: 100%;
+  }
   
     .pageBody {
     display: flex;
@@ -58,7 +62,7 @@
       justify-content: center;
       align-items: center;
     height: 95%;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     
   }
@@ -67,7 +71,7 @@
       justify-content: center;
       align-items: center;
     height: 95%;
-    width:90%;
+    width:100%;
     margin: 0 auto;
   }
   .chooseAgainButton {
