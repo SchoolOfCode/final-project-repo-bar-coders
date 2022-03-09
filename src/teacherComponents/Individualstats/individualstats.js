@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "../../../styles/studentstats.module.css";
 
-function Individualstats({ studentSelected, userObject }) {
+function Individualstats({ studentSelected, userObject, moreThanFour, lessThanFour }) {
   const [weeklyData, setWeeklyData] = useState({});
 
   const fetchToken = userObject[0].getIDToken.id_token;
@@ -17,7 +17,25 @@ function Individualstats({ studentSelected, userObject }) {
       }
     );
     const data = await response.json();
-    const readingCount = data.studentWeeklyReading[0].count;
+    console.log(data);
+    console.log(moreThanFour, lessThanFour);
+
+    let readingCount;
+
+    let index = moreThanFour.findIndex(
+      (student) => student.student_id === studentSelected.id
+    );
+    if (index !== -1) { readingCount = moreThanFour[index].count }
+    else {
+      let index2 = lessThanFour.findIndex(
+        (student) => student.student_id === studentSelected.id
+      );
+    readingCount = lessThanFour[index2].count
+    }
+
+
+    // const readingCount = data.studentWeeklyReading[0].count;
+
     const studentName = data.studentWeeklyReading[0].name;
     const pagesData = data.studentWeeklyPages;
     const pagesDataArray = pagesData.map((entry) => Number(entry.pages));

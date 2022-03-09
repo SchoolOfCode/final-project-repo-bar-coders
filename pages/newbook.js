@@ -72,8 +72,8 @@ function Newbook({ isNewMessage, studentName, getStudentName, userObject }) {
         body: JSON.stringify(newApiBook),
       });
       router.push("/studenthome");
-    } catch {
-      alert("Sorry the server is down, please try later");
+    } catch(err) {
+      console.log("error in addBookToDatabase", err);
     }
   }
 

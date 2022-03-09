@@ -70,8 +70,8 @@ function Messages({
       setStudentMessages(data.studentFeedBack);
       setClassMessages(data.classFeedback);
       setTeacherName(data.studentFeedBack[0].teacher);
-    } catch {
-      alert("Server is down, try again later");
+    } catch(err) {
+      console.log("error in getMessages", err);
     }
   }
 

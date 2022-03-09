@@ -86,7 +86,7 @@ export async function getServerSideProps({ req, res }) {
         userObject: [token],
       },
       redirect: {
-        destination: "/studenthome",
+        destination: "/",
         permanent: false,
       },
     };

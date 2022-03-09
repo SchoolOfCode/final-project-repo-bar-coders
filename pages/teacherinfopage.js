@@ -38,6 +38,8 @@ function Teacherinfopage({
         <Teacherinfo
           studentSelected={studentSelected}
           userObject={userObject}
+          moreThanFour={moreThanFour}
+          lessThanFour={lessThanFour}
         ></Teacherinfo>
       </div>
       <div></div>

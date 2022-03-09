@@ -169,8 +169,8 @@ function MyApp({ Component, pageProps }) {
         return entry.word;
       });
       setWords(array);
-    } catch {
-      setWords(["Sorry, this feature is currently unavailable."]);
+    } catch (err) {
+      console.log("error in getWords", err);
     }
   }
 
@@ -178,6 +178,7 @@ function MyApp({ Component, pageProps }) {
 
   async function getStudentData(userId, fetchToken) {
     try {
+      console.log("test")
       const response = await fetch(
         `https://fourweekproject.herokuapp.com/books/${userId}`,
         {
@@ -196,8 +197,8 @@ function MyApp({ Component, pageProps }) {
       if (data.bookData.length > 0) {
         setInProgressBooks(data.bookData);
       }
-    } catch {
-      console.log("error within getStudentData");
+    } catch(err) {
+      console.log("error within getStudentData", err);
     }
   }
 
@@ -215,8 +216,8 @@ function MyApp({ Component, pageProps }) {
       const data = await response.json();
       console.log(data);
       setStudentName(data.name[0].name);
-    } catch {
-      alert("Server error");
+    } catch(err) {
+      console.log("error in getStudentName", err);
     }
   }
 
@@ -240,8 +241,8 @@ function MyApp({ Component, pageProps }) {
           definition: meaning,
         }),
       });
-    } catch {
-      alert("Sorry, this feature is currently unavailable");
+    } catch(err) {
+      console.log("error in updateWordsList", err)
     }
   }
 
