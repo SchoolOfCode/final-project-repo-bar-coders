@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "../../../styles/teacherinfo.module.css";
 import Individualstats from "../Individualstats/individualstats";
 import IndividualSummaries from "../IndividualSummaries/individualsummaries";
 
-function Teacherinfo({ studentSelected }) {
-  
+function Teacherinfo({ studentSelected, userObject }) {
   //to send a new message:
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState("");
+
+  const userId = userObject[0].getIDToken.user_id;
+  const fetchToken = userObject[0].getIDToken.id_token;
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -18,90 +20,98 @@ function Teacherinfo({ studentSelected }) {
 
         await fetch(url, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
             feedbackText: message,
-            teacherId: 't01',
-          
+            teacherId: userId,
           }),
         });
 
         console.log({
           feedbackText: message,
-          teacherId: "t01",
+          teacherId: userId,
+          url,
+        });
+      } catch {
+        console.log("error posting to server");
+      }
+    } else {
+      try {
+        const url =
+          "https://fourweekproject.herokuapp.com/teachers/student/feedback";
+
+        await fetch(url, {
+          method: "POST",
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            feedback_text: message,
+            student_id: studentSelected.id,
+          }),
+        });
+
+        console.log({
+          feedback_text: message,
+          student_id: studentSelected.id,
           url,
         });
       } catch {
         console.log("error posting to server");
       }
     }
-    else {
-try {
-  const url =
-    "https://fourweekproject.herokuapp.com/teachers/student/feedback";
-
-  await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      feedback_text: message,
-student_id: studentSelected.id
-    }),
-  });
-
-  console.log({
-    feedback_text: message,
-    student_id: studentSelected.id,
-    url,
-  });
-} catch {
-  console.log("error posting to server");
-}
-
-    }
-    setMessage('')
+    setMessage("");
   }
 
   //to retrieve previously sent messages:
-const [sentMessages, setSentMessages] = useState([])
+  const [sentMessages, setSentMessages] = useState([]);
 
-    function formatDate(string) {
-      var options = { year: "numeric", month: "long", day: "numeric" };
-      return new Date(string).toLocaleDateString([], options);
-    }
-  
-async function fetchMessages() {
- 
-  if (studentSelected.isSelected === false) {
-    try {
-      const url =
-        "https://fourweekproject.herokuapp.com/teachers/class/feedback/t01";
+  function formatDate(string) {
+    var options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(string).toLocaleDateString([], options);
+  }
 
-      const response = await fetch(url);
-      const data = await response.json();
-      setSentMessages(data.payload)
-     
-    } catch {
-      console.log("error fetching from server");
-    }
-  } else {
-    try {
-      const url =
-        `https://fourweekproject.herokuapp.com/teachers/student/feedback/${studentSelected.id}`;
+  async function fetchMessages() {
+    if (studentSelected.isSelected === false) {
+      try {
+        const url = `https://fourweekproject.herokuapp.com/teachers/class/feedback/${userId}`;
 
-      const response = await fetch(url);
-      const data = await response.json();
-      setSentMessages(data.payload);
+        const response = await fetch(url, {
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        setSentMessages(data.payload);
+      } catch {
+        console.log("error fetching from server");
+      }
+    } else {
+      try {
+        const url = `https://fourweekproject.herokuapp.com/teachers/student/feedback/${studentSelected.id}`;
 
-    } catch {
-      console.log("error fetching from server");
+        const response = await fetch(url, {
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        setSentMessages(data.payload);
+      } catch {
+        console.log("error fetching from server");
+      }
     }
   }
-  }
-  
+
   useEffect(() => {
-    fetchMessages()
-  }, [studentSelected, message])
+    fetchMessages();
+  }, [studentSelected, message]);
 
   return (
     <div className={Styles.teacherinfo}>
@@ -110,6 +120,7 @@ async function fetchMessages() {
           <Individualstats
             studentSelected={studentSelected}
             className={Styles.p1}
+            userObject={userObject}
           ></Individualstats>
         </div>
         <div className={Styles.topright}>
@@ -117,7 +128,10 @@ async function fetchMessages() {
             <h3 className={Styles.p2}> Send a message to the whole class </h3>
           )}
           {studentSelected.isSelected && (
-            <h3 className={Styles.p2}> Send a message to {studentSelected.studentName} </h3>
+            <h3 className={Styles.p2}>
+              {" "}
+              Send a message to {studentSelected.studentName}{" "}
+            </h3>
           )}
           <input
             className={Styles.input}
@@ -140,6 +154,7 @@ async function fetchMessages() {
           <IndividualSummaries
             studentSelected={studentSelected}
             className={Styles.p3}
+            userObject={userObject}
           ></IndividualSummaries>
         </div>
 
@@ -151,10 +166,8 @@ async function fetchMessages() {
                 <h4>{formatDate(message.date)}</h4>
                 <p>{message.feedback_text}</p>
               </div>
-              
-            )
+            );
           })}
-
         </div>
       </div>
     </div>

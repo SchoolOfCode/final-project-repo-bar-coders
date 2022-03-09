@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 //See here for carousel docs: https://openbase.com/js/react-image-gallery
 
 function Carousel({ inProgressBooks, currentBook, updateCurrentBook }) {
+  // const userId = userObject[0].getIDToken.user_id;
+
   const router = useRouter();
 
   const images = inProgressBooks.map((book) => {
@@ -32,6 +34,7 @@ function Carousel({ inProgressBooks, currentBook, updateCurrentBook }) {
         onClick={(e) => {
           updateCurrentBook(e.target.title); //this passes in the book id number to the updateCurrentBook function - can't call it id for some reason
           console.log(currentBook);
+
           router.push("/readinglog");
         }}
       />

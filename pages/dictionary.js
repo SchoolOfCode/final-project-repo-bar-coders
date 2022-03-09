@@ -4,17 +4,22 @@ import rocketicon from "../images/rocketicon.png";
 import Image from "next/image";
 import styles from "../styles/dictionary.module.css";
 import useFetch from "../src/CustomHooks/usefetch";
-import { getIdToken } from "../src/lib/firebase/refresh-tokens";
+import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
 function Dictionary({
   isNewMessage,
   words,
   updateWordsList,
   getWords,
+  getStudentName,
   studentName,
+  userObject,
 }) {
+  const userId = userObject[0].getIDToken.user_id;
+  const fetchToken = userObject[0].getIDToken.id_token;
+
   useEffect(() => {
-    getWords();
+    getWords(userId, fetchToken);
   }, [words]);
 
   const [searchWord, setSearchWord] = useState("");
@@ -70,7 +75,7 @@ function Dictionary({
     e.preventDefault();
 
     if (!words.includes(searchWord)) {
-      updateWordsList(searchWord, meanings);
+      updateWordsList(searchWord, meanings, fetchToken, userId);
     }
     resetMeanings();
     setSearchWord("");
@@ -78,7 +83,12 @@ function Dictionary({
 
   return (
     <div>
-      <Navbar isNewMessage={isNewMessage} studentName={studentName} />
+      <Navbar
+        isNewMessage={isNewMessage}
+        getStudentName={getStudentName}
+        userObject={userObject}
+        studentName={studentName}
+      />
       <div className={styles.pageBody}>
         <div className={styles.leftImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
@@ -149,20 +159,20 @@ export async function getServerSideProps({ req, res }) {
     // This is the cookie
     const cookie = req.cookies.token;
     // This refreshes the id token
-    const token = await getIdToken(cookie);
-    const isStudent = true;
+    const token = await getIDToken(cookie);
 
-    if (!token.getIdToken.user_id) {
+    if (!token.getIDToken.user_id) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
 
     return {
       props: {
-        userObject: [],
+        userObject: [token],
       },
     };
   } catch (err) {
@@ -170,6 +180,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }

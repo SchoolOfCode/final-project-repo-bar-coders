@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
 function StudentHome({
+  getStudentName,
   studentName,
   isNewMessage,
   studentDaysRead,
@@ -18,11 +19,12 @@ function StudentHome({
   getStudentData,
   userObject,
 }) {
-  // const userId = userObject[0].getIDToken.user_id;
-  // const fetchToken = userObject[0].getIDToken.id_token;
+  const userId = userObject[0].getIDToken.user_id;
+  const fetchToken = userObject[0].getIDToken.id_token;
 
   useEffect(() => {
-    getStudentData();
+    getStudentData(userId, fetchToken);
+    getStudentName(userId, fetchToken);
   }, []);
 
   console.log("LOOOOOOK", userObject);
@@ -30,7 +32,12 @@ function StudentHome({
   return (
     <div>
       <div>
-        <Navbar isNewMessage={isNewMessage} studentName={studentName} />
+        <Navbar
+          isNewMessage={isNewMessage}
+          studentName={studentName}
+          getStudentName={getStudentName}
+          userObject={userObject}
+        />
         <ProgressBar studentDaysRead={studentDaysRead} />
       </div>
 
@@ -41,6 +48,7 @@ function StudentHome({
             inProgressBooks={inProgressBooks}
             currentBook={currentBook}
             updateCurrentBook={updateCurrentBook}
+            userObject={userObject}
           />
           <Link href="/newbook" passHref>
             <button className={styles.newBookButton}>
@@ -68,6 +76,7 @@ export async function getServerSideProps({ req, res }) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
@@ -82,6 +91,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }

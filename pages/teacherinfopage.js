@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Styles from "../styles/teacherhome.module.css";
 import Classlist from "../src/teacherComponents/classlist/classlist";
 import Teachernavbar from "../src/teacherComponents/Teachernavbar/teachernavbar";
@@ -7,13 +7,20 @@ import Teacherinfo from "../src/teacherComponents/Teacherinfo/Teacherinfo";
 import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 import Individualstats from "../src/teacherComponents/Individualstats/individualstats";
 
-
 function Teacherinfopage({
   lessThanFour,
   moreThanFour,
   changeStudentSelected,
   studentSelected,
+  userObject,
+  getClassList,
 }) {
+  const fetchToken = userObject[0].getIDToken.id_token;
+
+  useEffect(() => {
+    getClassList(fetchToken);
+    console.log("4+:", moreThanFour, "4-:", lessThanFour);
+  }, []);
   return (
     <div className={Styles.container}>
       <div className={Styles.leftside}>
@@ -22,12 +29,16 @@ function Teacherinfopage({
           moreThanFour={moreThanFour}
           changeStudentSelected={changeStudentSelected}
           studentSelected={studentSelected}
+          userObject={userObject}
         ></Classlist>
       </div>
 
       <div className={Styles.rightside}>
         <Teachernavbar></Teachernavbar>
-        <Teacherinfo studentSelected={studentSelected}></Teacherinfo>
+        <Teacherinfo
+          studentSelected={studentSelected}
+          userObject={userObject}
+        ></Teacherinfo>
       </div>
       <div></div>
     </div>
@@ -45,6 +56,7 @@ export async function getServerSideProps({ req, res }) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
@@ -59,6 +71,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }

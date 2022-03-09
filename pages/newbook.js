@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
-function Newbook({ isNewMessage, studentId, studentName }) {
+function Newbook({ isNewMessage, studentName, getStudentName, userObject }) {
   const router = useRouter();
 
   const [newApiBook, setNewApiBook] = useState();
@@ -15,6 +15,9 @@ function Newbook({ isNewMessage, studentId, studentName }) {
   const [author, setAuthor] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const userId = userObject[0].getIDToken.user_id;
+  const fetchToken = userObject[0].getIDToken.id_token;
 
   useEffect(() => {
     bookSearch();
@@ -36,11 +39,15 @@ function Newbook({ isNewMessage, studentId, studentName }) {
         console.log(data.docs[0].cover_edition_key); //use to fetch cover art
         console.log(Date.now()); //book id to be added to database
 
+        const cover = data.docs[0].cover_edition_key
+          ? `https://covers.openlibrary.org/b/olid/${data.docs[0].cover_edition_key}-L.jpg`
+          : "https://www.wallpaperuse.com/wallp/42-425257_m.jpg";
+
         setNewApiBook({
           id: Date.now(),
-          studentId: studentId,
+          studentId: userId,
           title: data.docs[0].title,
-          cover: `https://covers.openlibrary.org/b/olid/${data.docs[0].cover_edition_key}-L.jpg`,
+          cover: cover,
           author: data.docs[0].author_name[0],
           totalPages: data.docs[0].number_of_pages_median,
         });
@@ -53,12 +60,15 @@ function Newbook({ isNewMessage, studentId, studentName }) {
     }
   }
 
-  async function addBookToDatabase() {
+  async function addBookToDatabase(fetchToken) {
     try {
       const url = "https://fourweekproject.herokuapp.com/books";
       await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          authorization: `Bearer ${fetchToken}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(newApiBook),
       });
       router.push("/studenthome");
@@ -69,7 +79,12 @@ function Newbook({ isNewMessage, studentId, studentName }) {
 
   return (
     <div>
-      <Navbar isNewMessage={isNewMessage} studentName={studentName} />
+      <Navbar
+        isNewMessage={isNewMessage}
+        studentName={studentName}
+        getStudentName={getStudentName}
+        userObject={userObject}
+      />
       <div className={styles.pageBody}>
         <div className={styles.leftImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
@@ -108,7 +123,11 @@ function Newbook({ isNewMessage, studentId, studentName }) {
               <h3>{newApiBook.title}</h3>
               <p>by {newApiBook.author}</p>
               <div className={styles.buttonDiv}>
-                <button onClick={addBookToDatabase}>
+                <button
+                  onClick={() => {
+                    addBookToDatabase(fetchToken);
+                  }}
+                >
                   Yes, this is my book
                 </button>
                 <Link href="/cantfindbook" passHref>
@@ -139,13 +158,14 @@ export async function getServerSideProps({ req, res }) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
 
     return {
       props: {
-        userObject: [],
+        userObject: [token],
       },
     };
   } catch (err) {
@@ -153,6 +173,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }

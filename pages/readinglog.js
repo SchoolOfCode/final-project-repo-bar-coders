@@ -12,13 +12,22 @@ function readinglog({
   isNewMessage,
   studentDaysRead,
   currentBook,
-  studentId,
   studentName,
+  getStudentName,
+  userObject,
 }) {
+  // const userId = userObject[0].getIDToken.user_id;
+  // const fetchToken = userObject[0].getIDToken.id_token;
+
   return (
     <div className={styles.wholePage}>
-      <div>
-        <Navbar isNewMessage={isNewMessage} studentName={studentName} />
+      <div className={styles.headerSection}>
+        <Navbar
+          isNewMessage={isNewMessage}
+          studentName={studentName}
+          getStudentName={getStudentName}
+          userObject={userObject}
+        />
         <ProgressBar studentDaysRead={studentDaysRead} />
       </div>
       <div className={styles.pageBody}>
@@ -37,7 +46,7 @@ function readinglog({
           </Link>
         </div>
         <div className={styles.rightSide}>
-          <Readinglog currentBook={currentBook} studentId={studentId} />
+          <Readinglog currentBook={currentBook} userObject={userObject} />
         </div>
       </div>
     </div>
@@ -50,20 +59,20 @@ export async function getServerSideProps({ req, res }) {
     // This is the cookie
     const cookie = req.cookies.token;
     // This refreshes the id token
-    const token = awaitgetIDToken(cookie);
-    const isStudent = true;
+    const token = await getIDToken(cookie);
 
-    if (!tokengetIDToken.user_id) {
+    if (!token.getIDToken.user_id) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
 
     return {
       props: {
-        userObject: [],
+        userObject: [token],
       },
     };
   } catch (err) {
@@ -71,6 +80,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }

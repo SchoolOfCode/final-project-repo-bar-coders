@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }) {
   // teacherID
-  const [teacherId, setTeacherId] = useState("frSoZOn5ctRdYnztLiWsnddDqyP2");
+  const [teacherId, setTeacherId] = useState("3uXBvDCLEKR120deKJBcZzeRyGl1");
 
   //studentId - to be set via Auth?
-  const [studentId, setStudentId] = useState("1");
+  //   const [studentId, setStudentId] = useState("1");
 
   //studentname - to be set Via fetch
 
@@ -72,9 +72,15 @@ function MyApp({ Component, pageProps }) {
   //   console.log("OOOOOOOOOOO", user);
   // }
 
-  async function getClassList() {
+  async function getClassList(fetchToken) {
     const response = await fetch(
-      "https://fourweekproject.herokuapp.com/teachers/class"
+      "https://fourweekproject.herokuapp.com/teachers/class",
+      {
+        headers: {
+          authorization: `Bearer ${fetchToken}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
     const data = await response.json();
     setMoreThanFour(data.classList4TimesOrMore);
@@ -82,21 +88,18 @@ function MyApp({ Component, pageProps }) {
     //  console.log(moreThanFour, lessThanFour)
   }
 
-  useEffect(() => {
-    getClassList();
-    console.log("4+:", moreThanFour, "4-:", lessThanFour);
-  }, []);
-
-
- const [studentSelected, setStudentSelected] = useState({
-   isSelected: false,
-   id: null,
-   studentName: null,
- });
+  const [studentSelected, setStudentSelected] = useState({
+    isSelected: false,
+    id: null,
+    studentName: null,
+  });
 
   function changeStudentSelected(isSelected, id, name) {
-    setStudentSelected({isSelected: isSelected, id: id, studentName: name})
-
+    setStudentSelected({
+      isSelected: isSelected,
+      id: id,
+      studentName: name,
+    });
   }
 
   //Used in the book carousel (& other places?) Need to write fetch request to get data from database. Initial state is just an example to check code works
@@ -149,10 +152,16 @@ function MyApp({ Component, pageProps }) {
   //Used in dictionary - new word list
   const [words, setWords] = useState(["facilitate", "diminish", "gravitate"]);
 
-  async function getWords() {
+  async function getWords(userId, fetchToken) {
     try {
       const response = await fetch(
-        `https://fourweekproject.herokuapp.com/dictionary/${studentId}`
+        `https://fourweekproject.herokuapp.com/dictionary/${userId}`,
+        {
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       const data = await response.json();
       let wordArray = data.payload;
@@ -166,13 +175,14 @@ function MyApp({ Component, pageProps }) {
   }
 
   //function to fetch studentName
-  async function getStudentData() {
+
+  async function getStudentData(userId, fetchToken) {
     try {
       const response = await fetch(
-        `https://fourweekproject.herokuapp.com/books/${studentId}`,
+        `https://fourweekproject.herokuapp.com/books/${userId}`,
         {
           headers: {
-            // authorization: `Bearer ${fetchToken}`,
+            authorization: `Bearer ${fetchToken}`,
             "Content-Type": "application/json",
           },
         }
@@ -191,10 +201,16 @@ function MyApp({ Component, pageProps }) {
     }
   }
 
-  async function getStudentName() {
+  async function getStudentName(userId, fetchToken) {
     try {
       const response = await fetch(
-        `https://fourweekproject.herokuapp.com/books/${studentId}`
+        `https://fourweekproject.herokuapp.com/books/${userId}`,
+        {
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       const data = await response.json();
       console.log(data);
@@ -204,19 +220,22 @@ function MyApp({ Component, pageProps }) {
     }
   }
 
-  useEffect(() => {
-    getStudentName();
-  }, []);
+  // useEffect(() => {
+  //       getStudentName();
+  // }, []);
 
   //adds new words to dictionary word list
-  async function updateWordsList(newWord, meaning) {
+  async function updateWordsList(newWord, meaning, fetchToken, userId) {
     try {
       const url = "https://fourweekproject.herokuapp.com/dictionary";
       await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          authorization: `Bearer ${fetchToken}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          studentId: studentId,
+          studentId: userId,
           word: newWord,
           definition: meaning,
         }),
@@ -233,10 +252,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <Component
       {...pageProps}
-      setStudentId={setStudentId}
       teacherId={teacherId}
       studentName={studentName}
-      studentId={studentId}
       isNewMessage={isNewMessage}
       studentDaysRead={studentDaysRead}
       inProgressBooks={inProgressBooks}
@@ -251,6 +268,8 @@ function MyApp({ Component, pageProps }) {
       moreThanFour={moreThanFour}
       studentSelected={studentSelected}
       changeStudentSelected={changeStudentSelected}
+      getStudentName={getStudentName}
+      getClassList={getClassList}
     />
   );
 }

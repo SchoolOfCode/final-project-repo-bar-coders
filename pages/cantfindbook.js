@@ -4,24 +4,36 @@ import Image from "next/image";
 import rocketicon from "../images/rocketicon.png";
 import styles from "../styles/cantfindbook.module.css";
 import { useRouter } from "next/router";
-import { getIdToken } from "../src/lib/firebase/refresh-tokens";
+import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
-function Cantfindbook({ isNewMessage, studentName, studentId }) {
+function Cantfindbook({
+  isNewMessage,
+  studentName,
+  studentId,
+  getStudentName,
+  userObject,
+}) {
   const router = useRouter();
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [pages, setPages] = useState();
 
-  async function addBookToDatabase() {
+  const userId = userObject[0].getIDToken.user_id;
+  const fetchToken = userObject[0].getIDToken.id_token;
+
+  async function addBookToDatabase(userId, fetchToken) {
     try {
       const url = "https://fourweekproject.herokuapp.com/books";
       await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          authorization: `Bearer ${fetchToken}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           id: Date.now(),
-          studentId: studentId,
+          studentId: userId,
           title: title,
           cover: "https://www.wallpaperuse.com/wallp/42-425257_m.jpg",
           author: author,
@@ -36,7 +48,12 @@ function Cantfindbook({ isNewMessage, studentName, studentId }) {
 
   return (
     <div>
-      <Navbar isNewMessage={isNewMessage} studentName={studentName} />
+      <Navbar
+        isNewMessage={isNewMessage}
+        studentName={studentName}
+        getStudentName={getStudentName}
+        userObject={userObject}
+      />
       <div className={styles.pageBody}>
         <div className={styles.leftImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
@@ -68,7 +85,13 @@ function Cantfindbook({ isNewMessage, studentName, studentId }) {
             }}
             placeholder="Number of pages"
           ></input>
-          <button onClick={addBookToDatabase}>Add book</button>
+          <button
+            onClick={() => {
+              addBookToDatabase(userId, fetchToken);
+            }}
+          >
+            Add book
+          </button>
         </div>
         <div className={styles.rightImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
@@ -84,20 +107,20 @@ export async function getServerSideProps({ req, res }) {
     // This is the cookie
     const cookie = req.cookies.token;
     // This refreshes the id token
-    const token = await getIdToken(cookie);
-    const isStudent = true;
+    const token = await getIDToken(cookie);
 
-    if (!token.getIdToken.user_id) {
+    if (!token.getIDToken.user_id) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
 
     return {
       props: {
-        userObject: [],
+        userObject: [token],
       },
     };
   } catch (err) {
@@ -105,6 +128,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }

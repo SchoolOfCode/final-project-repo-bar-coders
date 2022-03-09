@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Styles from "../styles/teacherhome.module.css";
 import Classlist from "../src/teacherComponents/classlist/classlist";
 import Teacherdashboard from "../src/teacherComponents/Teacherdashboard/teacherdashboard";
@@ -11,7 +11,16 @@ function Teacherhome({
   moreThanFour,
   changeStudentSelected,
   studentSelected,
+  userObject,
+  getClassList,
 }) {
+  const fetchToken = userObject[0].getIDToken.id_token;
+
+  useEffect(() => {
+    getClassList(fetchToken);
+    console.log("4+:", moreThanFour, "4-:", lessThanFour);
+  }, []);
+
   return (
     <div className={Styles.container}>
       <div className={Styles.leftside}>
@@ -28,6 +37,7 @@ function Teacherhome({
         <Teacherdashboard
           changeStudentSelected={changeStudentSelected}
           studentSelected={studentSelected}
+          userObject={userObject}
         ></Teacherdashboard>
       </div>
       <div></div>
@@ -45,6 +55,7 @@ export async function getServerSideProps({ req, res }) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
@@ -59,6 +70,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }

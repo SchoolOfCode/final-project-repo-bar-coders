@@ -4,15 +4,29 @@ import { useEffect } from "react";
 import Navbar from "../src/studentcomponents/navbar";
 import Styles from "../styles/finishedbooks.module.css";
 
-import { getIdToken } from "../src/lib/firebase/refresh-tokens";
+import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
-function Finishedbooks({ isNewMessage, studentId, studentName }) {
+function Finishedbooks({
+  isNewMessage,
+  studentName,
+  userObject,
+  getStudentName,
+}) {
   const [completedBooks, setCompletedBooks] = useState([]);
 
-  async function getCompletedBooks() {
+  const userId = userObject[0].getIDToken.user_id;
+  const fetchToken = userObject[0].getIDToken.id_token;
+
+  async function getCompletedBooks(userId, fetchToken) {
     try {
       const response = await fetch(
-        `https://fourweekproject.herokuapp.com/completedbooks/${studentId}`
+        `https://fourweekproject.herokuapp.com/completedbooks/${userId}`,
+        {
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       const data = await response.json();
       console.log(data);
@@ -23,7 +37,7 @@ function Finishedbooks({ isNewMessage, studentId, studentName }) {
   }
 
   useEffect(() => {
-    getCompletedBooks();
+    getCompletedBooks(userId, fetchToken);
   }, []);
 
   function formatDate(string) {
@@ -33,7 +47,14 @@ function Finishedbooks({ isNewMessage, studentId, studentName }) {
 
   return (
     <div>
-      {<Navbar isNewMessage={isNewMessage} studentName={studentName} />}
+      {
+        <Navbar
+          isNewMessage={isNewMessage}
+          studentName={studentName}
+          getStudentName={getStudentName}
+          userObject={userObject}
+        />
+      }
       <div className={Styles.container}>
         {completedBooks &&
           completedBooks.map((book, index) => {
@@ -41,7 +62,9 @@ function Finishedbooks({ isNewMessage, studentId, studentName }) {
               <div key={index} className={Styles.bookDiv}>
                 <h4> {book.title} </h4>
                 <div className={Styles.box}>
-                  <img src={book.cover} alt=""
+                  <img
+                    src={book.cover}
+                    alt=""
                     // width="350rem" height="350rem"
                   />
 
@@ -96,20 +119,21 @@ export async function getServerSideProps({ req, res }) {
     // This is the cookie
     const cookie = req.cookies.token;
     // This refreshes the id token
-    const token = await getIdToken(cookie);
+    const token = await getIDToken(cookie);
     const isStudent = true;
 
-    if (!token.getIdToken.user_id) {
+    if (!token.getIDToken.user_id) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
 
     return {
       props: {
-        userObject: [],
+        userObject: [token],
       },
     };
   } catch (err) {
@@ -117,6 +141,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }
