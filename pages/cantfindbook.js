@@ -41,8 +41,8 @@ function Cantfindbook({
         }),
       });
       router.push("/studenthome");
-    } catch {
-      alert("Sorry the server is unavailable, please try later");
+    } catch(err) {
+      console.log("error in addBookToDatabase", err);
     }
   }
 

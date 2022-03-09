@@ -3,7 +3,7 @@ import Styles from "../../../styles/teacherinfo.module.css";
 import Individualstats from "../Individualstats/individualstats";
 import IndividualSummaries from "../IndividualSummaries/individualsummaries";
 
-function Teacherinfo({ studentSelected, userObject }) {
+function Teacherinfo({ studentSelected, userObject, moreThanFour, lessThanFour }) {
   //to send a new message:
   const [message, setMessage] = useState("");
 
@@ -35,8 +35,8 @@ function Teacherinfo({ studentSelected, userObject }) {
           teacherId: userId,
           url,
         });
-      } catch {
-        console.log("error posting to server");
+      } catch(err) {
+        console.log("error in handleSubmit", err);
       }
     } else {
       try {
@@ -60,8 +60,8 @@ function Teacherinfo({ studentSelected, userObject }) {
           student_id: studentSelected.id,
           url,
         });
-      } catch {
-        console.log("error posting to server");
+      } catch(err) {
+        console.log("error in handleSubmit", err);
       }
     }
     setMessage("");
@@ -88,8 +88,8 @@ function Teacherinfo({ studentSelected, userObject }) {
         });
         const data = await response.json();
         setSentMessages(data.payload);
-      } catch {
-        console.log("error fetching from server");
+      } catch(err) {
+        console.log("error in fetchMessages", err);
       }
     } else {
       try {
@@ -103,8 +103,8 @@ function Teacherinfo({ studentSelected, userObject }) {
         });
         const data = await response.json();
         setSentMessages(data.payload);
-      } catch {
-        console.log("error fetching from server");
+      } catch(err) {
+        console.log("error in fetchMessages", err);
       }
     }
   }
@@ -121,6 +121,8 @@ function Teacherinfo({ studentSelected, userObject }) {
             studentSelected={studentSelected}
             className={Styles.p1}
             userObject={userObject}
+            moreThanFour={moreThanFour}
+            lessThanFour={lessThanFour}
           ></Individualstats>
         </div>
         <div className={Styles.topright}>

@@ -47,8 +47,8 @@ function Readinglog({ currentBook, userObject }) {
         url,
       });
       router.push("/studenthome");
-    } catch {
-      alert("Sorry the server is unavailable, please try later");
+    } catch(err) {
+      console.log("error in handleSubmit", err);
     }
   }
 
