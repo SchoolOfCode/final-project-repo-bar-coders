@@ -31,8 +31,8 @@ function Finishedbooks({
       const data = await response.json();
       console.log(data);
       setCompletedBooks(data.payload);
-    } catch {
-      alert("Server unavailable");
+    } catch(err) {
+      console.log("error in getCompletedBooks", err);
     }
   }
 

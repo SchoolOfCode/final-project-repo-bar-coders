@@ -49,7 +49,7 @@ function Classlist({
               className={Styles.lessthan}
               key={index}
               id={student.id}
-              studentName={student.studentName}
+              // studentname={student.studentName}
               onClick={(e) => {
                 console.log(e.target, e.target.id, student.studentName);
                 changeStudentSelected(true, e.target.id, student.studentName);
