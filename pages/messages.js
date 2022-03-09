@@ -6,7 +6,15 @@ import styles from "../styles/messages.module.css";
 import { useEffect, useState } from "react";
 import { getIDToken } from "../src/lib/firebase/refresh-tokens";
 
-function Messages({ isNewMessage, studentName, studentId }) {
+function Messages({
+  isNewMessage,
+  studentName,
+  studentId,
+  userObject,
+  getStudentName,
+}) {
+  const userId = userObject[0].getIDToken.user_id;
+  const fetchToken = userObject[0].getIDToken.id_token;
   //https://fourweekproject.herokuapp.com/feedback/s01
 
   const [studentMessages, setStudentMessages] = useState([
@@ -47,10 +55,16 @@ function Messages({ isNewMessage, studentName, studentId }) {
 
   const [teacherName, setTeacherName] = useState("Mrs Freeman");
 
-  async function getMessages() {
+  async function getMessages(userId, fetchToken) {
     try {
       const response = await fetch(
-        `https://fourweekproject.herokuapp.com/feedback/${studentId}`
+        `https://fourweekproject.herokuapp.com/feedback/${userId}`,
+        {
+          headers: {
+            authorization: `Bearer ${fetchToken}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       const data = await response.json();
       setStudentMessages(data.studentFeedBack);
@@ -62,7 +76,7 @@ function Messages({ isNewMessage, studentName, studentId }) {
   }
 
   useEffect(() => {
-    getMessages();
+    getMessages(userId, fetchToken);
   }, []);
 
   useEffect(() => {
@@ -80,7 +94,12 @@ function Messages({ isNewMessage, studentName, studentId }) {
 
   return (
     <div>
-      <Navbar isNewMessage={isNewMessage} studentName={studentName} />
+      <Navbar
+        isNewMessage={isNewMessage}
+        studentName={studentName}
+        getStudentName={getStudentName}
+        userObject={userObject}
+      />
       <div className={styles.pageBody}>
         <div className={styles.leftImage}>
           <Image src={rocketicon.src} alt="rocket" width="100" height="100" />
@@ -122,13 +141,14 @@ export async function getServerSideProps({ req, res }) {
       return {
         redirect: {
           destination: "/",
+          permanent: false,
         },
       };
     }
 
     return {
       props: {
-        userObject: [],
+        userObject: [token],
       },
     };
   } catch (err) {
@@ -136,6 +156,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }

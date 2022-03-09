@@ -7,26 +7,38 @@ import Minutesread from "../Graphs/minutesread";
 import Link from "next/link";
 import { styled } from "@chakra-ui/react";
 
-function Teacherdashboard({studentSelected}) {
+function Teacherdashboard({ studentSelected, userObject }) {
   return (
     <div className={Styles.teacherdashboard}>
       <div className={Styles.timesreadcontainer}>
-        <Timesread studentSelected={studentSelected}></Timesread>
+        <Timesread
+          studentSelected={studentSelected}
+          userObject={userObject}
+        ></Timesread>
       </div>
 
       {/* <div className={Styles.bottomsection}> */}
       <div className={Styles.topcontainers}>
         <div className={Styles.pages}>
-          <Pagesread studentSelected={studentSelected}></Pagesread>
+          <Pagesread
+            studentSelected={studentSelected}
+            userObject={userObject}
+          ></Pagesread>
         </div>
         <div className={Styles.minutes}>
-          <Minutesread studentSelected={studentSelected}></Minutesread>
+          <Minutesread
+            studentSelected={studentSelected}
+            userObject={userObject}
+          ></Minutesread>
         </div>
       </div>
 
       <div className={Styles.bottomcontainers}>
         <div className={Styles.finished}>
-          <Booksfinished studentSelected={studentSelected}></Booksfinished>
+          <Booksfinished
+            studentSelected={studentSelected}
+            userObject={userObject}
+          ></Booksfinished>
         </div>
 
         <div className={Styles.buttonDiv}>
@@ -41,5 +53,3 @@ function Teacherdashboard({studentSelected}) {
 }
 
 export default Teacherdashboard;
-
-

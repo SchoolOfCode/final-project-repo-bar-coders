@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
-import Styles from "../../../styles/charts.module.css"
+import Styles from "../../../styles/charts.module.css";
 
-function Pagesread({ studentSelected }) {
+function Pagesread({ studentSelected, userObject }) {
   const [pagesRead, setPagesRead] = useState([]);
+
+  const fetchToken = userObject[0].getIDToken.id_token;
 
   async function getPagesReadData() {
     const response = await fetch(
-      "https://fourweekproject.herokuapp.com/teachers/class"
+      "https://fourweekproject.herokuapp.com/teachers/class",
+      {
+        headers: {
+          authorization: `Bearer ${fetchToken}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
     const data = await response.json();
     const pagesData = data.pagesReadByClass;
@@ -17,14 +25,18 @@ function Pagesread({ studentSelected }) {
 
   async function getStudentPagesReadData(id) {
     const response = await fetch(
-      `https://fourweekproject.herokuapp.com/teachers/student/${id}`
+      `https://fourweekproject.herokuapp.com/teachers/student/${id}`,
+      {
+        headers: {
+          authorization: `Bearer ${fetchToken}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
     const data = await response.json();
     const pagesData = data.studentWeeklyPages;
     setPagesRead(pagesData.map((day) => day.pages));
   }
-
-
 
   useEffect(() => {
     if (studentSelected.isSelected === false) {

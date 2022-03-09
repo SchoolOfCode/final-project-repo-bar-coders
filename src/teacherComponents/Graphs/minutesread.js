@@ -1,16 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import MyApp from "../../../pages/_app";
-import Styles from '../../../styles/charts.module.css'
+import Styles from "../../../styles/charts.module.css";
 
-function Minutesread({studentSelected}) {
-  
+function Minutesread({ studentSelected, userObject }) {
   const [minutesRead, setMinutesRead] = useState([]);
+
+  const fetchToken = userObject[0].getIDToken.id_token;
 
   async function getMinutesReadData() {
     const response = await fetch(
-      "https://fourweekproject.herokuapp.com/teachers/class"
+      "https://fourweekproject.herokuapp.com/teachers/class",
+      {
+        headers: {
+          authorization: `Bearer ${fetchToken}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
     const data = await response.json();
     const minutesData = data.minutesReadByClass;
@@ -18,7 +25,13 @@ function Minutesread({studentSelected}) {
   }
   async function getStudentMinutesReadData(id) {
     const response = await fetch(
-      `https://fourweekproject.herokuapp.com/teachers/student/${id}`
+      `https://fourweekproject.herokuapp.com/teachers/student/${id}`,
+      {
+        headers: {
+          authorization: `Bearer ${fetchToken}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
     const data = await response.json();
     const minutesData = data.studentWeeklyMinutes;
@@ -32,7 +45,6 @@ function Minutesread({studentSelected}) {
       getStudentMinutesReadData(studentSelected.id);
     }
   }, [studentSelected]);
-
 
   const data = {
     labels: [
@@ -68,7 +80,6 @@ function Minutesread({studentSelected}) {
       },
     ],
   };
-
 
   return (
     <div className={Styles.chart}>

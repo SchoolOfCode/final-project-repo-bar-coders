@@ -1,21 +1,32 @@
 import React from "react";
 import Styles from "../../../styles/classlist.module.css";
 
-function Classlist({ lessThanFour, moreThanFour, changeStudentSelected, studentSelected }) {
+function Classlist({
+  lessThanFour,
+  moreThanFour,
+  changeStudentSelected,
+  studentSelected,
+}) {
   const studentsLessThan4 = lessThanFour
-    ? lessThanFour.map((student) => { return { studentName: student.name, id: student.student_id, count: student.count } })
+    ? lessThanFour.map((student) => {
+        return {
+          studentName: student.name,
+          id: student.student_id,
+          count: student.count,
+        };
+      })
     : [];
-  
+
   const studentsMoreThan4 = moreThanFour
     ? moreThanFour.map((student) => {
-      return {
-        studentName: student.name,
-        id: student.student_id,
-        count: student.count,
-      };
-    })
+        return {
+          studentName: student.name,
+          id: student.student_id,
+          count: student.count,
+        };
+      })
     : [];
- 
+
   return (
     <div className={Styles.classlist}>
       <h1>Class list: 5C</h1>
@@ -23,7 +34,8 @@ function Classlist({ lessThanFour, moreThanFour, changeStudentSelected, studentS
       <h4 className={Styles.moreThan4Key}>Read four times or more this week</h4>
 
       <div className={Styles.names}>
-        <button className={Styles.wholeClassButton}
+        <button
+          className={Styles.wholeClassButton}
           onClick={() => {
             changeStudentSelected(false, null, null);
           }}

@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
-import styles from '../../../styles/studentstats.module.css'
+import styles from "../../../styles/studentstats.module.css";
 
-function Individualstats({ studentSelected }) {
+function Individualstats({ studentSelected, userObject }) {
   const [weeklyData, setWeeklyData] = useState({});
+
+  const fetchToken = userObject[0].getIDToken.id_token;
 
   async function getStudentData(id) {
     const response = await fetch(
-      `https://fourweekproject.herokuapp.com/teachers/student/${id}`
+      `https://fourweekproject.herokuapp.com/teachers/student/${id}`,
+      {
+        headers: {
+          authorization: `Bearer ${fetchToken}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
     const data = await response.json();
     const readingCount = data.studentWeeklyReading[0].count;

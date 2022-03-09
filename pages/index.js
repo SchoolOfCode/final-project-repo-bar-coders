@@ -55,12 +55,9 @@ function Home({ teacherId }) {
           placeholder="password"
         />
         <div className={styles.Buttons}>
-
           <Link href="/studenthome" passHref>
             <button onClick={signIn}>Go!</button>
-
           </Link>
-          
         </div>
       </div>
     </div>
@@ -84,10 +81,9 @@ export async function getServerSideProps({ req, res }) {
       };
     }
 
-
     return {
       props: {
-        userObject: [],
+        userObject: [token],
       },
       redirect: {
         destination: "/studenthome",
