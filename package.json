@@ -6,7 +6,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "test2": "start-server-and-test dev 3000 cy:open",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
@@ -25,6 +27,7 @@
     "react-dom": "17.0.2",
     "react-image-gallery": "^1.2.7",
     "react-step-progress-bar": "^1.0.3",
+    "start-server-and-test": "^1.14.0",
     "supertest": "^6.2.2"
   },
   "devDependencies": {
