@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Bar, Bubble } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { useState } from "react";
+import Styles from "../../../styles/charts.module.css";
 
 function Timesread({ studentSelected, timesRead }) {
 
@@ -77,7 +78,7 @@ function Timesread({ studentSelected, timesRead }) {
   };
 
   return (
-    <div>
+    <div className={Styles.chart}>
       <Bar
         data={data}
         width={400}
