@@ -3,48 +3,8 @@ import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import Styles from "../../../styles/charts.module.css";
 
-function Booksfinished({ studentSelected, userObject }) {
-  const [booksComplete, setBooksComplete] = useState([]);
+function Booksfinished({ studentSelected, booksComplete }) {
 
-  const fetchToken = userObject[0].getIDToken.id_token;
-
-  async function getBooksCompletedData() {
-    const response = await fetch(
-      "https://fourweekproject.herokuapp.com/teachers/class",
-      {
-        headers: {
-          authorization: `Bearer ${fetchToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    const booksCompleteData = data.booksCompletedByClass;
-    setBooksComplete(booksCompleteData.map((day) => day.completed));
-  }
-
-  async function getStudentBooksCompleteData(id) {
-    const response = await fetch(
-      `https://fourweekproject.herokuapp.com/teachers/student/${id}`,
-      {
-        headers: {
-          authorization: `Bearer ${fetchToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    const booksData = data.studentCompletedBooks;
-    setBooksComplete(booksData.map((day) => day.completed));
-  }
-
-  useEffect(() => {
-    if (studentSelected.isSelected === false) {
-      getBooksCompletedData();
-    } else {
-      getStudentBooksCompleteData(studentSelected.id);
-    }
-  }, [studentSelected]);
 
   const data = {
     labels: [

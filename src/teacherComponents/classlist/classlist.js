@@ -49,6 +49,7 @@ function Classlist({
               className={Styles.lessthan}
               key={index}
               id={student.id}
+              data-testid="lessthan4"
               // studentname={student.studentName}
               onClick={(e) => {
                 console.log(e.target, e.target.id, student.studentName);
@@ -65,6 +66,7 @@ function Classlist({
               className={Styles.morethan}
               key={index}
               id={student.id}
+              data-testid="morethan4"
               onClick={(e) => {
                 console.log(e.target.id);
                 changeStudentSelected(true, e.target.id, student.studentName);

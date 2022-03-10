@@ -4,47 +4,8 @@ import Chart from "chart.js/auto";
 import MyApp from "../../../pages/_app";
 import Styles from "../../../styles/charts.module.css";
 
-function Minutesread({ studentSelected, userObject }) {
-  const [minutesRead, setMinutesRead] = useState([]);
-
-  const fetchToken = userObject[0].getIDToken.id_token;
-
-  async function getMinutesReadData() {
-    const response = await fetch(
-      "https://fourweekproject.herokuapp.com/teachers/class",
-      {
-        headers: {
-          authorization: `Bearer ${fetchToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    const minutesData = data.minutesReadByClass;
-    setMinutesRead(minutesData.map((day) => day.minutes));
-  }
-  async function getStudentMinutesReadData(id) {
-    const response = await fetch(
-      `https://fourweekproject.herokuapp.com/teachers/student/${id}`,
-      {
-        headers: {
-          authorization: `Bearer ${fetchToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    const minutesData = data.studentWeeklyMinutes;
-    setMinutesRead(minutesData.map((day) => day.minutes));
-  }
-
-  useEffect(() => {
-    if (studentSelected.isSelected === false) {
-      getMinutesReadData();
-    } else {
-      getStudentMinutesReadData(studentSelected.id);
-    }
-  }, [studentSelected]);
+function Minutesread({ studentSelected, minutesRead }) {
+  
 
   const data = {
     labels: [
