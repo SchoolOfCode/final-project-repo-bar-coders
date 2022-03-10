@@ -54,7 +54,7 @@ function Newbook({ isNewMessage, studentName, getStudentName, userObject }) {
         setErrorMessage("");
       } catch {
         setErrorMessage(
-          "No matches found. Did you fill in all the details and spell everything correctly?"
+          "No matches found. Try again, or add the details yourself."
         );
       }
     }
@@ -117,6 +117,12 @@ function Newbook({ isNewMessage, studentName, getStudentName, userObject }) {
           </button>
 
           {errorMessage && <p>{errorMessage}</p>}
+          {errorMessage ===
+            "No matches found. Try again, or add the details yourself." && (
+                          <Link href="/cantfindbook" passHref>
+                <button>Let me add the details myself</button>
+              </Link>
+                     )}
           {newApiBook && (
             <div>
               <p>Is this your book?</p>
