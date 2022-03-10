@@ -2,74 +2,18 @@ import React, { useEffect } from "react";
 import { Bar, Bubble } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { useState } from "react";
+import Styles from "../../../styles/charts.module.css";
 
-function Timesread({ studentSelected, userObject }) {
-  const [timesRead, setTimesRead] = useState([
-    {
-      weekly: 10,
-      count: "5",
-      name: "Alice",
-      student_id: "s01",
-    },
-    {
-      weekly: 10,
-      count: "1",
-      name: "Juan",
-      student_id: "s03",
-    },
-    {
-      weekly: 10,
-      count: "5",
-      name: "Alice",
-      student_id: "s01",
-    },
-    {
-      weekly: 10,
-      count: "1",
-      name: "Juan",
-      student_id: "s03",
-    },
-    {
-      weekly: 10,
-      count: "5",
-      name: "Alice",
-      student_id: "s01",
-    },
-    {
-      weekly: 10,
-      count: "1",
-      name: "Juan",
-      student_id: "s03",
-    },
-  ]);
+function Timesread({ studentSelected, timesRead }) {
 
-  // const userId = userObject[0].getIDToken.user_id;
-  const fetchToken = userObject[0].getIDToken.id_token;
-
-  async function getBarChartData() {
-    const response = await fetch(
-      "https://fourweekproject.herokuapp.com/teachers/class",
-      {
-        headers: {
-          authorization: `Bearer ${fetchToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    setTimesRead(data.barChartData);
-  }
-
-  useEffect(() => {
-    getBarChartData();
-  }, []);
 
   const initialArray = new Array(30).fill("rgba(54, 162, 235, 0.6)");
   const initialOutlineArray = new Array(30).fill("rgb(54, 162, 235)");
 
   const [studentArray, setStudentArray] = useState(initialArray);
 
-  const [studentOutlineArray, setStudentOutlineArray] = useState();
+  const [studentOutlineArray, setStudentOutlineArray] =
+    useState(initialOutlineArray);
 
   useEffect(() => {
     let index = timesRead.findIndex(
@@ -134,7 +78,7 @@ function Timesread({ studentSelected, userObject }) {
   };
 
   return (
-    <div>
+    <div className={Styles.chart}>
       <Bar
         data={data}
         width={400}
