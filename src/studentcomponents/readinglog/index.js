@@ -1,6 +1,7 @@
 import { Link, useState } from "react";
 import styles from "../../../styles/readinglog.module.css";
 import { useRouter } from "next/router";
+import ConfettiExplosion from "react-confetti-explosion";
 
 function Readinglog({ currentBook, userObject }) {
   const router = useRouter();
@@ -10,6 +11,7 @@ function Readinglog({ currentBook, userObject }) {
   const [minutes, setMinutes] = useState();
   const [summary, setSummary] = useState();
   const [isComplete, setIsComplete] = useState(false);
+  const [isExploding, setIsExploding] = useState(false);
 
   const userId = userObject[0].getIDToken.user_id;
   const fetchToken = userObject[0].getIDToken.id_token;
@@ -46,9 +48,16 @@ function Readinglog({ currentBook, userObject }) {
         pagesRead: endPage - startPage,
         url,
       });
-      router.push("/studenthome");
+      if (isComplete === true) { setIsExploding(true) }
+      
     } catch(err) {
       console.log("error in handleSubmit", err);
+    }
+    finally {
+      ;
+      setTimeout(function () {
+        router.push("/studenthome");
+      }, 1500);
     }
   }
 
@@ -56,6 +65,17 @@ function Readinglog({ currentBook, userObject }) {
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <h1>{currentBook.title}</h1>
+        {isExploding && (
+          <ConfettiExplosion
+            style={{
+              force: 2,
+              duration: 5000,
+              particleCount: 1000,
+              floorHeight: 1600,
+              floorWidth: 1600,
+            }}
+          />
+        )}
         <div className={styles.pageDiv}>
           <input
             type="text"
@@ -95,7 +115,9 @@ function Readinglog({ currentBook, userObject }) {
 
         <div className={styles.buttons}>
           {/* <Link href="studenthome" passHref> */}
+
           <button type="submit">Submit</button>
+
           {/* </Link> */}
           <label>
             Finished the book?

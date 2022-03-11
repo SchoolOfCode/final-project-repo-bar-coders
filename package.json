@@ -24,6 +24,7 @@
     "node-fetch": "^3.2.0",
     "react": "17.0.2",
     "react-chartjs-2": "^4.0.1",
+    "react-confetti-explosion": "^1.0.3",
     "react-dom": "17.0.2",
     "react-image-gallery": "^1.2.7",
     "react-step-progress-bar": "^1.0.3",

@@ -4,7 +4,7 @@ import Chart from "chart.js/auto";
 import { useState } from "react";
 import Styles from "../../../styles/charts.module.css";
 
-function Timesread({ studentSelected, timesRead }) {
+function Timesread({ studentSelected, timesRead, barChartCoins }) {
 
 
   const initialArray = new Array(30).fill("rgba(54, 162, 235, 0.6)");
@@ -54,10 +54,19 @@ function Timesread({ studentSelected, timesRead }) {
 
   const studentNames = timesRead.map((student) => student.name);
   const studentTimes = timesRead.map((student) => student.count);
+  const studentCoins = timesRead.map((student) => student.sum);
+
 
   const data = {
     labels: studentNames,
-    datasets: [
+    datasets: barChartCoins ? [{
+        label: "Coins earned this week",
+        data: barChartCoins ? studentCoins : studentTimes,
+        backgroundColor: studentArray,
+        borderColor: studentOutlineArray,
+        borderWidth: 2,
+      }] :
+      [
       {
         type: "line",
         label: "target of 4 times",
@@ -69,7 +78,7 @@ function Timesread({ studentSelected, timesRead }) {
       },
       {
         label: "Times read this week",
-        data: studentTimes,
+        data: barChartCoins ? studentCoins : studentTimes,
         backgroundColor: studentArray,
         borderColor: studentOutlineArray,
         borderWidth: 2,
