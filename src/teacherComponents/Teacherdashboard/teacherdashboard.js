@@ -15,6 +15,7 @@ function Teacherdashboard({ studentSelected, userObject }) {
   const [minutesRead, setMinutesRead] = useState([]);
   const [booksComplete, setBooksComplete] = useState([]);
   const [timesRead, setTimesRead] = useState([]);
+  const [barChartCoins, setBarChartCoins] = useState(true)
 
   async function getClassData() {
     const response = await fetch(
@@ -56,6 +57,8 @@ function Teacherdashboard({ studentSelected, userObject }) {
   
   }
 
+
+
   useEffect(() => {
     if (studentSelected.isSelected === false) {
       getClassData();
@@ -69,10 +72,19 @@ function Teacherdashboard({ studentSelected, userObject }) {
   return (
     <div className={Styles.teacherdashboard}>
       <div className={Styles.timesreadcontainer}>
+        <button
+          className={Styles.toggleButton}
+          onClick={() => {
+            setBarChartCoins(!barChartCoins);
+          }}
+        >
+          {barChartCoins ? "See times read" : "See coins earned"}
+        </button>
         <Timesread
           studentSelected={studentSelected}
           // userObject={userObject}
           timesRead={timesRead}
+          barChartCoins={barChartCoins}
         ></Timesread>
       </div>
 
