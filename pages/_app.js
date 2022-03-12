@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
 
   //studentname - to be set Via fetch
 
-  const [studentName, setStudentName] = useState("name");
+  const [studentName, setStudentName] = useState("");
 
   //Added in case we use it as a stretch goal - notification if a "new" message is received
   const [isNewMessage, setIsNewMessage] = useState(true);
@@ -106,11 +106,11 @@ function MyApp({ Component, pageProps }) {
   const [inProgressBooks, setInProgressBooks] = useState([
     {
       id: 2,
-      title: "Harry Potter and the Philosopher's Stone",
+      title: "Matilda",
       current_page: 146,
       total_pages: 223,
       percentagecomplete: 65,
-      cover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
+      cover: "https://covers.openlibrary.org/b/isbn/014034294X.jpg",
     },
     {
       id: 3,
@@ -134,11 +134,11 @@ function MyApp({ Component, pageProps }) {
   //Current book that is being updated in the reading log:
   const [currentBook, setCurrentBook] = useState({
     id: 2,
-    title: "Harry Potter and the Philosopher's Stone",
+    title: "Matilda",
     current_page: 145,
     total_pages: 223,
     percentagecomplete: 65,
-    cover: "https://pictures.abebooks.com/isbn/9780747549550-uk.jpg",
+    cover: "https://covers.openlibrary.org/b/isbn/014034294X.jpg",
   });
 
   //function to update current book depending on what is clicked in the book carousel:
