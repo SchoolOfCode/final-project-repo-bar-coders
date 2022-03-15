@@ -2,6 +2,8 @@
 
 This app was created by The Bar Coders as our final 4-week project at the end of our School of Code Bootcamp.
 
+View our app [here](https://bookwormspreview.netlify.app/)!
+
 ## Project Description
 
 ### Our problem statement
